@@ -170,7 +170,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "حسن خليفة العطبراوي - تسجبل الإذاعة الأصلي",
       "originalKey": "G minor",
-      "performanceKey": "G minor",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم خماسي سوداني (Pentatonic Minor)",
       "rhythm": "رومبا سودانية / خفيف",
       "bpm": 92,
@@ -490,7 +490,8 @@ const SONGS_DATABASE = [
             "transcriptionMethod": "acoustic-manual",
             "confidence": "high"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "G minor",
@@ -801,7 +802,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "عائشة الفلاتية ومدني صالح - تسجيل 1930م الأرشيفي",
       "originalKey": "F major",
-      "performanceKey": "F major",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم خماسي مبهج (F G A C D)",
       "rhythm": "تمتم خفيف / سيرة شرق السودان",
       "bpm": 100,
@@ -1112,7 +1113,8 @@ const SONGS_DATABASE = [
             "transcriptionMethod": "acoustic-manual",
             "confidence": "high"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "F major",
@@ -1370,7 +1372,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "عوض الكريم عبد الله وحيدر بورتسودان - تسجيل سرييع",
       "originalKey": "C major",
-      "performanceKey": "C major",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم خماسي مبهج",
       "rhythm": "إيقاع شعبي خفيف",
       "bpm": 102,
@@ -1633,7 +1635,8 @@ const SONGS_DATABASE = [
             "transcriptionMethod": "acoustic-manual",
             "confidence": "high"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "C major",
@@ -1876,7 +1879,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "عائشة الفلاتية - تسجيل الإذاعة 1940",
       "originalKey": "F minor",
-      "performanceKey": "F minor",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم خماسي سوداني حماسي",
       "rhythm": "مارش عسكري / سيرة سودانية خفيفة",
       "bpm": 104,
@@ -2055,7 +2058,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "دو - سي بيمول - لا بيمول - فا"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "F minor",
@@ -2305,7 +2309,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "بادي محمد الطيب - تسجيل الحقيبة الخالد",
       "originalKey": "C minor",
-      "performanceKey": "C minor",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم حقيبة خماسي أصيل (C Eb F G Bb)",
       "rhythm": "حقيبة / 4-4 طمبور رباعي",
       "bpm": 84,
@@ -2502,7 +2506,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "صول - فا - مي بيمول - دو"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "C minor",
@@ -2749,7 +2754,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "بادي محمد الطيب - أهزوجة الخدير التراثية",
       "originalKey": "D minor",
-      "performanceKey": "D minor",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم حداء خماسي ريفي (D F G A C)",
       "rhythm": "إيقاع صفقة ودق العيش سريع",
       "bpm": 112,
@@ -2932,7 +2937,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "لا - صول - فا - ري"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "D minor",
@@ -3205,7 +3211,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "أحمد المصطفى ومحمود عبد العزيز - تسجيل طربي",
       "originalKey": "A minor",
-      "performanceKey": "A minor",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم خماسي طربي دائر (A C D E G)",
       "rhythm": "دائري طربي / 4-4 حديث",
       "bpm": 88,
@@ -3412,7 +3418,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "مي - ري - دو - لا"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "A minor",
@@ -3692,7 +3699,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "أحمد المصطفى - التسجيل الإذاعي العاطفي",
       "originalKey": "Bb minor",
-      "performanceKey": "Bb minor",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم خماسي طربي رزين",
       "rhythm": "حقيبة رزين 4-4",
       "bpm": 80,
@@ -3904,7 +3911,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "فا - مي بيمول - دو بيمول - سي بيمول"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "Bb minor",
@@ -4133,7 +4141,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "أحمد الجابري وهدى عربي - تسجيل التمتم",
       "originalKey": "D major",
-      "performanceKey": "D major",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم تمتم الخماسي (D E F# A B)",
       "rhythm": "إيقاع تمتم سوداني أصيل",
       "bpm": 110,
@@ -4307,7 +4315,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "لا - فا دييز - مي - ري"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "D major",
@@ -4557,7 +4566,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "إنصاف فتحي وهدى عربي - تسجيل السيرة المبهج",
       "originalKey": "G major",
-      "performanceKey": "G major",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم سيرة خماسي مبهج",
       "rhythm": "إيقاع سيرة سودانية أصيلة",
       "bpm": 106,
@@ -4754,7 +4763,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "ري - سي - لا - صول"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "G major",
@@ -4980,7 +4990,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "زيدان إبراهيم - التسجيل الأوركستري بالسبعينيات",
       "originalKey": "Eb minor",
-      "performanceKey": "Eb minor",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم عاطفي حديث (Eb F Gb Ab Bb)",
       "rhythm": "رومبا عاطفية سودانية بطيئة",
       "bpm": 76,
@@ -5154,7 +5164,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "سي بيمول - لا بيمول - صول بيمول - مي بيمول"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "Eb minor",
@@ -5425,7 +5436,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "نادر خضر وأحمد كابيلا - تسجيل نادي الضباط 2020",
       "originalKey": "G major",
-      "performanceKey": "G major",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم خماسي مبهج",
       "rhythm": "إيقاع شعبي شبابي سريع",
       "bpm": 108,
@@ -5619,7 +5630,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "ري - سي - لا - صول"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "G major",
@@ -5876,7 +5888,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "حنان بلوبلو - أهزوجة حمادة دا جنني",
       "originalKey": "F# minor",
-      "performanceKey": "F# minor",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم أغاني بنات سريع (F# A B C# E)",
       "rhythm": "إيقاع أفراح سوداني سريع / زنق خفيف",
       "bpm": 116,
@@ -6065,7 +6077,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "دو دييز - سي - لا - فا دييز"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "F# minor",
@@ -6316,7 +6329,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "بادي محمد الطيب ومبارك حسن بركات - تسجيل الحقيبة الذهبي",
       "originalKey": "G minor",
-      "performanceKey": "G minor",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم حقيبة خماسي فاخر (G Bb C D F)",
       "rhythm": "حقيبة رزين / 4-4 طمبور",
       "bpm": 82,
@@ -6513,7 +6526,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "ري - دو - سي بيمول - صول"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "G minor",
@@ -6756,7 +6770,7 @@ const SONGS_DATABASE = [
     "performance": {
       "referenceRecording": "شكر الله عز الدين ومأمون سوار الذهب - تسجيل الأفراح",
       "originalKey": "A major",
-      "performanceKey": "A major",
+      "performanceKey": "يحدد في البروفة",
       "tonalSystem": "سلم سيرة زنق مبهج",
       "rhythm": "إيقاع سيرة سودانية / زنق خفيف",
       "bpm": 114,
@@ -6939,7 +6953,8 @@ const SONGS_DATABASE = [
             ],
             "solfege": "مي - دو دييز - سي - لا"
           }
-        ]
+        ],
+        "harmonyNotes": "🟡 الهارموني يحتاج مراجعة حسن غزالي"
       },
       "performanceVersion": {
         "key": "A major",

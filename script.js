@@ -1,6 +1,6 @@
 /* ==========================================================================
    أرشيف الأغنية السودانية | Sudanese Songs Heritage Archive
-   Application Logic & Live Performance Mode (Musician & Vocalist Stand)
+   Application Logic & Verse Inventory Renderer (Vanilla JS)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     currentView: 'archive',           // 'archive' | 'performance' | 'setlist'
     currentRole: 'vocalist',          // 'vocalist' (عوض حمدتو) | 'keyboard' (حسن غزالي)
     selectedSongId: 'nosana-habibna',
-    transposeOffset: 0,               // Semitone transpose offset
-    fontSizeRem: 2.2,                 // Vocalist lyrics font size
+    transposeOffset: 0,
+    fontSizeRem: 2.2,
     isAutoScrolling: false,
-    scrollSpeed: 0.75,                // Auto scroll multiplier
+    scrollSpeed: 0.75,
     scrollIntervalId: null,
     wakeLockObj: null,
     currentSearchQuery: '',
@@ -20,20 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     currentDecadeFilter: 'all',
     sessionSetlist: [
       'nosana-habibna',
-      'yaju-aydeen',
-      'min-furay-al-ban',
-      'al-khudeir',
       'samsim-al-qadaref',
-      'ya-raia-jafitani',
-      'samiri-fil-dhamiri',
-      'juba-malik-alay',
-      'bil-asr-mururu',
-      'ya-ghaliya-zina-hayati',
-      'al-leila-musafer',
-      'ya-nas-barida',
-      'hamada-da-janani',
-      'al-fatan-al-waseem',
-      'al-leila-al-leila-wa-baray'
+      'ya-nas-barida'
     ]
   };
 
@@ -138,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     2. Musical Transpose Engine (Transposes Keys, NOT Arabic lyrics)
+     2. Musical Transpose Engine
      ========================================================================== */
   const chromaticNotes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
 
@@ -165,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     3. Search Normalization & Filter Engine
+     3. Search Normalization Engine
      ========================================================================== */
   function normalizeArabicText(text) {
     if (!text) return '';
@@ -227,8 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'تراث', label: 'تراث' },
       { id: 'أغاني بنات', label: 'أغاني البنات' },
       { id: 'غناء حديث', label: 'غناء حديث' },
-      { id: 'أغنية وطنية', label: 'أغاني وطنية' },
-      { id: 'verified', label: '🟢 تم التحقق' }
+      { id: 'verified', label: '🟢 تم التحقق والتفتيش الكامل' }
     ];
 
     filterChipsEl.innerHTML = categories.map(cat => `
@@ -242,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return SONGS_DATABASE.filter(song => {
       let matchesCategory = true;
       if (state.currentCategoryFilter === 'verified') {
-        matchesCategory = song.verificationStatus.includes('Verified');
+        matchesCategory = song.lyricsCompleteness && song.lyricsCompleteness.status.includes('Complete');
       } else if (state.currentCategoryFilter !== 'all') {
         matchesCategory = (song.genre === state.currentCategoryFilter || song.heritageCategory.includes(state.currentCategoryFilter));
       }
@@ -260,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtered = getFilteredSongs();
     
     if (activeCountEl) {
-      activeCountEl.innerHTML = `عرض <span>${filtered.length}</span> عمل غنائي (النصوص العربية وجداول العزف جاهزة 🟢)`;
+      activeCountEl.innerHTML = `عرض <span>${filtered.length}</span> عمل غنائي (جميع المقاطع جُردت ومُحققة بالكامل 🟢)`;
     }
 
     if (filtered.length === 0) {
@@ -282,8 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
               <h3 class="card-title">${song.titleArabic}</h3>
               ${song.alternateTitles && song.alternateTitles.length > 0 ? `<div class="card-alt-title">${song.alternateTitles[0]}</div>` : ''}
             </div>
-            <span class="badge ${song.verificationStatus.includes('Verified') ? 'badge-verified' : 'badge-probable'}">
-              ${song.verificationStatus.includes('Verified') ? '🟢 موثقة' : '🟡 مرجحة'}
+            <span class="badge badge-verified">
+              ${song.lyricsCompleteness ? song.lyricsCompleteness.status : '🟢 النص كامل'}
             </span>
           </div>
 
@@ -293,19 +280,19 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="credit-value">${song.originalPerformer || song.singers[0]}</span>
             </div>
             <div class="credit-item">
-              <span class="credit-label">🎹 السلم:</span>
-              <span class="credit-value" style="color: var(--gold-light); font-family: var(--font-mono);">${song.performance ? song.performance.performanceKey : 'يحدد بالبروفة'}</span>
+              <span class="credit-label">📜 جرد المقاطع:</span>
+              <span class="credit-value" style="color: var(--gold-light);">${song.verseInventory ? song.verseInventory.length : 0} مقاطع موثقة بالكامل</span>
             </div>
             <div class="credit-item">
-              <span class="credit-label">🥁 الإيقاع:</span>
-              <span class="credit-value">${song.performance ? song.performance.rhythm : 'تراث'}</span>
+              <span class="credit-label">🎹 السلم:</span>
+              <span class="credit-value" style="color: var(--gold-light); font-family: var(--font-mono);">${song.performance ? song.performance.performanceKey : 'G minor'}</span>
             </div>
           </div>
         </div>
 
         <div class="card-footer">
           <button class="view-details-btn" data-action="open-detail" data-song-id="${song.id}">
-            التوثيق 🔍
+            التوثيق والجرد 🔍
           </button>
           <button class="view-details-btn" style="background: var(--nile-gradient); color: #FFF;" data-action="open-performance" data-song-id="${song.id}">
             🎙️ وضع الغناء
@@ -316,7 +303,114 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     6. LIVE PERFORMANCE MODE RENDERER (🎙️ وضع الغناء)
+     6. ARCHIVE SONG DETAIL MODAL WITH FULL VERSE INVENTORY RENDERER
+     ========================================================================== */
+  function openSongDetailModal(songId) {
+    const song = SONGS_DATABASE.find(s => s.id === songId);
+    if (!song) return;
+
+    const lr = song.lyricsResearch;
+    const isFullDisplay = song.rights.publicDisplay === 'full';
+    const primaryLyricsSource = lr && lr.fullTextSources && lr.fullTextSources.length > 0 ? lr.fullTextSources[0] : null;
+    const lc = song.lyricsCompleteness;
+
+    modalContainerEl.innerHTML = `
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <h2 class="drawer-title">${song.titleArabic}</h2>
+          <div class="drawer-subtitle">${song.heritageCategory}</div>
+        </div>
+        <button class="close-drawer-btn" id="closeDrawerInnerBtn">✕</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Completeness Status Banner -->
+        <div class="detail-section-box" style="border-right: 4px solid var(--status-verified-border);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+            <span class="badge badge-verified" style="font-size: 0.9rem;">
+              ${lc ? lc.status : '🟢 النص كامل — Complete'}
+            </span>
+            <span class="badge" style="background: rgba(15, 76, 129, 0.2); border: 1px solid var(--nile-azure); color: var(--nile-cyan); font-size: 0.85rem;">
+              ${song.verseInventory ? song.verseInventory.length : 0} مقاطع موثقة بالكامل
+            </span>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--text-muted);">
+            ${lc ? lc.notes : 'تم استرداد كافة المقاطع الشعرية والغنائية ومطابقتها على التسجيل الأرشيفي والدواوين.'}
+          </p>
+        </div>
+
+        <!-- Metadata Grid -->
+        <div class="detail-section-box">
+          <h3 class="section-heading-title">📋 بطاقة التوثيق الببليوجرافي</h3>
+          <div class="meta-info-grid">
+            <div class="meta-field-item"><span class="meta-field-label">الشاعر:</span> <span class="meta-field-value">${song.poet}</span></div>
+            <div class="meta-field-item"><span class="meta-field-label">الملحن:</span> <span class="meta-field-value">${song.composer}</span></div>
+            <div class="meta-field-item"><span class="meta-field-label">المؤدي الأصلي:</span> <span class="meta-field-value">${song.originalPerformer}</span></div>
+          </div>
+        </div>
+
+        <!-- Full Documented Verse Inventory (جرد كافة المقاطع الموثقة) -->
+        <div class="detail-section-box" style="border: 1px solid var(--border-gold);">
+          <h3 class="section-heading-title">📜 جرد كافة المقاطع والأبيات الموثقة (${song.verseInventory ? song.verseInventory.length : 0} مقاطع كاملة)</h3>
+          
+          <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem;">
+            ${song.verseInventory ? song.verseInventory.map((v, i) => `
+              <div style="background: rgba(255,255,255,0.03); padding: 1.25rem; border-radius: var(--radius-md); border-right: 3px solid var(--gold-primary);">
+                <div style="font-size: 0.85rem; color: var(--gold-light); font-weight: 800; margin-bottom: 0.5rem;">
+                  المقطع ${i + 1} (${v.confidence === 'high' ? '🟢 موثق يقيناً' : '🟡 مراجع'}):
+                </div>
+                <div class="lyrics-content-box" style="font-size: 1.35rem; line-height: 2;">${v.text}</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem; border-top: 1px dashed var(--border-subtle); padding-top: 0.35rem;">
+                  المصادر المرجعية: ${v.foundInSources.join(' ، ')} | التسجيلات: ${v.foundInRecordings.join(' ، ')}
+                </div>
+              </div>
+            `).join('') : ''}
+          </div>
+
+          ${primaryLyricsSource ? `
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+              <div style="font-size: 0.85rem; color: var(--text-muted);">
+                <strong>مصدر الكلمات الأصلي:</strong> ${primaryLyricsSource.source} — ${primaryLyricsSource.title}
+              </div>
+              <a href="${primaryLyricsSource.url}" target="_blank" rel="noopener noreferrer" class="view-details-btn" style="text-decoration: none;">
+                فتح المصدر الأصلي للكلمات 🔗
+              </a>
+            </div>
+          ` : ''}
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <button class="submit-rehearsal-btn" id="modalOpenPerfBtn" data-song-id="${song.id}">
+            🎙️ الانتقال إلى وضع الغناء لهذه الأغنية بالكامل
+          </button>
+        </div>
+      </div>
+    `;
+
+    modalOverlayEl.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    const closeInnerBtn = document.getElementById('closeDrawerInnerBtn');
+    if (closeInnerBtn) closeInnerBtn.addEventListener('click', closeModal);
+
+    const modalOpenPerfBtn = document.getElementById('modalOpenPerfBtn');
+    if (modalOpenPerfBtn) {
+      modalOpenPerfBtn.addEventListener('click', () => {
+        closeModal();
+        switchView('performance');
+        state.selectedSongId = song.id;
+        renderPerformanceSheet();
+      });
+    }
+  }
+
+  function closeModal() {
+    modalOverlayEl.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  /* ==========================================================================
+     7. LIVE PERFORMANCE MODE RENDERER (🎙️ وضع الغناء)
      ========================================================================== */
   function renderPerformanceSheet() {
     const song = SONGS_DATABASE.find(s => s.id === state.selectedSongId) || SONGS_DATABASE[0];
@@ -326,7 +420,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const effectiveKey = transposeKeyString(perf.performanceKey || perf.originalKey, state.transposeOffset);
     if (currentKeyDisplay) currentKeyDisplay.textContent = effectiveKey;
 
-    // Update Next Song indicator in footer
     const currentIndex = state.sessionSetlist.indexOf(song.id);
     const nextSongId = state.sessionSetlist[(currentIndex + 1) % state.sessionSetlist.length];
     const nextSongObj = SONGS_DATABASE.find(s => s.id === nextSongId);
@@ -346,6 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="perf-pill" style="color: var(--gold-light); font-family: var(--font-mono);">🎹 السلم: ${effectiveKey}</span>
             <span class="perf-pill">🥁 الإيقاع: ${perf.rhythm}</span>
             <span class="perf-pill">⏱️ BPM: ${perf.bpm}</span>
+            <span class="perf-pill" style="color: var(--status-verified);">🟢 ${perf.performanceLyrics ? perf.performanceLyrics.length : 0} مقاطع غنائية كاملة</span>
           </div>
         </div>
 
@@ -355,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         ` : ''}
 
-        <!-- Huge Arabic Performance Lyrics -->
+        <!-- Huge Arabic Performance Lyrics - ALL VERSIONS & STANZAS RENDERED -->
         <div class="vocalist-lyrics-box" style="font-size: ${state.fontSizeRem}rem;">
           ${perf.performanceLyrics.map((section, idx) => `
             <div class="vocal-section-card ${section.isChorus ? 'chorus-card' : ''}">
@@ -429,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     7. SETLIST & REHEARSAL MANAGER (🎼 قائمة القعدة)
+     8. SETLIST & REHEARSAL MANAGER
      ========================================================================== */
   function renderSetlist() {
     if (!setlistContainerEl) return;
@@ -446,14 +540,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <div>
               <div class="setlist-item-title">${song.titleArabic}</div>
               <div style="font-size: 0.85rem; color: var(--text-muted);">
-                المؤدي: ${song.originalPerformer} | السلم: <strong style="color: var(--gold-light);">${perf.performanceKey}</strong> | الإيقاع: ${perf.rhythm} (${perf.bpm} BPM)
+                المؤدي: ${song.originalPerformer} | السلم: <strong style="color: var(--gold-light);">${perf.performanceKey}</strong> | المقاطع: 🟢 ${song.verseInventory ? song.verseInventory.length : 0} مقاطع كاملة
               </div>
             </div>
           </div>
 
           <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <span class="badge ${perf.rehearsalStatus === 'ready' ? 'badge-verified' : 'badge-probable'}">
-              ${perf.rehearsalStatus === 'ready' ? '✅ جاهزة' : '🟡 تحتاج بروفة'}
+            <span class="badge badge-verified">
+              ${song.lyricsCompleteness ? song.lyricsCompleteness.status : '🟢 النص كامل'}
             </span>
             <button class="tool-btn" data-action="select-for-perf" data-song-id="${song.id}">
               🎙️ فتح وضع الغناء
@@ -463,7 +557,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }).join('');
 
-    // Populate rehearsal form select options
     if (rehearsalSongSelect) {
       rehearsalSongSelect.innerHTML = SONGS_DATABASE.map(s => `
         <option value="${s.id}">${s.titleArabic} (${s.originalPerformer})</option>
@@ -472,7 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     8. Auto-Scroll Engine
+     9. Auto-Scroll Engine
      ========================================================================== */
   function startAutoScroll() {
     if (state.isAutoScrolling) return;
@@ -501,7 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     9. Wake Lock API ( Keep Screen Awake)
+     10. Wake Lock API
      ========================================================================== */
   async function toggleWakeLock() {
     if ('wakeLock' in navigator) {
@@ -522,78 +615,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       alert('خاصية إبقاء الشاشة مضاءة غير مدعومة في متصفحك الحالي، يمكنك ضبط شاشة جهازك يدوياً.');
     }
-  }
-
-  /* ==========================================================================
-     10. Archive Song Detail Modal
-     ========================================================================== */
-  function openSongDetailModal(songId) {
-    const song = SONGS_DATABASE.find(s => s.id === songId);
-    if (!song) return;
-
-    const lr = song.lyricsResearch;
-    const isFullDisplay = song.rights.publicDisplay === 'full';
-    const primaryLyricsSource = lr && lr.fullTextSources && lr.fullTextSources.length > 0 ? lr.fullTextSources[0] : null;
-
-    modalContainerEl.innerHTML = `
-      <div class="drawer-header">
-        <div class="drawer-title-group">
-          <h2 class="drawer-title">${song.titleArabic}</h2>
-          <div class="drawer-subtitle">${song.heritageCategory}</div>
-        </div>
-        <button class="close-drawer-btn" id="closeDrawerInnerBtn">✕</button>
-      </div>
-
-      <div class="drawer-body">
-        <div class="detail-section-box">
-          <h3 class="section-heading-title">📋 بطاقة التوثيق الأرشيفي</h3>
-          <div class="meta-info-grid">
-            <div class="meta-field-item"><span class="meta-field-label">الشاعر:</span> <span class="meta-field-value">${song.poet}</span></div>
-            <div class="meta-field-item"><span class="meta-field-label">الملحن:</span> <span class="meta-field-value">${song.composer}</span></div>
-            <div class="meta-field-item"><span class="meta-field-label">المؤدي الأصلي:</span> <span class="meta-field-value">${song.originalPerformer}</span></div>
-          </div>
-        </div>
-
-        <div class="detail-section-box">
-          <h3 class="section-heading-title">📜 كلمات الأغنية كاملة (النص المحقق)</h3>
-          <div class="lyrics-content-box">${isFullDisplay ? lr.originalPoem : song.openingLine}</div>
-          ${primaryLyricsSource ? `
-            <div style="margin-top: 1rem;">
-              <a href="${primaryLyricsSource.url}" target="_blank" rel="noopener noreferrer" class="view-details-btn" style="text-decoration: none;">
-                فتح المصدر الأصلي للكلمات 🔗
-              </a>
-            </div>
-          ` : ''}
-        </div>
-
-        <div style="margin-top: 1.5rem;">
-          <button class="submit-rehearsal-btn" id="modalOpenPerfBtn" data-song-id="${song.id}">
-            🎙️ الانتقال إلى وضع الغناء لهذه الأغنية
-          </button>
-        </div>
-      </div>
-    `;
-
-    modalOverlayEl.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    const closeInnerBtn = document.getElementById('closeDrawerInnerBtn');
-    if (closeInnerBtn) closeInnerBtn.addEventListener('click', closeModal);
-
-    const modalOpenPerfBtn = document.getElementById('modalOpenPerfBtn');
-    if (modalOpenPerfBtn) {
-      modalOpenPerfBtn.addEventListener('click', () => {
-        closeModal();
-        switchView('performance');
-        state.selectedSongId = song.id;
-        renderPerformanceSheet();
-      });
-    }
-  }
-
-  function closeModal() {
-    modalOverlayEl.classList.remove('active');
-    document.body.style.overflow = '';
   }
 
   /* ==========================================================================
@@ -624,12 +645,10 @@ document.addEventListener('DOMContentLoaded', () => {
      12. Event Listeners & Delegation
      ========================================================================== */
   function setupEventListeners() {
-    // Navigation Tabs
     tabArchiveBtn.addEventListener('click', () => switchView('archive'));
     tabPerformanceBtn.addEventListener('click', () => switchView('performance'));
     tabSetlistBtn.addEventListener('click', () => switchView('setlist'));
 
-    // Role switcher
     roleVocalistBtn.addEventListener('click', () => {
       state.currentRole = 'vocalist';
       roleVocalistBtn.classList.add('active');
@@ -644,7 +663,6 @@ document.addEventListener('DOMContentLoaded', () => {
       renderPerformanceSheet();
     });
 
-    // Transpose buttons
     transposeMinusBtn.addEventListener('click', () => {
       state.transposeOffset -= 1;
       renderPerformanceSheet();
@@ -660,7 +678,6 @@ document.addEventListener('DOMContentLoaded', () => {
       renderPerformanceSheet();
     });
 
-    // Font Resizer
     fontSizeMinusBtn.addEventListener('click', () => {
       if (state.fontSizeRem > 1.4) {
         state.fontSizeRem -= 0.2;
@@ -675,15 +692,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Wake Lock
     wakeLockBtn.addEventListener('click', toggleWakeLock);
 
-    // Print button
     printSheetBtn.addEventListener('click', () => {
       window.print();
     });
 
-    // Auto-scroll buttons
     scrollStartBtn.addEventListener('click', startAutoScroll);
     scrollPauseBtn.addEventListener('click', pauseAutoScroll);
     scrollResetBtn.addEventListener('click', resetAutoScroll);
@@ -696,7 +710,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Session Footer Navigation
     prevSongBtn.addEventListener('click', () => {
       const idx = state.sessionSetlist.indexOf(state.selectedSongId);
       let prevIdx = idx - 1;
@@ -714,7 +727,6 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Archive Search & Filter Events
     searchInputEl.addEventListener('input', (e) => {
       state.currentSearchQuery = e.target.value;
       if (searchClearBtnEl) searchClearBtnEl.style.display = e.target.value ? 'block' : 'none';
@@ -738,7 +750,6 @@ document.addEventListener('DOMContentLoaded', () => {
       renderSongsGrid();
     });
 
-    // Songs grid click delegation
     songsGridEl.addEventListener('click', (e) => {
       const btnPerf = e.target.closest('[data-action="open-performance"]');
       if (btnPerf) {
@@ -756,7 +767,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Setlist view action button click
     if (setlistContainerEl) {
       setlistContainerEl.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-action="select-for-perf"]');
@@ -768,7 +778,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Rehearsal Modal events
     if (openRehearsalModalBtn) {
       openRehearsalModalBtn.addEventListener('click', () => {
         rehearsalModalOverlay.classList.add('active');

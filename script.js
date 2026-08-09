@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const notes = rawEvents.map(evt => {
           const note = new VF.StaveNote({
-            keys: [\`\${evt.pitch.toLowerCase()}/\${evt.octave}\`],
+            keys: [`${evt.pitch.toLowerCase()}/${evt.octave}`],
             duration: evt.duration
           });
           if (evt.lyric) {

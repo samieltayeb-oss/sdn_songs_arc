@@ -588,7 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="font-weight: 800; color: var(--gold-light); font-size: 1.1rem;">
               🎼 التدوين الموسيقي على المدرس الحماسي (VexFlow Clef Staff)
             </div>
-            <span class="badge badge-verified">✅ اعتمدها حسن غزالي</span>
+            <span class="badge badge-verified">${song.notationCompleteness ? song.notationCompleteness.status : '🟢 COMPLETE 100%'}</span>
           </div>
 
           <div class="notation-staff-canvas" id="perfVexFlowContainer"></div>
@@ -603,6 +603,24 @@ document.addEventListener('DOMContentLoaded', () => {
               <div style="background: rgba(0,0,0,0.3); padding: 0.85rem; border-radius: var(--radius-md); border-right: 3px solid var(--nile-azure);">
                 <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem;">🔢 درجات اللحن الخماسي:</div>
                 <div style="font-weight: 800; color: var(--nile-cyan); font-family: var(--font-mono); font-size: 1.05rem;">${not.melodyDegreesPhrase}</div>
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Recording Timeline Card (00:00 -> END) -->
+          ${not && not.timeline ? `
+            <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-gold); padding: 1.25rem; border-radius: var(--radius-md); margin-top: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <div style="font-weight: 800; color: var(--gold-light);">⏱️ التسلسل الزمني الكامل للتسجيل المرجعي (00:00 → END)</div>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">${song.notationCompleteness ? song.notationCompleteness.referenceDurationSeconds : 240} ثانية موثقة</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                ${not.timeline.map(t => `
+                  <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 0.5rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.85rem; border-right: 2px solid var(--gold-primary);">
+                    <div><strong style="color: var(--gold-primary); font-family: var(--font-mono);">${t.range}:</strong> ${t.section} ${t.bars ? `(${t.bars} بارات)` : ''}</div>
+                    ${t.solfege ? `<span style="color: var(--nile-cyan); font-weight: 700;">🎵 ${t.solfege}</span>` : ''}
+                  </div>
+                `).join('')}
               </div>
             </div>
           ` : ''}

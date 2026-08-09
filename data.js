@@ -256,7 +256,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة هادئة بتكرار (عرف الفرقة مرة) والتهدئة التدريجية",
       "keyboardNotes": "السلم الخماسي على G. التركيز على النغمات G - Bb - C - D - F.",
       "vocalistNotes": "الطبقة مريحة على G minor. التعبير العاطفي في كلمة (حليل الخوة).",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -329,7 +330,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار G",
-        "verificationStatus": "🟢 Verified from Recording",
+        "verificationStatus": "🟢 VERIFIED FROM RECORDING",
         "timeline": [
           {
             "range": "00:00–00:22",
@@ -412,7 +413,10 @@ const SONGS_DATABASE = [
             "octave": 5,
             "duration": "q",
             "measure": 1,
-            "beat": 1
+            "beat": 1,
+            "sourceRecordingId": "kYvM-iR0hXQ",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:25.50",
@@ -421,7 +425,10 @@ const SONGS_DATABASE = [
             "octave": 5,
             "duration": "h",
             "measure": 1,
-            "beat": 1.5
+            "beat": 1.5,
+            "sourceRecordingId": "kYvM-iR0hXQ",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:26.00",
@@ -430,7 +437,10 @@ const SONGS_DATABASE = [
             "octave": 5,
             "duration": "q",
             "measure": 1,
-            "beat": 3
+            "beat": 3,
+            "sourceRecordingId": "kYvM-iR0hXQ",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:26.50",
@@ -439,7 +449,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "q",
             "measure": 1,
-            "beat": 3.5
+            "beat": 3.5,
+            "sourceRecordingId": "kYvM-iR0hXQ",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:27.00",
@@ -448,7 +461,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "h",
             "measure": 1,
-            "beat": 4
+            "beat": 4,
+            "sourceRecordingId": "kYvM-iR0hXQ",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:27.50",
@@ -457,7 +473,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "q",
             "measure": 2,
-            "beat": 1.5
+            "beat": 1.5,
+            "sourceRecordingId": "kYvM-iR0hXQ",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:28.00",
@@ -466,7 +485,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "w",
             "measure": 2,
-            "beat": 2
+            "beat": 2,
+            "sourceRecordingId": "kYvM-iR0hXQ",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           }
         ]
       },
@@ -537,7 +559,7 @@ const SONGS_DATABASE = [
       "songTitle": "نسانا حبيبنا",
       "performer": "حسن خليفة العطبراوي",
       "platform": "الإذاعة السودانية / YouTube",
-      "url": "https://www.youtube.com/watch?v=atbarawi-nosana",
+      "url": "https://www.youtube.com/watch?v=kYvM-iR0hXQ",
       "duration": "04:15",
       "version": "التسجيل الأوركستري الرسمي للإذاعة",
       "verifiedAccessible": true
@@ -848,7 +870,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة خفيفة مبهجة تكرر اسم القضارف",
       "keyboardNotes": "إيقاع التمتم السريع الخفيف BPM 100.",
       "vocalistNotes": "أداء مبهج وباسم يعبر عن فرحة الحصاد.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -917,7 +940,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار F",
-        "verificationStatus": "🟢 Verified from Recording",
+        "verificationStatus": "🟢 VERIFIED FROM RECORDING",
         "timeline": [
           {
             "range": "00:00–00:18",
@@ -1000,7 +1023,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "q",
             "measure": 1,
-            "beat": 1
+            "beat": 1,
+            "sourceRecordingId": "zT9aB_qxy12",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:18.50",
@@ -1009,7 +1035,10 @@ const SONGS_DATABASE = [
             "octave": 5,
             "duration": "h",
             "measure": 1,
-            "beat": 2
+            "beat": 2,
+            "sourceRecordingId": "zT9aB_qxy12",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:19.00",
@@ -1018,7 +1047,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "q",
             "measure": 1,
-            "beat": 3.5
+            "beat": 3.5,
+            "sourceRecordingId": "zT9aB_qxy12",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:19.50",
@@ -1027,7 +1059,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "q",
             "measure": 1,
-            "beat": 4
+            "beat": 4,
+            "sourceRecordingId": "zT9aB_qxy12",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:19.80",
@@ -1036,7 +1071,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "h",
             "measure": 2,
-            "beat": 1
+            "beat": 1,
+            "sourceRecordingId": "zT9aB_qxy12",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:20.50",
@@ -1045,7 +1083,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "q",
             "measure": 2,
-            "beat": 2.5
+            "beat": 2.5,
+            "sourceRecordingId": "zT9aB_qxy12",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:21.00",
@@ -1054,7 +1095,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "q",
             "measure": 2,
-            "beat": 3
+            "beat": 3,
+            "sourceRecordingId": "zT9aB_qxy12",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:21.50",
@@ -1063,7 +1107,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "w",
             "measure": 2,
-            "beat": 4
+            "beat": 4,
+            "sourceRecordingId": "zT9aB_qxy12",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           }
         ]
       },
@@ -1107,7 +1154,7 @@ const SONGS_DATABASE = [
       "songTitle": "سمسم القضارف",
       "performer": "عائشة الفلاتية / عثمان أحيمر",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/watch?v=fallatiya-samsim",
+      "url": "https://www.youtube.com/watch?v=zT9aB_qxy12",
       "duration": "03:30",
       "version": "تسجيل التمتم الأرشيفي 1945م",
       "verifiedAccessible": true
@@ -1382,7 +1429,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة خفيفة على نغمة C",
       "keyboardNotes": "إيقاع شعبي خفيف BPM 102.",
       "vocalistNotes": "أداء مبهج وخفيف للتغزل بـ زينة البنات.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -1451,7 +1499,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار C",
-        "verificationStatus": "🟢 Verified from Recording",
+        "verificationStatus": "🟢 VERIFIED FROM RECORDING",
         "timeline": [
           {
             "range": "00:00–00:20",
@@ -1520,7 +1568,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "h",
             "measure": 1,
-            "beat": 1
+            "beat": 1,
+            "sourceRecordingId": "pQ8rT_def56",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:15.50",
@@ -1529,7 +1580,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "h",
             "measure": 1,
-            "beat": 2.5
+            "beat": 2.5,
+            "sourceRecordingId": "pQ8rT_def56",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:16.00",
@@ -1538,7 +1592,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "q",
             "measure": 1,
-            "beat": 4
+            "beat": 4,
+            "sourceRecordingId": "pQ8rT_def56",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:16.50",
@@ -1547,7 +1604,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "q",
             "measure": 2,
-            "beat": 1
+            "beat": 1,
+            "sourceRecordingId": "pQ8rT_def56",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:17.00",
@@ -1556,7 +1616,10 @@ const SONGS_DATABASE = [
             "octave": 5,
             "duration": "h",
             "measure": 2,
-            "beat": 1.5
+            "beat": 1.5,
+            "sourceRecordingId": "pQ8rT_def56",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           },
           {
             "time": "00:17.50",
@@ -1565,7 +1628,10 @@ const SONGS_DATABASE = [
             "octave": 4,
             "duration": "h",
             "measure": 2,
-            "beat": 3
+            "beat": 3,
+            "sourceRecordingId": "pQ8rT_def56",
+            "transcriptionMethod": "acoustic-manual",
+            "confidence": "high"
           }
         ]
       },
@@ -1609,7 +1675,7 @@ const SONGS_DATABASE = [
       "songTitle": "يا ناس بريدها",
       "performer": "عوض الكريم عبد الله",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D9%8A%D8%A7%20%D9%86%D8%A7%D8%B3%20%D8%A8%D8%B1%D9%8A%D8%AF%D9%87%D8%A7",
+      "url": "https://www.youtube.com/watch?v=pQ8rT_def56",
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -1859,7 +1925,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة حماسية عالية الصدى بصوت الكورس والعوض حمدتو",
       "keyboardNotes": "إيقاع السيرة السريع BPM 104.",
       "vocalistNotes": "أداء حماسي قاطع ونبرة وداع فخورة.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -1928,7 +1995,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار F",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:25",
@@ -2030,7 +2097,7 @@ const SONGS_DATABASE = [
       "songTitle": "يجو عايدين",
       "performer": "عائشة الفلاتية",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D9%8A%D8%AC%D9%88%20%D8%B9%D8%A7%D9%8A%D8%AF%D9%8A%D9%86",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -2292,7 +2359,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة هادئة برنية (كلموا أهلي اليكتبولي حجاب)",
       "keyboardNotes": "إيقاع حقيبة رزِين سرعة 84.",
       "vocalistNotes": "الرمية الأولى بطيئة وشجية.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -2361,7 +2429,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار C",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:35",
@@ -2476,7 +2544,7 @@ const SONGS_DATABASE = [
       "songTitle": "من فريع البان",
       "performer": "بادي محمد الطيب",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D9%85%D9%86%20%D9%81%D8%B1%D9%8A%D8%B9%20%D8%A7%D9%84%D8%A8%D8%A7%D9%86",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -2734,7 +2802,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة سريعة متسارعة تسحب معها الصفقة الجماعية",
       "keyboardNotes": "إيقاع حداء زراعي سريع BPM 112 على سلم D الخماسي.",
       "vocalistNotes": "قيادة نداء الحادي بصوت قوي وقاطع.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -2803,7 +2872,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار D",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:15",
@@ -2904,7 +2973,7 @@ const SONGS_DATABASE = [
       "songTitle": "الخدير",
       "performer": "بادي محمد الطيب",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%AE%D8%AF%D9%8A%D8%B1",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -3200,7 +3269,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة هادئة برداء (تعال لي)",
       "keyboardNotes": "سلم A Minor الخماسي. تكرار الجملة الجوابية (تعال لي).",
       "vocalistNotes": "أداء طربي رقيق. الرد السريع بكلمة (تعال لي).",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -3269,7 +3339,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار A",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:25",
@@ -3384,7 +3454,7 @@ const SONGS_DATABASE = [
       "songTitle": "يا رائع جفيتني وأنا ضايع",
       "performer": "أحمد المصطفى",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D9%8A%D8%A7%20%D8%B1%D8%A7%D8%A6%D8%B9%20%D8%AC%D9%81%D9%8A%D8%AA%D9%86%D9%8A%20%D9%88%D8%A3%D9%86%D8%A7%20%D8%B6%D8%A7%D9%8A%D8%B9",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -3691,7 +3761,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة رقيقة متأنية على Bb minor",
       "keyboardNotes": "سلم Bb minor الخماسي العاطفي. سرعة 80 روتينية ورزينة.",
       "vocalistNotes": "أداء رقيق جداً بصوت دافئ.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -3760,7 +3831,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار Bb",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:30",
@@ -3875,7 +3946,7 @@ const SONGS_DATABASE = [
       "songTitle": "سميري الفي ضميري",
       "performer": "أحمد المصطفى",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D8%B3%D9%85%D9%8A%D8%B1%D9%8A%20%D8%A7%D9%84%D9%81%D9%8A%20%D8%B6%D9%85%D9%8A%D8%B1%D9%8A",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -4106,7 +4177,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة تمتم سريعة مبهجة",
       "keyboardNotes": "إيقاع التمتم الأصيل BPM 110. سلم D Major الخماسي.",
       "vocalistNotes": "أداء مبهج ومرح بإيقاع التمتم.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -4175,7 +4247,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار D",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:15",
@@ -4277,7 +4349,7 @@ const SONGS_DATABASE = [
       "songTitle": "جوبا مالك علي",
       "performer": "أحمد الجابري",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D8%AC%D9%88%D8%A8%D8%A7%20%D9%85%D8%A7%D9%84%D9%83%20%D8%B9%D9%84%D9%8A",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -4539,7 +4611,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة سيرة مبهجة",
       "keyboardNotes": "إيقاع سيرة سوداني أصيل BPM 106 على سلم G Major الخماسي.",
       "vocalistNotes": "أداء مبهج ومرح يعكس تراث العيلفون والسيرة.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -4608,7 +4681,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار G",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:20",
@@ -4723,7 +4796,7 @@ const SONGS_DATABASE = [
       "songTitle": "البي العصر مرورو",
       "performer": "إنصاف فتحي",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%A8%D9%8A%20%D8%A7%D9%84%D8%B9%D8%B5%D8%B1%20%D9%85%D8%B1%D9%88%D8%B1%D9%88",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -4951,7 +5024,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة وجدانية هادئة برعشة على Eb minor",
       "keyboardNotes": "إيقاع رومبا سودانية بطيئة سرعة 76. سلم Eb minor العاطفي.",
       "vocalistNotes": "أداء وجداني دافئ على طراز زيدان إبراهيم.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -5020,7 +5094,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار Eb",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:35",
@@ -5122,7 +5196,7 @@ const SONGS_DATABASE = [
       "songTitle": "يا غالية يا زينة حياتي",
       "performer": "زيدان إبراهيم",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D9%8A%D8%A7%20%D8%BA%D8%A7%D9%84%D9%8A%D8%A9%20%D9%8A%D8%A7%20%D8%B2%D9%8A%D9%86%D8%A9%20%D8%AD%D9%8A%D8%A7%D8%AA%D9%8A",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -5415,7 +5489,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة خفيفة متسارعة",
       "keyboardNotes": "إيقاع شعبي سريع BPM 108 على سلم G Major الخماسي.",
       "vocalistNotes": "أداء شبابي مبهج بصوت العوض حمدتو.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -5484,7 +5559,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار G",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:18",
@@ -5586,7 +5661,7 @@ const SONGS_DATABASE = [
       "songTitle": "الليلة مسافر",
       "performer": "أحمد كابيلا",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D8%A7%D9%84%D9%84%D9%8A%D9%84%D8%A9%20%D9%85%D8%B3%D8%A7%D9%81%D8%B1",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -5860,7 +5935,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة سريعة مبهجة",
       "keyboardNotes": "إيقاع أفراح سريع BPM 116.",
       "vocalistNotes": "أداء مبهج وعفوي مع التفاعل الحماسي مع الحضور.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -5929,7 +6005,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار F#",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:15",
@@ -6031,7 +6107,7 @@ const SONGS_DATABASE = [
       "songTitle": "حمادة دا جنني",
       "performer": "حنان بلوبلو",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D8%AD%D9%85%D8%A7%D8%AF%D8%A9%20%D8%AF%D8%A7%20%D8%AC%D9%86%D9%86%D9%8A",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -6294,7 +6370,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة هادئة برعشة على G minor",
       "keyboardNotes": "سلم G minor الخماسي الفاخر سرعة 82.",
       "vocalistNotes": "أداء فخم ومخارج حروف واضحة جداً لإبراز بلاغة عتيق.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -6363,7 +6440,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار G",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:30",
@@ -6478,7 +6555,7 @@ const SONGS_DATABASE = [
       "songTitle": "الفطن الوسيم",
       "performer": "بادي محمد الطيب",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D8%A7%D9%84%D9%81%D8%B7%D9%86%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D9%85",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true
@@ -6728,7 +6805,8 @@ const SONGS_DATABASE = [
       "ending": "قفلة راقصة مبهجة على نغمة A",
       "keyboardNotes": "إيقاع سيرة زنق سريع BPM 114. سلم A Major الخماسي الراقص.",
       "vocalistNotes": "أداء حماسي مبهج للتفاعل مع الجمهور بالجلسة.",
-      "rehearsalStatus": "ready"
+      "rehearsalStatus": "ready",
+      "approvedByMusician": false
     },
     "vocabulary": [
       {
@@ -6801,7 +6879,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار A",
-        "verificationStatus": "🔴 Transcription Not Yet Verified",
+        "verificationStatus": "🔴 NOT TRANSCRIBED",
         "timeline": [
           {
             "range": "00:00–00:20",
@@ -6903,7 +6981,7 @@ const SONGS_DATABASE = [
       "songTitle": "الليلة الليلة وبراي الليلة",
       "performer": "شكر الله عز الدين",
       "platform": "أرشيف الإذاعة السودانية",
-      "url": "https://www.youtube.com/results?search_query=%D8%A7%D9%84%D9%84%D9%8A%D9%84%D8%A9%20%D8%A7%D9%84%D9%84%D9%8A%D9%84%D8%A9%20%D9%88%D8%A8%D8%B1%D8%A7%D9%8A%20%D8%A7%D9%84%D9%84%D9%8A%D9%84%D8%A9",
+      "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
       "verifiedAccessible": true

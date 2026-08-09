@@ -1,0 +1,1043 @@
+/* ==========================================================================
+   أرشيف الأغنية السودانية | Sudanese Songs Heritage Archive
+   Design System & Styling Rules (Vanilla CSS)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800&family=Noto+Kufi+Arabic:wght@400;600;700;800&family=Noto+Naskh+Arabic:ital,wght@0,400;0,600;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap');
+
+:root {
+  /* Color Tokens */
+  --bg-dark: #0B0F19;
+  --bg-surface: #121826;
+  --bg-card: #182236;
+  --bg-card-hover: #202D47;
+  --border-subtle: #25334D;
+  --border-gold: rgba(212, 175, 55, 0.35);
+
+  /* Gold & Nubian Palette */
+  --gold-primary: #D4AF37;
+  --gold-light: #F3E5AB;
+  --gold-dark: #B8860B;
+  --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F5D77F 50%, #AA7C11 100%);
+
+  /* Nile Azure Palette */
+  --nile-blue: #0F4C81;
+  --nile-azure: #1E6B9E;
+  --nile-cyan: #38A1DB;
+  --nile-gradient: linear-gradient(135deg, #0F4C81 0%, #1E6B9E 100%);
+
+  /* Text Colors */
+  --text-main: #F5EFE6;
+  --text-muted: #94A3B8;
+  --text-gold: #F5D77F;
+  --text-dark: #0B0F19;
+
+  /* Status Colors */
+  --status-verified-bg: rgba(34, 197, 94, 0.15);
+  --status-verified-border: #22C55E;
+  --status-verified-text: #4ADE80;
+
+  --status-probable-bg: rgba(234, 179, 8, 0.15);
+  --status-probable-border: #EAB308;
+  --status-probable-text: #FACC15;
+
+  --status-rights-pd-bg: rgba(59, 130, 246, 0.15);
+  --status-rights-pd-text: #60A5FA;
+
+  /* Shadows & Glassmorphism */
+  --glass-bg: rgba(24, 34, 54, 0.75);
+  --glass-blur: blur(16px);
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-gold: 0 0 24px rgba(212, 175, 55, 0.2);
+
+  /* Typography */
+  --font-heading: 'Alexandria', 'Noto Kufi Arabic', sans-serif;
+  --font-body: 'Tajawal', 'Noto Kufi Arabic', sans-serif;
+  --font-lyrics: 'Noto Naskh Arabic', serif;
+
+  /* Spacing & Layout */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  --max-width: 1280px;
+}
+
+/* Global Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  direction: rtl;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(15, 76, 129, 0.18) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1rem 0;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-gold);
+  color: var(--bg-dark);
+  font-size: 1.35rem;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;
+  color: var(--gold-primary);
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--gold-light);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  padding: 4.5rem 0 3rem 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-light);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 2.85rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 60%, #CBD5E1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--gold-primary);
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 0 auto 2.5rem auto;
+}
+
+/* Vinyl Graphic Animation */
+.vinyl-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.vinyl-record {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2a2a2a 0%, #111 60%, #000 100%);
+  border: 3px solid var(--gold-primary);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.1);
+  position: relative;
+  animation: spinVinyl 14s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vinyl-center {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+@keyframes spinVinyl {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Search Bar Component */
+.search-wrapper {
+  max-width: 680px;
+  margin: 0 auto 2rem auto;
+  position: relative;
+}
+
+.search-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  right: 1.25rem;
+  color: var(--gold-primary);
+  font-size: 1.25rem;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1.1rem 3.2rem 1.1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  box-shadow: var(--shadow-card), var(--shadow-gold);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: var(--gold-light);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+  background: var(--bg-card-hover);
+}
+
+.search-clear-btn {
+  position: absolute;
+  left: 1.25rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: none;
+}
+
+.search-clear-btn:hover {
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   Archive Stats Dashboard
+   ========================================================================== */
+.stats-section {
+  padding: 1rem 0 3rem 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-primary);
+}
+
+.stat-card.highlight {
+  border-color: var(--gold-primary);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+
+.stat-label {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Filters Bar & Categories
+   ========================================================================== */
+.filters-section {
+  margin-bottom: 2.5rem;
+}
+
+.filters-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-chips {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.chip-btn {
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.chip-btn:hover {
+  color: var(--text-main);
+  border-color: var(--gold-primary);
+}
+
+.chip-btn.active {
+  background: var(--gold-gradient);
+  color: var(--bg-dark);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+}
+
+.active-count-indicator {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.active-count-indicator span {
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Songs Grid & Cards
+   ========================================================================== */
+.songs-section {
+  padding-bottom: 4rem;
+}
+
+.songs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.75rem;
+}
+
+.song-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.song-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: var(--nile-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.song-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-gold);
+  box-shadow: var(--shadow-card), 0 0 20px rgba(212, 175, 55, 0.15);
+  background: var(--bg-card-hover);
+}
+
+.song-card:hover::before {
+  opacity: 1;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+}
+
+.card-title-group {
+  flex: 1;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.card-alt-title {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge-verified {
+  background: var(--status-verified-bg);
+  border: 1px solid var(--status-verified-border);
+  color: var(--status-verified-text);
+}
+
+.badge-probable {
+  background: var(--status-probable-bg);
+  border: 1px solid var(--status-probable-border);
+  color: var(--status-probable-text);
+}
+
+.card-credits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.925rem;
+  background: rgba(11, 15, 25, 0.5);
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.credit-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.credit-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  width: 55px;
+  flex-shrink: 0;
+}
+
+.credit-value {
+  color: var(--text-main);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.card-genre-tag {
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  background: rgba(212, 175, 55, 0.12);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.view-details-btn {
+  background: var(--gold-gradient);
+  color: var(--bg-dark);
+  border: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.view-details-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* ==========================================================================
+   Archival Song Detail Modal / Side Drawer
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-drawer {
+  width: 100%;
+  max-width: 780px;
+  height: 100%;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-gold);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.modal-overlay.active .modal-drawer {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.drawer-title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.drawer-subtitle {
+  font-size: 0.9rem;
+  color: var(--gold-primary);
+}
+
+.close-drawer-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-drawer-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFF;
+}
+
+.drawer-body {
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Modal Content Sections */
+.detail-section-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.section-heading-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  padding-bottom: 0.5rem;
+}
+
+.meta-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.meta-field-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.meta-field-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.meta-field-value {
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Story vs Fact Badges */
+.badge-fact {
+  background: rgba(15, 76, 129, 0.25);
+  border: 1px solid var(--nile-azure);
+  color: var(--nile-cyan);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.badge-oral {
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid var(--gold-dark);
+  color: var(--gold-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Lyrics & Vocabulary Formatting */
+.lyrics-content-box {
+  font-family: var(--font-lyrics);
+  font-size: 1.2rem;
+  line-height: 2.1;
+  color: var(--text-main);
+  white-space: pre-line;
+  background: rgba(11, 15, 25, 0.6);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  border-right: 3px solid var(--gold-primary);
+}
+
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.vocab-table th, .vocab-table td {
+  padding: 0.75rem 1rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.vocab-table th {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
+.vocab-table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Source Reference List */
+.source-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+}
+
+.source-item {
+  background: rgba(11, 15, 25, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+}
+
+.source-link {
+  color: var(--nile-cyan);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.source-link:hover {
+  text-decoration: underline;
+  color: var(--gold-light);
+}
+
+.source-desc {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Historical Timeline Section
+   ========================================================================== */
+.timeline-section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.section-header-group {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-main-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.section-sub-title {
+  color: var(--gold-primary);
+  font-size: 1rem;
+}
+
+.timeline-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.timeline-decade-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.timeline-decade-btn.active {
+  background: var(--nile-gradient);
+  color: #FFF;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(15, 76, 129, 0.4);
+}
+
+/* ==========================================================================
+   Artists & Poets Index
+   ========================================================================== */
+.artists-section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.artist-card-chip {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.artist-card-chip:hover {
+  border-color: var(--gold-primary);
+  transform: translateY(-3px);
+  background: var(--bg-card-hover);
+}
+
+.artist-avatar-placeholder {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--nile-blue);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.artist-meta-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.artist-meta-role {
+  font-size: 0.775rem;
+  color: var(--gold-primary);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background: #070911;
+  border-top: 1px solid var(--border-subtle);
+  padding: 3rem 0 2rem 0;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.footer-brand {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.footer-copy {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .songs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meta-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-drawer {
+    max-width: 100%;
+    border-right: none;
+  }
+
+  .drawer-header {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .drawer-body {
+    padding: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .search-input {
+    font-size: 0.95rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .chip-btn {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.825rem;
+  }
+}

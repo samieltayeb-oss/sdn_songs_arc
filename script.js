@@ -1,18 +1,52 @@
 /* ==========================================================================
    أرشيف الأغنية السودانية | Sudanese Songs Heritage Archive
-   Application Logic & Arabic Lyrics Verification Pass (Vanilla JS)
+   Application Logic & Live Performance Mode (Musician & Vocalist Stand)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   // Application State
   const state = {
+    currentView: 'archive',           // 'archive' | 'performance' | 'setlist'
+    currentRole: 'vocalist',          // 'vocalist' (عوض حمدتو) | 'keyboard' (حسن غزالي)
+    selectedSongId: 'nosana-habibna',
+    transposeOffset: 0,               // Semitone transpose offset
+    fontSizeRem: 2.2,                 // Vocalist lyrics font size
+    isAutoScrolling: false,
+    scrollSpeed: 0.75,                // Auto scroll multiplier
+    scrollIntervalId: null,
+    wakeLockObj: null,
     currentSearchQuery: '',
     currentCategoryFilter: 'all',
     currentDecadeFilter: 'all',
-    selectedSongId: null
+    sessionSetlist: [
+      'nosana-habibna',
+      'yaju-aydeen',
+      'min-furay-al-ban',
+      'al-khudeir',
+      'samsim-al-qadaref',
+      'ya-raia-jafitani',
+      'samiri-fil-dhamiri',
+      'juba-malik-alay',
+      'bil-asr-mururu',
+      'ya-ghaliya-zina-hayati',
+      'al-leila-musafer',
+      'ya-nas-barida',
+      'hamada-da-janani',
+      'al-fatan-al-waseem',
+      'al-leila-al-leila-wa-baray'
+    ]
   };
 
   // DOM Elements
+  const tabArchiveBtn = document.getElementById('tabArchiveBtn');
+  const tabPerformanceBtn = document.getElementById('tabPerformanceBtn');
+  const tabSetlistBtn = document.getElementById('tabSetlistBtn');
+  
+  const archiveViewEl = document.getElementById('archiveView');
+  const performanceViewEl = document.getElementById('performanceView');
+  const setlistViewEl = document.getElementById('setlistView');
+
+  // Archive DOM Elements
   const songsGridEl = document.getElementById('songsGrid');
   const searchInputEl = document.getElementById('searchInput');
   const searchClearBtnEl = document.getElementById('searchClearBtn');
@@ -24,40 +58,125 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineButtonsEl = document.getElementById('timelineButtons');
   const artistsGridEl = document.getElementById('artistsGrid');
 
-  // Stats Dashboard Elements
-  const statInputEntriesEl = document.getElementById('statInputEntries');
-  const statUniqueSongsEl = document.getElementById('statUniqueSongs');
-  const statVerifiedEl = document.getElementById('statVerified');
-  const statHaqeebaEl = document.getElementById('statHaqeeba');
-  const statHeritageEl = document.getElementById('statHeritage');
-  const statPoetsEl = document.getElementById('statPoets');
-  const statArtistsEl = document.getElementById('statArtists');
+  // Performance Mode Controls
+  const roleVocalistBtn = document.getElementById('roleVocalistBtn');
+  const roleKeyboardBtn = document.getElementById('roleKeyboardBtn');
+  const transposeMinusBtn = document.getElementById('transposeMinusBtn');
+  const transposePlusBtn = document.getElementById('transposePlusBtn');
+  const transposeResetBtn = document.getElementById('transposeResetBtn');
+  const currentKeyDisplay = document.getElementById('currentKeyDisplay');
+  const fontSizeMinusBtn = document.getElementById('fontSizeMinusBtn');
+  const fontSizePlusBtn = document.getElementById('fontSizePlusBtn');
+  const wakeLockBtn = document.getElementById('wakeLockBtn');
+  const printSheetBtn = document.getElementById('printSheetBtn');
+  const performanceSheetEl = document.getElementById('performanceSheet');
+
+  // Auto-scroll Controls
+  const scrollStartBtn = document.getElementById('scrollStartBtn');
+  const scrollPauseBtn = document.getElementById('scrollPauseBtn');
+  const scrollResetBtn = document.getElementById('scrollResetBtn');
+
+  // Session Navigation
+  const prevSongBtn = document.getElementById('prevSongBtn');
+  const nextSongBtn = document.getElementById('nextSongBtn');
+  const nextSongNameEl = document.getElementById('nextSongName');
+
+  // Rehearsal Modal
+  const openRehearsalModalBtn = document.getElementById('openRehearsalModalBtn');
+  const rehearsalModalOverlay = document.getElementById('rehearsalModalOverlay');
+  const closeRehearsalModalBtn = document.getElementById('closeRehearsalModalBtn');
+  const rehearsalForm = document.getElementById('rehearsalForm');
+  const rehearsalSongSelect = document.getElementById('rehearsalSongSelect');
+  const setlistContainerEl = document.getElementById('setlistContainer');
 
   // Initialize Application
-  initArchive();
+  initApp();
 
-  function initArchive() {
+  function initApp() {
+    loadSavedRehearsals();
     renderStats();
     renderCategoryFilterChips();
     renderSongsGrid();
     renderTimelineControls();
     renderArtistsIndex();
+    renderPerformanceSheet();
+    renderSetlist();
     setupEventListeners();
   }
 
   /* ==========================================================================
-     1. Search Normalization Engine
+     1. LocalStorage Rehearsal Integration
+     ========================================================================== */
+  function loadSavedRehearsals() {
+    try {
+      const savedData = localStorage.getItem('sdn_rehearsal_notes');
+      if (savedData) {
+        const parsed = JSON.parse(savedData);
+        SONGS_DATABASE.forEach(song => {
+          if (parsed[song.id]) {
+            song.performance.performanceKey = parsed[song.id].performanceKey || song.performance.performanceKey;
+            song.performance.bpm = parsed[song.id].bpm || song.performance.bpm;
+            song.performance.rehearsalStatus = parsed[song.id].rehearsalStatus || song.performance.rehearsalStatus;
+            song.performance.keyboardNotes = parsed[song.id].keyboardNotes || song.performance.keyboardNotes;
+            song.performance.vocalistNotes = parsed[song.id].vocalistNotes || song.performance.vocalistNotes;
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Could not load rehearsal notes from localStorage:', e);
+    }
+  }
+
+  function saveRehearsalToStorage(songId, data) {
+    try {
+      const savedData = JSON.parse(localStorage.getItem('sdn_rehearsal_notes') || '{}');
+      savedData[songId] = data;
+      localStorage.setItem('sdn_rehearsal_notes', JSON.stringify(savedData));
+    } catch (e) {
+      console.warn('Could not save rehearsal notes to localStorage:', e);
+    }
+  }
+
+  /* ==========================================================================
+     2. Musical Transpose Engine (Transposes Keys, NOT Arabic lyrics)
+     ========================================================================== */
+  const chromaticNotes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+  function transposeKeyString(keyStr, semitones) {
+    if (!keyStr || semitones === 0) return keyStr;
+    const parts = keyStr.split(' ');
+    let note = parts[0];
+    const mode = parts.slice(1).join(' ');
+
+    let index = chromaticNotes.indexOf(note);
+    if (index === -1) {
+      if (note === 'G#') index = chromaticNotes.indexOf('Ab');
+      else if (note === 'D#') index = chromaticNotes.indexOf('Eb');
+      else if (note === 'A#') index = chromaticNotes.indexOf('Bb');
+    }
+
+    if (index === -1) return keyStr;
+
+    let newIndex = (index + semitones) % 12;
+    if (newIndex < 0) newIndex += 12;
+
+    const transposedNote = chromaticNotes[newIndex];
+    return mode ? `${transposedNote} ${mode}` : transposedNote;
+  }
+
+  /* ==========================================================================
+     3. Search Normalization & Filter Engine
      ========================================================================== */
   function normalizeArabicText(text) {
     if (!text) return '';
     return text
       .toString()
       .toLowerCase()
-      .replace(/[\u064B-\u0652]/g, '') // Remove Tashkeel (diacritics)
-      .replace(/[أإآآ]/g, 'ا')         // Normalize Alif
-      .replace(/ة/g, 'ه')              // Normalize Ta Marbuta
-      .replace(/ى/g, 'ي')              // Normalize Alif Maqsura
-      .replace(/\s+/g, ' ')            // Collapse extra whitespace
+      .replace(/[\u064B-\u0652]/g, '')
+      .replace(/[أإآآ]/g, 'ا')
+      .replace(/ة/g, 'ه')
+      .replace(/ى/g, 'ي')
+      .replace(/\s+/g, ' ')
       .trim();
   }
 
@@ -75,32 +194,31 @@ document.addEventListener('DOMContentLoaded', () => {
       song.originalPerformer,
       ...(song.singers || []),
       song.genre,
-      song.heritageCategory,
-      song.story,
-      song.lyricsResearch ? song.lyricsResearch.originalPoem : ''
+      song.heritageCategory
     ];
 
-    return searchableFields.some(field => {
-      if (!field) return false;
-      return normalizeArabicText(field).includes(normQuery);
-    });
+    return searchableFields.some(field => field && normalizeArabicText(field).includes(normQuery));
   }
 
   /* ==========================================================================
-     2. Render Dashboard Statistics
+     4. Render Stats Dashboard
      ========================================================================== */
   function renderStats() {
-    if (statInputEntriesEl) statInputEntriesEl.textContent = ARCHIVE_STATS.totalInputEntries;
-    if (statUniqueSongsEl) statUniqueSongsEl.textContent = ARCHIVE_STATS.totalUniqueSongs;
-    if (statVerifiedEl) statVerifiedEl.textContent = ARCHIVE_STATS.verifiedCount;
-    if (statHaqeebaEl) statHaqeebaEl.textContent = ARCHIVE_STATS.haqeebaCount;
-    if (statHeritageEl) statHeritageEl.textContent = ARCHIVE_STATS.heritageCount;
-    if (statPoetsEl) statPoetsEl.textContent = ARCHIVE_STATS.poetsCount;
-    if (statArtistsEl) statArtistsEl.textContent = ARCHIVE_STATS.artistsCount;
+    const elInput = document.getElementById('statInputEntries');
+    const elUnique = document.getElementById('statUniqueSongs');
+    const elVerified = document.getElementById('statVerified');
+    const elHaqeeba = document.getElementById('statHaqeeba');
+    const elHeritage = document.getElementById('statHeritage');
+
+    if (elInput) elInput.textContent = ARCHIVE_STATS.totalInputEntries;
+    if (elUnique) elUnique.textContent = ARCHIVE_STATS.totalUniqueSongs;
+    if (elVerified) elVerified.textContent = ARCHIVE_STATS.fullTextFoundCount;
+    if (elHaqeeba) elHaqeeba.textContent = ARCHIVE_STATS.haqeebaCount;
+    if (elHeritage) elHeritage.textContent = ARCHIVE_STATS.heritageCount;
   }
 
   /* ==========================================================================
-     3. Category Filter Engine
+     5. Category Chips & Songs Grid
      ========================================================================== */
   function renderCategoryFilterChips() {
     const categories = [
@@ -120,12 +238,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
   }
 
-  /* ==========================================================================
-     4. Songs Grid Renderer
-     ========================================================================== */
   function getFilteredSongs() {
     return SONGS_DATABASE.filter(song => {
-      // Category filter logic
       let matchesCategory = true;
       if (state.currentCategoryFilter === 'verified') {
         matchesCategory = song.verificationStatus.includes('Verified');
@@ -133,16 +247,12 @@ document.addEventListener('DOMContentLoaded', () => {
         matchesCategory = (song.genre === state.currentCategoryFilter || song.heritageCategory.includes(state.currentCategoryFilter));
       }
 
-      // Decade filter logic
       let matchesDecade = true;
       if (state.currentDecadeFilter !== 'all') {
         matchesDecade = song.approximatePeriod === state.currentDecadeFilter;
       }
 
-      // Search filter logic
-      const matchesSearch = matchesSearchQuery(song, state.currentSearchQuery);
-
-      return matchesCategory && matchesDecade && matchesSearch;
+      return matchesCategory && matchesDecade && matchesSearchQuery(song, state.currentSearchQuery);
     });
   }
 
@@ -150,14 +260,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtered = getFilteredSongs();
     
     if (activeCountEl) {
-      activeCountEl.innerHTML = `عرض <span>${filtered.length}</span> عمل غنائي (النصوص العربية مُراجعة ومُحققة 🟢)`;
+      activeCountEl.innerHTML = `عرض <span>${filtered.length}</span> عمل غنائي (النصوص العربية وجداول العزف جاهزة 🟢)`;
     }
 
     if (filtered.length === 0) {
       songsGridEl.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px dashed var(--border-subtle);">
+        <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: var(--radius-lg);">
           <div style="font-size: 3rem; margin-bottom: 1rem;">🎵</div>
-          <h3 style="font-family: var(--font-heading); color: var(--gold-light); margin-bottom: 0.5rem;">لم يتم العثور على نتائج</h3>
+          <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">لم يتم العثور على نتائج</h3>
           <p style="color: var(--text-muted);">جرب البحث باسم فنان، شاعر، أو سطر غنائي آخر.</p>
         </div>
       `;
@@ -183,20 +293,22 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="credit-value">${song.originalPerformer || song.singers[0]}</span>
             </div>
             <div class="credit-item">
-              <span class="credit-label">✍️ الشاعر:</span>
-              <span class="credit-value">${song.poet}</span>
+              <span class="credit-label">🎹 السلم:</span>
+              <span class="credit-value" style="color: var(--gold-light); font-family: var(--font-mono);">${song.performance ? song.performance.performanceKey : 'يحدد بالبروفة'}</span>
             </div>
             <div class="credit-item">
-              <span class="credit-label">📜 الكلمات:</span>
-              <span class="credit-value" style="color: var(--gold-light);">${song.arabicTextVerification ? song.arabicTextVerification.status : '🟢 النص العربي مُراجع'}</span>
+              <span class="credit-label">🥁 الإيقاع:</span>
+              <span class="credit-value">${song.performance ? song.performance.rhythm : 'تراث'}</span>
             </div>
           </div>
         </div>
 
         <div class="card-footer">
-          <span class="card-genre-tag">${song.genre}</span>
           <button class="view-details-btn" data-action="open-detail" data-song-id="${song.id}">
-            عرض التفاصيل 🔍
+            التوثيق 🔍
+          </button>
+          <button class="view-details-btn" style="background: var(--nile-gradient); color: #FFF;" data-action="open-performance" data-song-id="${song.id}">
+            🎙️ وضع الغناء
           </button>
         </div>
       </div>
@@ -204,259 +316,279 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     5. Archival Song Detail Drawer Renderer (Arabic Accuracy Focus)
+     6. LIVE PERFORMANCE MODE RENDERER (🎙️ وضع الغناء)
+     ========================================================================== */
+  function renderPerformanceSheet() {
+    const song = SONGS_DATABASE.find(s => s.id === state.selectedSongId) || SONGS_DATABASE[0];
+    if (!song || !song.performance) return;
+
+    const perf = song.performance;
+    const effectiveKey = transposeKeyString(perf.performanceKey || perf.originalKey, state.transposeOffset);
+    if (currentKeyDisplay) currentKeyDisplay.textContent = effectiveKey;
+
+    // Update Next Song indicator in footer
+    const currentIndex = state.sessionSetlist.indexOf(song.id);
+    const nextSongId = state.sessionSetlist[(currentIndex + 1) % state.sessionSetlist.length];
+    const nextSongObj = SONGS_DATABASE.find(s => s.id === nextSongId);
+    if (nextSongNameEl && nextSongObj) {
+      nextSongNameEl.textContent = nextSongObj.titleArabic;
+    }
+
+    if (state.currentRole === 'vocalist') {
+      // VOCALIST VIEW (🎤 عوض حمدتو — الغناء)
+      performanceSheetEl.innerHTML = `
+        <div class="performance-song-header">
+          <div>
+            <h2 class="perf-title">${song.titleArabic}</h2>
+            <div class="perf-performer">المؤدي والنسخة المرجعية: <strong>${song.originalPerformer}</strong></div>
+          </div>
+          <div class="perf-meta-pills">
+            <span class="perf-pill" style="color: var(--gold-light); font-family: var(--font-mono);">🎹 السلم: ${effectiveKey}</span>
+            <span class="perf-pill">🥁 الإيقاع: ${perf.rhythm}</span>
+            <span class="perf-pill">⏱️ BPM: ${perf.bpm}</span>
+          </div>
+        </div>
+
+        ${perf.vocalistNotes ? `
+          <div style="background: rgba(234, 179, 8, 0.08); padding: 1rem; border-radius: var(--radius-md); border-right: 3px solid var(--gold-primary); margin-bottom: 1.5rem; font-size: 0.95rem;">
+            <strong>🎤 ملاحظات عوض حمدتو للبروفة:</strong> ${perf.vocalistNotes}
+          </div>
+        ` : ''}
+
+        <!-- Huge Arabic Performance Lyrics -->
+        <div class="vocalist-lyrics-box" style="font-size: ${state.fontSizeRem}rem;">
+          ${perf.performanceLyrics.map((section, idx) => `
+            <div class="vocal-section-card ${section.isChorus ? 'chorus-card' : ''}">
+              <div class="vocal-section-title">
+                ${section.isChorus ? '🔁 اللازمة (الترديد الجماعي)' : `📜 ${section.section}`}
+              </div>
+              <div class="vocal-lyrics-text">${section.text}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px dashed var(--border-gold); text-align: center; color: var(--gold-light); font-weight: 700;">
+          🏁 قفلة الأغنية: ${perf.ending}
+        </div>
+      `;
+    } else {
+      // KEYBOARD PLAYER VIEW (🎹 حسن غزالي — الأورغ)
+      performanceSheetEl.innerHTML = `
+        <div class="performance-song-header">
+          <div>
+            <h2 class="perf-title">🎹 خارطة الأورغ — ${song.titleArabic}</h2>
+            <div class="perf-performer">عزف الفواصل: <strong>حسن غزالي</strong></div>
+          </div>
+          <div class="perf-meta-pills">
+            <span class="perf-pill" style="background: var(--gold-gradient); color: var(--bg-dark); font-weight: 800; font-family: var(--font-mono);">السلم الحالي: ${effectiveKey}</span>
+            <span class="perf-pill">البناء: ${perf.tonalSystem}</span>
+            <span class="perf-pill">الإيقاع: ${perf.rhythm}</span>
+            <span class="perf-pill">BPM: ${perf.bpm}</span>
+            <span class="perf-pill">العد: ${perf.countIn}</span>
+          </div>
+        </div>
+
+        ${perf.keyboardNotes ? `
+          <div style="background: rgba(15, 76, 129, 0.2); padding: 1rem; border-radius: var(--radius-md); border-right: 3px solid var(--nile-azure); margin-bottom: 1.5rem; font-size: 0.95rem;">
+            <strong>🎹 ملاحظات حسن غزالي والتنقلات:</strong> ${perf.keyboardNotes}
+          </div>
+        ` : ''}
+
+        <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 1rem;">🎼 التسلسل الميداني للعزف والردود:</h3>
+
+        <div class="keyboard-roadmap-grid">
+          ${perf.structure.map((item, idx) => `
+            <div class="roadmap-card">
+              <div class="roadmap-card-header">
+                <span class="cue-badge ${getCueBadgeClass(item.type)}">${item.title}</span>
+                ${item.bars ? `<span class="roadmap-bars">${item.bars} بارات</span>` : ''}
+              </div>
+              <div class="roadmap-cue-text">${item.cue}</div>
+              ${item.repeat ? `<div style="font-size: 0.8rem; color: var(--gold-light); margin-top: 0.35rem;">🔁 إعادة ${item.repeat} مرة</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+
+        <div style="margin-top: 2rem; background: rgba(0,0,0,0.5); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-gold);">
+          <div style="color: var(--gold-light); font-weight: 800; margin-bottom: 0.5rem;">اللازمة المرجعية للأورغ:</div>
+          <div style="font-size: 1.1rem; color: #FFF; white-space: pre-line;">${perf.chorus}</div>
+        </div>
+      `;
+    }
+  }
+
+  function getCueBadgeClass(type) {
+    switch (type) {
+      case 'intro': return 'cue-intro';
+      case 'chorus': return 'cue-chorus';
+      case 'verse': return 'cue-verse';
+      case 'solo': return 'cue-solo';
+      case 'ending': return 'cue-ending';
+      default: return 'cue-verse';
+    }
+  }
+
+  /* ==========================================================================
+     7. SETLIST & REHEARSAL MANAGER (🎼 قائمة القعدة)
+     ========================================================================== */
+  function renderSetlist() {
+    if (!setlistContainerEl) return;
+
+    setlistContainerEl.innerHTML = state.sessionSetlist.map((id, index) => {
+      const song = SONGS_DATABASE.find(s => s.id === id);
+      if (!song) return '';
+      const perf = song.performance;
+
+      return `
+        <div class="setlist-item-card" data-song-id="${song.id}">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 800; color: var(--gold-light);">${index + 1}</div>
+            <div>
+              <div class="setlist-item-title">${song.titleArabic}</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">
+                المؤدي: ${song.originalPerformer} | السلم: <strong style="color: var(--gold-light);">${perf.performanceKey}</strong> | الإيقاع: ${perf.rhythm} (${perf.bpm} BPM)
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="badge ${perf.rehearsalStatus === 'ready' ? 'badge-verified' : 'badge-probable'}">
+              ${perf.rehearsalStatus === 'ready' ? '✅ جاهزة' : '🟡 تحتاج بروفة'}
+            </span>
+            <button class="tool-btn" data-action="select-for-perf" data-song-id="${song.id}">
+              🎙️ فتح وضع الغناء
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Populate rehearsal form select options
+    if (rehearsalSongSelect) {
+      rehearsalSongSelect.innerHTML = SONGS_DATABASE.map(s => `
+        <option value="${s.id}">${s.titleArabic} (${s.originalPerformer})</option>
+      `).join('');
+    }
+  }
+
+  /* ==========================================================================
+     8. Auto-Scroll Engine
+     ========================================================================== */
+  function startAutoScroll() {
+    if (state.isAutoScrolling) return;
+    state.isAutoScrolling = true;
+    scrollStartBtn.style.display = 'none';
+    scrollPauseBtn.style.display = 'inline-block';
+
+    state.scrollIntervalId = setInterval(() => {
+      window.scrollBy({ top: 1.5 * state.scrollSpeed, behavior: 'smooth' });
+    }, 50);
+  }
+
+  function pauseAutoScroll() {
+    state.isAutoScrolling = false;
+    scrollStartBtn.style.display = 'inline-block';
+    scrollPauseBtn.style.display = 'none';
+    if (state.scrollIntervalId) {
+      clearInterval(state.scrollIntervalId);
+      state.scrollIntervalId = null;
+    }
+  }
+
+  function resetAutoScroll() {
+    pauseAutoScroll();
+    window.scrollTo({ top: performanceSheetEl.offsetTop - 100, behavior: 'smooth' });
+  }
+
+  /* ==========================================================================
+     9. Wake Lock API ( Keep Screen Awake)
+     ========================================================================== */
+  async function toggleWakeLock() {
+    if ('wakeLock' in navigator) {
+      try {
+        if (!state.wakeLockObj) {
+          state.wakeLockObj = await navigator.wakeLock.request('screen');
+          wakeLockBtn.classList.add('active');
+          wakeLockBtn.textContent = '☀️ الشاشة مضاءة (نشط)';
+        } else {
+          await state.wakeLockObj.release();
+          state.wakeLockObj = null;
+          wakeLockBtn.classList.remove('active');
+          wakeLockBtn.textContent = '☀️ إبقاء الشاشة مضاءة';
+        }
+      } catch (err) {
+        console.warn('Wake Lock request failed:', err);
+      }
+    } else {
+      alert('خاصية إبقاء الشاشة مضاءة غير مدعومة في متصفحك الحالي، يمكنك ضبط شاشة جهازك يدوياً.');
+    }
+  }
+
+  /* ==========================================================================
+     10. Archive Song Detail Modal
      ========================================================================== */
   function openSongDetailModal(songId) {
     const song = SONGS_DATABASE.find(s => s.id === songId);
     if (!song) return;
 
-    state.selectedSongId = songId;
     const lr = song.lyricsResearch;
     const isFullDisplay = song.rights.publicDisplay === 'full';
     const primaryLyricsSource = lr && lr.fullTextSources && lr.fullTextSources.length > 0 ? lr.fullTextSources[0] : null;
-    const av = song.arabicTextVerification;
 
-    // Render Modal Drawer Content
     modalContainerEl.innerHTML = `
       <div class="drawer-header">
         <div class="drawer-title-group">
           <h2 class="drawer-title">${song.titleArabic}</h2>
-          <div class="drawer-subtitle">
-            ${song.alternateTitles && song.alternateTitles.length > 0 ? `العناوين البديلة: ${song.alternateTitles.join(' | ')}` : song.heritageCategory}
-          </div>
+          <div class="drawer-subtitle">${song.heritageCategory}</div>
         </div>
         <button class="close-drawer-btn" id="closeDrawerInnerBtn">✕</button>
       </div>
 
       <div class="drawer-body">
-        <!-- Verification & Arabic Accuracy Banner -->
-        <div class="detail-section-box" style="border-right: 4px solid ${song.verificationStatus.includes('Verified') ? 'var(--status-verified-border)' : 'var(--status-probable-border)'};">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
-            <span class="badge ${song.verificationStatus.includes('Verified') ? 'badge-verified' : 'badge-probable'}" style="font-size: 0.875rem;">
-              درجة التحقق: ${song.verificationStatus}
-            </span>
-            <span class="badge-verified" style="font-size: 0.85rem;">
-              ${av ? av.status : '🟢 النص العربي مُراجع'}
-            </span>
-            <span class="badge" style="background: rgba(15, 76, 129, 0.2); border: 1px solid var(--nile-azure); color: var(--nile-cyan); font-size: 0.85rem;">
-              ${song.rights.status}
-            </span>
-          </div>
-          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
-            ${song.verificationNotes}
-          </p>
-        </div>
-
-        <!-- Song Metadata Grid -->
         <div class="detail-section-box">
           <h3 class="section-heading-title">📋 بطاقة التوثيق الأرشيفي</h3>
           <div class="meta-info-grid">
-            <div class="meta-field-item">
-              <span class="meta-field-label">الشاعر</span>
-              <span class="meta-field-value">${song.poet}</span>
-            </div>
-            <div class="meta-field-item">
-              <span class="meta-field-label">الملحن</span>
-              <span class="meta-field-value">${song.composer}</span>
-            </div>
-            <div class="meta-field-item">
-              <span class="meta-field-label">المؤدي الأصلي</span>
-              <span class="meta-field-value">${song.originalPerformer}</span>
-            </div>
-            <div class="meta-field-item">
-              <span class="meta-field-label">حقبة الظهور</span>
-              <span class="meta-field-value">${song.era} (${song.approximatePeriod})</span>
-            </div>
-            <div class="meta-field-item">
-              <span class="meta-field-label">مراجعة النصوص الصوتية</span>
-              <span class="meta-field-value" style="color: var(--gold-light);">${av && av.audioChecked ? 'مطابق للتسجيل الإذاعي 🎧' : 'مراجعة ببليوجرافية'}</span>
-            </div>
-            <div class="meta-field-item">
-              <span class="meta-field-label">المدرسة الفنية</span>
-              <span class="meta-field-value">${song.genre}</span>
-            </div>
+            <div class="meta-field-item"><span class="meta-field-label">الشاعر:</span> <span class="meta-field-value">${song.poet}</span></div>
+            <div class="meta-field-item"><span class="meta-field-label">الملحن:</span> <span class="meta-field-value">${song.composer}</span></div>
+            <div class="meta-field-item"><span class="meta-field-label">المؤدي الأصلي:</span> <span class="meta-field-value">${song.originalPerformer}</span></div>
           </div>
         </div>
 
-        <!-- Audio Player / Recording -->
-        ${song.recordings && song.recordings.length > 0 ? `
-          <div class="detail-section-box">
-            <h3 class="section-heading-title">▶ استمع للتسجيل الأرشيفي الأصلي</h3>
+        <div class="detail-section-box">
+          <h3 class="section-heading-title">📜 كلمات الأغنية كاملة (النص المحقق)</h3>
+          <div class="lyrics-content-box">${isFullDisplay ? lr.originalPoem : song.openingLine}</div>
+          ${primaryLyricsSource ? `
             <div style="margin-top: 1rem;">
-              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
-                🎵 ${song.recordings[0].title}
-              </p>
-              <a href="${song.recordings[0].url}" target="_blank" rel="noopener noreferrer" 
-                 style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nile-gradient); color: #FFF; padding: 0.75rem 1.4rem; border-radius: var(--radius-full); text-decoration: none; font-weight: 700; font-size: 0.925rem;">
-                استمع للتسجيل على يوتيوب 🔗
+              <a href="${primaryLyricsSource.url}" target="_blank" rel="noopener noreferrer" class="view-details-btn" style="text-decoration: none;">
+                فتح المصدر الأصلي للكلمات 🔗
               </a>
             </div>
-          </div>
-        ` : ''}
-
-        <!-- Full Verified Lyrics Section -->
-        <div class="detail-section-box" style="border: 1px solid var(--border-gold);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h3 class="section-heading-title" style="margin-bottom: 0;">
-              📜 ${isFullDisplay ? 'كلمات الأغنية كاملة (النص العربي المحقق)' : 'مقتطف الكلمات المتاح قانونياً'}
-            </h3>
-            ${isFullDisplay ? '<span class="badge-verified">🟢 نص عربي محقق ومدقق</span>' : '<span class="badge" style="background: rgba(234, 179, 8, 0.15); color: var(--gold-light);">🔒 حقوق محفوظة</span>'}
-          </div>
-
-          <div class="lyrics-content-box">
-            ${isFullDisplay ? lr.originalPoem : `مطلع الأغنية الموثق:\n\n${song.openingLine}\n\n[الكلمات الكاملة متوفرة في المصدر الأصلي أدناه وفقاً لقوانين النشر]` }
-          </div>
-
-          <!-- Textual Differences Section (اختلاف نصوص المصادر) -->
-          ${av && av.textualDifferences && av.textualDifferences.length > 0 ? `
-            <div style="margin-top: 1.25rem; background: rgba(234, 179, 8, 0.08); padding: 1.25rem; border-radius: var(--radius-md); border-right: 3px solid var(--gold-primary);">
-              <div style="font-size: 0.9rem; color: var(--gold-light); font-weight: 700; margin-bottom: 0.75rem;">⚖️ اختلاف نصوص المصادر وتحقيق الأداء الصوتي:</div>
-              ${av.textualDifferences.map(td => `
-                <div style="margin-bottom: 0.85rem; font-size: 0.875rem;">
-                  <div style="color: var(--text-main);"><strong>النص الشعري المختار:</strong> "${td.preferredText}"</div>
-                  <div style="color: var(--text-muted);"><strong>الرواية الثانية / الأداء الصوتي:</strong> "${td.alternativeReading}"</div>
-                  <div style="color: var(--gold-primary); font-size: 0.825rem; margin-top: 0.2rem;">سبب الترجيح: ${td.reasonForChoice}</div>
-                </div>
-              `).join('')}
-            </div>
           ` : ''}
-
-          <!-- Extra Recorded Version vs Original Poem -->
-          ${isFullDisplay && lr.recordedVersion ? `
-            <div style="margin-top: 1.25rem; background: rgba(11, 15, 25, 0.5); padding: 1rem; border-radius: var(--radius-md); border-right: 2px solid var(--nile-azure);">
-              <div style="font-size: 0.85rem; color: var(--gold-primary); font-weight: 700; margin-bottom: 0.35rem;">🎙️ النص كما غُنّي في التسجيل:</div>
-              <div style="font-size: 0.9rem; color: var(--text-muted);">${lr.recordedVersion}</div>
-            </div>
-          ` : ''}
-
-          <!-- Additional Verses Not Performed -->
-          ${isFullDisplay && lr.additionalVerses && lr.additionalVerses.length > 0 ? `
-            <div style="margin-top: 1rem; background: rgba(212, 175, 55, 0.08); padding: 1rem; border-radius: var(--radius-md); border: 1px dashed var(--border-gold);">
-              <div style="font-size: 0.85rem; color: var(--gold-light); font-weight: 700; margin-bottom: 0.35rem;">📜 أسرار القصيدة (أبيات موثقة لم تظهر في بعض التسجيلات التجارية):</div>
-              <ul style="list-style: square; padding-right: 1.25rem; font-size: 0.9rem; color: var(--text-main); display: flex; flex-direction: column; gap: 0.35rem;">
-                ${lr.additionalVerses.map(v => `<li>${v}</li>`).join('')}
-              </ul>
-            </div>
-          ` : ''}
-
-          <!-- Dedicated Lyrics Source Box -->
-          <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
-            <div style="font-size: 0.875rem; color: var(--text-muted);">
-              <strong>مصدر الكلمات التوثيقي:</strong> ${primaryLyricsSource ? `${primaryLyricsSource.source} — ${primaryLyricsSource.title}` : 'أرشيف الإذاعة وسودانيز أونلاين'}
-            </div>
-            ${primaryLyricsSource ? `
-              <a href="${primaryLyricsSource.url}" target="_blank" rel="noopener noreferrer"
-                 style="background: var(--gold-gradient); color: var(--bg-dark); padding: 0.5rem 1.1rem; border-radius: var(--radius-full); text-decoration: none; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.35rem;">
-                ${isFullDisplay ? 'فتح المصدر الأصلي للكلمات 🔗' : 'عرض مصدر الكلمات الكاملة 🔗'}
-              </a>
-            ` : ''}
-          </div>
         </div>
 
-        <!-- Vocabulary Glossary -->
-        ${song.vocabulary && song.vocabulary.length > 0 ? `
-          <div class="detail-section-box">
-            <h3 class="section-heading-title">📖 شرح المفردات والمعاني السودانية</h3>
-            <table class="vocab-table">
-              <thead>
-                <tr>
-                  <th>الكلمة / العبارة</th>
-                  <th>المعنى والشرح اللغوي والتراثي</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${song.vocabulary.map(item => `
-                  <tr>
-                    <td style="font-weight: 700; color: var(--gold-light);">${item.word}</td>
-                    <td style="color: var(--text-main);">${item.meaning}</td>
-                  </tr>
-                `).join('')}
-              </tbody>
-            </table>
-          </div>
-        ` : ''}
-
-        <!-- Story & Historical Context -->
-        <div class="detail-section-box">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-            <h3 class="section-heading-title" style="margin-bottom: 0;">📖 قصة الأغنية والسياق التاريخي</h3>
-            <span class="${song.storyType === 'موثق تاريخياً' ? 'badge-fact' : 'badge-oral'}">
-              ${song.storyType}
-            </span>
-          </div>
-          <p style="font-size: 1rem; color: var(--text-main); line-height: 1.8; margin-bottom: 1.25rem;">
-            ${song.story}
-          </p>
-          <div style="background: rgba(11, 15, 25, 0.5); padding: 1rem; border-radius: var(--radius-sm); border-right: 2px solid var(--nile-azure);">
-            <div style="font-size: 0.85rem; color: var(--gold-primary); font-weight: 700; margin-bottom: 0.25rem;">الأثر والتاريخ:</div>
-            <div style="font-size: 0.9rem; color: var(--text-muted);">${song.historicalContext}</div>
-          </div>
-        </div>
-
-        <!-- Famous Singers List -->
-        <div class="detail-section-box">
-          <h3 class="section-heading-title">🎙️ أشهر من تغنى بها عبر الأجيال</h3>
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
-            ${song.singers.map(singer => `
-              <span class="artist-trigger-chip" data-artist="${singer}" 
-                    style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-subtle); color: var(--text-main); padding: 0.4rem 0.9rem; border-radius: var(--radius-full); font-size: 0.875rem; cursor: pointer;">
-                🎙️ ${singer}
-              </span>
-            `).join('')}
-          </div>
-        </div>
-
-        <!-- Clickable Sources & References -->
-        <div class="detail-section-box">
-          <h3 class="section-heading-title">📚 المصادر والمراجع التوثيقية</h3>
-          <ul class="source-list">
-            ${song.sources.map(src => `
-              <li class="source-item">
-                <a href="${src.url}" target="_blank" rel="noopener noreferrer" class="source-link">
-                  🔗 ${src.title} (${src.publisher})
-                </a>
-                <div class="source-desc">الوقائع المؤكدة: ${src.supports}</div>
-              </li>
-            `).join('')}
-          </ul>
-        </div>
-
-        <!-- Research Log & Conflict Resolution -->
-        <div class="detail-section-box">
-          <h3 class="section-heading-title">🔍 سجل البحث وتحقيق الكلمات الكاملة</h3>
-          <div style="margin-bottom: 1rem;">
-            <div style="font-size: 0.85rem; color: var(--gold-primary); font-weight: 700; margin-bottom: 0.5rem;">خطوات التحقيق والاستعلام:</div>
-            <ul style="list-style: square; padding-right: 1.25rem; font-size: 0.875rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.35rem;">
-              ${song.researchLog.map(log => `<li>${log}</li>`).join('')}
-            </ul>
-          </div>
-          <div style="font-size: 0.85rem; color: var(--gold-light);">
-            <strong>ملاحظات البحث الببليوجرافي للكلمات:</strong> ${lr.researchNotes}
-          </div>
+        <div style="margin-top: 1.5rem;">
+          <button class="submit-rehearsal-btn" id="modalOpenPerfBtn" data-song-id="${song.id}">
+            🎙️ الانتقال إلى وضع الغناء لهذه الأغنية
+          </button>
         </div>
       </div>
     `;
 
-    // Show overlay
     modalOverlayEl.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Add event listener to inner close button
     const closeInnerBtn = document.getElementById('closeDrawerInnerBtn');
-    if (closeInnerBtn) {
-      closeInnerBtn.addEventListener('click', closeModal);
-    }
+    if (closeInnerBtn) closeInnerBtn.addEventListener('click', closeModal);
 
-    // Attach click triggers to artists inside modal
-    document.querySelectorAll('.artist-trigger-chip').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const artist = e.currentTarget.getAttribute('data-artist');
+    const modalOpenPerfBtn = document.getElementById('modalOpenPerfBtn');
+    if (modalOpenPerfBtn) {
+      modalOpenPerfBtn.addEventListener('click', () => {
         closeModal();
-        searchInputEl.value = artist;
-        state.currentSearchQuery = artist;
-        renderSongsGrid();
+        switchView('performance');
+        state.selectedSongId = song.id;
+        renderPerformanceSheet();
       });
-    });
+    }
   }
 
   function closeModal() {
@@ -465,73 +597,127 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     6. Historical Timeline Renderer
+     11. Navigation View Switcher
      ========================================================================== */
-  function renderTimelineControls() {
-    const decades = [
-      { id: 'all', label: 'كل العصور' },
-      { id: '1920s', label: 'العشرينيات' },
-      { id: '1930s', label: 'الثلاثينيات' },
-      { id: '1940s', label: 'الأربعينيات' },
-      { id: '1950s', label: 'الخمسينيات' },
-      { id: '1970s', label: 'السبعينيات' },
-      { id: '1980s', label: 'الثمانينيات' },
-      { id: '1990s', label: 'التسعينيات' },
-      { id: '2010s', label: 'الألفية الحديثة' }
-    ];
+  function switchView(targetView) {
+    state.currentView = targetView;
+    pauseAutoScroll();
 
-    if (!timelineButtonsEl) return;
+    [tabArchiveBtn, tabPerformanceBtn, tabSetlistBtn].forEach(btn => btn.classList.remove('active'));
+    [archiveViewEl, performanceViewEl, setlistViewEl].forEach(el => el.style.display = 'none');
 
-    timelineButtonsEl.innerHTML = decades.map(d => `
-      <button class="timeline-decade-btn ${state.currentDecadeFilter === d.id ? 'active' : ''}" data-decade="${d.id}">
-        ${d.label}
-      </button>
-    `).join('');
+    if (targetView === 'archive') {
+      tabArchiveBtn.classList.add('active');
+      archiveViewEl.style.display = 'block';
+    } else if (targetView === 'performance') {
+      tabPerformanceBtn.classList.add('active');
+      performanceViewEl.style.display = 'block';
+      renderPerformanceSheet();
+    } else if (targetView === 'setlist') {
+      tabSetlistBtn.classList.add('active');
+      setlistViewEl.style.display = 'block';
+      renderSetlist();
+    }
   }
 
   /* ==========================================================================
-     7. Artists & Poets Index
+     12. Event Listeners & Delegation
      ========================================================================== */
-  function renderArtistsIndex() {
-    if (!artistsGridEl) return;
+  function setupEventListeners() {
+    // Navigation Tabs
+    tabArchiveBtn.addEventListener('click', () => switchView('archive'));
+    tabPerformanceBtn.addEventListener('click', () => switchView('performance'));
+    tabSetlistBtn.addEventListener('click', () => switchView('setlist'));
 
-    const peopleMap = new Map();
+    // Role switcher
+    roleVocalistBtn.addEventListener('click', () => {
+      state.currentRole = 'vocalist';
+      roleVocalistBtn.classList.add('active');
+      roleKeyboardBtn.classList.remove('active');
+      renderPerformanceSheet();
+    });
 
-    SONGS_DATABASE.forEach(song => {
-      if (song.poet && song.poet !== 'غير معروف' && !song.poet.includes('تراث')) {
-        peopleMap.set(song.poet, { name: song.poet, role: 'شاعر' });
-      }
-      if (song.composer && song.composer !== 'غير معروف' && !song.composer.includes('تراث')) {
-        peopleMap.set(song.composer, { name: song.composer, role: 'ملحن' });
-      }
-      if (song.originalPerformer && !song.originalPerformer.includes('تراث')) {
-        peopleMap.set(song.originalPerformer, { name: song.originalPerformer, role: 'فنان / مؤدي' });
+    roleKeyboardBtn.addEventListener('click', () => {
+      state.currentRole = 'keyboard';
+      roleKeyboardBtn.classList.add('active');
+      roleVocalistBtn.classList.remove('active');
+      renderPerformanceSheet();
+    });
+
+    // Transpose buttons
+    transposeMinusBtn.addEventListener('click', () => {
+      state.transposeOffset -= 1;
+      renderPerformanceSheet();
+    });
+
+    transposePlusBtn.addEventListener('click', () => {
+      state.transposeOffset += 1;
+      renderPerformanceSheet();
+    });
+
+    transposeResetBtn.addEventListener('click', () => {
+      state.transposeOffset = 0;
+      renderPerformanceSheet();
+    });
+
+    // Font Resizer
+    fontSizeMinusBtn.addEventListener('click', () => {
+      if (state.fontSizeRem > 1.4) {
+        state.fontSizeRem -= 0.2;
+        renderPerformanceSheet();
       }
     });
 
-    const peopleList = Array.from(peopleMap.values()).slice(0, 12);
+    fontSizePlusBtn.addEventListener('click', () => {
+      if (state.fontSizeRem < 3.5) {
+        state.fontSizeRem += 0.2;
+        renderPerformanceSheet();
+      }
+    });
 
-    artistsGridEl.innerHTML = peopleList.map(person => `
-      <div class="artist-card-chip" data-person="${person.name}">
-        <div class="artist-avatar-placeholder">${person.name.charAt(0)}</div>
-        <div>
-          <div class="artist-meta-name">${person.name}</div>
-          <div class="artist-meta-role">${person.role}</div>
-        </div>
-      </div>
-    `).join('');
-  }
+    // Wake Lock
+    wakeLockBtn.addEventListener('click', toggleWakeLock);
 
-  /* ==========================================================================
-     8. Event Listeners & Event Delegation
-     ========================================================================== */
-  function setupEventListeners() {
-    // Search input
+    // Print button
+    printSheetBtn.addEventListener('click', () => {
+      window.print();
+    });
+
+    // Auto-scroll buttons
+    scrollStartBtn.addEventListener('click', startAutoScroll);
+    scrollPauseBtn.addEventListener('click', pauseAutoScroll);
+    scrollResetBtn.addEventListener('click', resetAutoScroll);
+
+    document.querySelectorAll('.speed-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        state.scrollSpeed = parseFloat(e.target.getAttribute('data-speed'));
+      });
+    });
+
+    // Session Footer Navigation
+    prevSongBtn.addEventListener('click', () => {
+      const idx = state.sessionSetlist.indexOf(state.selectedSongId);
+      let prevIdx = idx - 1;
+      if (prevIdx < 0) prevIdx = state.sessionSetlist.length - 1;
+      state.selectedSongId = state.sessionSetlist[prevIdx];
+      renderPerformanceSheet();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    nextSongBtn.addEventListener('click', () => {
+      const idx = state.sessionSetlist.indexOf(state.selectedSongId);
+      const nextIdx = (idx + 1) % state.sessionSetlist.length;
+      state.selectedSongId = state.sessionSetlist[nextIdx];
+      renderPerformanceSheet();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Archive Search & Filter Events
     searchInputEl.addEventListener('input', (e) => {
       state.currentSearchQuery = e.target.value;
-      if (searchClearBtnEl) {
-        searchClearBtnEl.style.display = e.target.value ? 'block' : 'none';
-      }
+      if (searchClearBtnEl) searchClearBtnEl.style.display = e.target.value ? 'block' : 'none';
       renderSongsGrid();
     });
 
@@ -544,81 +730,145 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Category filter chips
     filterChipsEl.addEventListener('click', (e) => {
       const btn = e.target.closest('.chip-btn');
       if (!btn) return;
-
-      const category = btn.getAttribute('data-category');
-      state.currentCategoryFilter = category;
-
+      state.currentCategoryFilter = btn.getAttribute('data-category');
       renderCategoryFilterChips();
       renderSongsGrid();
     });
 
-    // Song detail card button click
+    // Songs grid click delegation
     songsGridEl.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-action="open-detail"]');
-      if (btn) {
-        const songId = btn.getAttribute('data-song-id');
-        openSongDetailModal(songId);
+      const btnPerf = e.target.closest('[data-action="open-performance"]');
+      if (btnPerf) {
+        const id = btnPerf.getAttribute('data-song-id');
+        state.selectedSongId = id;
+        switchView('performance');
         return;
       }
 
-      const card = e.target.closest('.song-card');
-      if (card) {
-        const songId = card.getAttribute('data-song-id');
-        openSongDetailModal(songId);
+      const btnDetail = e.target.closest('[data-action="open-detail"]');
+      if (btnDetail) {
+        const id = btnDetail.getAttribute('data-song-id');
+        openSongDetailModal(id);
+        return;
       }
     });
 
-    // Timeline decade filter buttons
-    if (timelineButtonsEl) {
-      timelineButtonsEl.addEventListener('click', (e) => {
-        const btn = e.target.closest('.timeline-decade-btn');
-        if (!btn) return;
-
-        const decade = btn.getAttribute('data-decade');
-        state.currentDecadeFilter = decade;
-
-        renderTimelineControls();
-        renderSongsGrid();
-      });
-    }
-
-    // Artists grid click
-    if (artistsGridEl) {
-      artistsGridEl.addEventListener('click', (e) => {
-        const card = e.target.closest('.artist-card-chip');
-        if (!card) return;
-
-        const person = card.getAttribute('data-person');
-        searchInputEl.value = person;
-        state.currentSearchQuery = person;
-        if (searchClearBtnEl) searchClearBtnEl.style.display = 'block';
-        renderSongsGrid();
-        window.scrollTo({ top: songsGridEl.offsetTop - 100, behavior: 'smooth' });
-      });
-    }
-
-    // Modal overlay close
-    if (modalOverlayEl) {
-      modalOverlayEl.addEventListener('click', (e) => {
-        if (e.target === modalOverlayEl) {
-          closeModal();
+    // Setlist view action button click
+    if (setlistContainerEl) {
+      setlistContainerEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-action="select-for-perf"]');
+        if (btn) {
+          const id = btn.getAttribute('data-song-id');
+          state.selectedSongId = id;
+          switchView('performance');
         }
       });
     }
 
-    if (closeModalBtnEl) {
-      closeModalBtnEl.addEventListener('click', closeModal);
+    // Rehearsal Modal events
+    if (openRehearsalModalBtn) {
+      openRehearsalModalBtn.addEventListener('click', () => {
+        rehearsalModalOverlay.classList.add('active');
+      });
     }
 
-    // ESC key close modal
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalOverlayEl.classList.contains('active')) {
-        closeModal();
-      }
+    if (closeRehearsalModalBtn) {
+      closeRehearsalModalBtn.addEventListener('click', () => {
+        rehearsalModalOverlay.classList.remove('active');
+      });
+    }
+
+    if (rehearsalForm) {
+      rehearsalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const songId = rehearsalSongSelect.value;
+        const song = SONGS_DATABASE.find(s => s.id === songId);
+        if (song) {
+          const data = {
+            performanceKey: document.getElementById('rehearsalKeyInput').value || song.performance.performanceKey,
+            bpm: parseInt(document.getElementById('rehearsalBpmInput').value) || song.performance.bpm,
+            rehearsalStatus: document.getElementById('rehearsalStatusSelect').value,
+            keyboardNotes: document.getElementById('rehearsalKeyboardNotesInput').value,
+            vocalistNotes: document.getElementById('rehearsalVocalistNotesInput').value
+          };
+
+          song.performance.performanceKey = data.performanceKey;
+          song.performance.bpm = data.bpm;
+          song.performance.rehearsalStatus = data.rehearsalStatus;
+          song.performance.keyboardNotes = data.keyboardNotes;
+          song.performance.vocalistNotes = data.vocalistNotes;
+
+          saveRehearsalToStorage(songId, data);
+          rehearsalModalOverlay.classList.remove('active');
+          renderSetlist();
+          renderPerformanceSheet();
+          alert('تم حفظ ملاحظات البروفة والسلم بنجاح للجلسة الحية! 🎧');
+        }
+      });
+    }
+
+    if (modalOverlayEl) {
+      modalOverlayEl.addEventListener('click', (e) => {
+        if (e.target === modalOverlayEl) closeModal();
+      });
+    }
+  }
+
+  function renderTimelineControls() {
+    const decades = [
+      { id: 'all', label: 'كل العصور' },
+      { id: '1920s', label: 'العشرينيات' },
+      { id: '1930s', label: 'الثلاثينيات' },
+      { id: '1940s', label: 'الأربعينيات' },
+      { id: '1950s', label: 'الخمسينيات' },
+      { id: '1970s', label: 'السبعينيات' }
+    ];
+
+    if (!timelineButtonsEl) return;
+
+    timelineButtonsEl.innerHTML = decades.map(d => `
+      <button class="timeline-decade-btn ${state.currentDecadeFilter === d.id ? 'active' : ''}" data-decade="${d.id}">
+        ${d.label}
+      </button>
+    `).join('');
+
+    timelineButtonsEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.timeline-decade-btn');
+      if (!btn) return;
+      state.currentDecadeFilter = btn.getAttribute('data-decade');
+      renderTimelineControls();
+      renderSongsGrid();
+    });
+  }
+
+  function renderArtistsIndex() {
+    if (!artistsGridEl) return;
+
+    const peopleMap = new Map();
+    SONGS_DATABASE.forEach(song => {
+      if (song.poet && !song.poet.includes('تراث')) peopleMap.set(song.poet, { name: song.poet, role: 'شاعر' });
+      if (song.originalPerformer) peopleMap.set(song.originalPerformer, { name: song.originalPerformer, role: 'فنان' });
+    });
+
+    const peopleList = Array.from(peopleMap.values()).slice(0, 10);
+
+    artistsGridEl.innerHTML = peopleList.map(person => `
+      <div class="artist-card-chip" data-person="${person.name}" style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 0.6rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem; cursor: pointer;">
+        👤 ${person.name} (${person.role})
+      </div>
+    `).join('');
+
+    artistsGridEl.addEventListener('click', (e) => {
+      const chip = e.target.closest('.artist-card-chip');
+      if (!chip) return;
+      const person = chip.getAttribute('data-person');
+      searchInputEl.value = person;
+      state.currentSearchQuery = person;
+      renderSongsGrid();
+      window.scrollTo({ top: songsGridEl.offsetTop - 100, behavior: 'smooth' });
     });
   }
 });

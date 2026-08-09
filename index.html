@@ -3,210 +3,292 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>أرشيف الأغنية السودانية | Sudanese Songs Heritage Archive</title>
-  <meta name="description" content="أرشيف رقمي توثيقي لموسوعة الأغنية السودانية، من حقيبة الفن إلى التراث والروائع الخالدة، مع توثيق الشعراء، الملحنين، وقصص الأغاني والمصادر.">
+  <title>أرشيف الأغنية السودانية | Sudanese Songs Heritage Archive & Performance Book</title>
+  <meta name="description" content="أرشيف موثق للأغنية السودانية، دمج البحث التوثيقي الببليوجرافي مع وضع الغناء والتنفيذ الحي (Musician & Performance Mode) لعزف الأورغ والغناء الأصيل.">
   
-  <!-- CSS Stylesheet -->
+  <!-- Typography Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="theme-dark">
 
-  <!-- Site Header -->
-  <header class="site-header">
-    <div class="container header-wrapper">
-      <a href="#" class="brand-logo">
-        <div class="logo-icon">🎵</div>
-        <div class="logo-text">
-          <span class="logo-title">أرشيف الأغنية السودانية</span>
-          <span class="logo-subtitle">Sudanese Songs Heritage Archive</span>
+  <!-- Header & Navigation Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-logo-group">
+        <div class="vinyl-icon">🎵</div>
+        <div>
+          <h1 class="brand-title">أرشيف الأغنية السودانية</h1>
+          <p class="brand-subtitle">Sudanese Songs Heritage Archive & Live Performance Stand</p>
         </div>
-      </a>
+      </div>
 
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#archive" class="nav-link active">الأرشيف</a></li>
-          <li><a href="#timeline" class="nav-link">الخط الزمني</a></li>
-          <li><a href="#artists" class="nav-link">الشعراء والفنانون</a></li>
-          <li><a href="#research-audit" class="nav-link">سجل البحث</a></li>
-        </ul>
+      <!-- Main Navigation View Switcher -->
+      <nav class="main-nav-tabs">
+        <button class="nav-tab-btn active" id="tabArchiveBtn" data-view="archive">
+          🏛️ الأرشيف التوثيقي
+        </button>
+        <button class="nav-tab-btn" id="tabPerformanceBtn" data-view="performance">
+          🎙️ وضع الغناء (Performance)
+        </button>
+        <button class="nav-tab-btn" id="tabSetlistBtn" data-view="setlist">
+          🎼 قائمة القعدة (Setlist)
+        </button>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container hero-content">
-      <div class="hero-badge">
-        <span>✨ متحف رقمي توثيقي مكرس لذاكرة الموسيقى السودانية</span>
-      </div>
+  <!-- ==========================================================================
+       VIEW 1: ARCHIVE MODE (🏛️ الأرشيف التوثيقي)
+       ========================================================================== -->
+  <main class="main-content-view active" id="archiveView">
+    <!-- Hero Banner & Stats Dashboard -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h2 class="hero-title">المكنز التوثيقي للأغنية السودانية</h2>
+        <p class="hero-description">
+          منصة توثيقية وبحثية شاملة لأغاني حقيبة الفن، التراث، وأغاني البنات، مدمجة ببطاقات الأداء الصوتي وإعداد البروفات الحية.
+        </p>
 
-      <h1 class="hero-title">أرشيف الأغنية السودانية</h1>
-      <h2 class="hero-subtitle">ذاكرة السودان التي غنّت</h2>
-      <p class="hero-description">
-        رحلة موثقة في تاريخ الأغنية السودانية — من عيون حقيبة الفن، وأهازيج التراث والحداء الزراعي، إلى روائع الغناء الحديث والوطني. تحري الدقة والمصادر قبل العرض.
-      </p>
-
-      <!-- Vinyl Spinning Animation -->
-      <div class="vinyl-container">
-        <div class="vinyl-record">
-          <div class="vinyl-center">حقيبة</div>
-        </div>
-      </div>
-
-      <!-- Instant Search Bar -->
-      <div class="search-wrapper">
-        <div class="search-input-group">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" class="search-input" 
-                 placeholder="ابحث باسم الأغنية، الفنان، الشاعر، اللحن، أو مطلع الكلمات (مثال: العطبراوي، الجاغريو، فريع البان...)"
-                 autocomplete="off">
-          <button id="searchClearBtn" class="search-clear-btn">✕</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Dashboard Statistics -->
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number" id="statInputEntries">17</div>
-          <div class="stat-label">مدخلات دراسة البحث</div>
-        </div>
-
-        <div class="stat-card highlight">
-          <div class="stat-number" id="statUniqueSongs">15</div>
-          <div class="stat-label">أعمال غنائية فريدة</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-number" id="statVerified">14</div>
-          <div class="stat-label">🟢 مؤكدة التوثيق</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-number" id="statHaqeeba">5</div>
-          <div class="stat-label">أغاني الحقيبة الخالدة</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-number" id="statHeritage">6</div>
-          <div class="stat-label">تراث وحداء وفلكلور</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-number" id="statPoets">11</div>
-          <div class="stat-label">الشعراء الموثقون</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-number" id="statArtists">22</div>
-          <div class="stat-label">الفنانون والمؤدون</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Archive Section -->
-  <main id="archive" class="songs-section">
-    <div class="container">
-      
-      <!-- Filter Chips & Counter -->
-      <div class="filters-section">
-        <div class="filters-wrapper">
-          <div class="filter-chips" id="filterChips">
-            <!-- Rendered by JS -->
+        <!-- Dashboard Statistics Cards -->
+        <div class="stats-dashboard-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="statInputEntries">17</div>
+            <div class="stat-label">مدخلاً بحثياً</div>
           </div>
-          <div class="active-count-indicator" id="activeCount">
-            جاري تحميل الأرشيف...
+          <div class="stat-card">
+            <div class="stat-value" id="statUniqueSongs">15</div>
+            <div class="stat-label">عملاً غنائياً فريداً</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color: var(--gold-light);" id="statVerified">15</div>
+            <div class="stat-label">نصوص كاملة محققة 🟢</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statHaqeeba">5</div>
+            <div class="stat-label">أعمال حقيبة</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statHeritage">6</div>
+            <div class="stat-label">أعمال تراث وسيرة</div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Songs Cards Grid -->
-      <div class="songs-grid" id="songsGrid">
-        <!-- Rendered dynamically by script.js -->
+    <!-- Search & Filter Controls -->
+    <section class="search-filter-section">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="ابحث باسم الأغنية، الشاعر، الفنان، الملحن، أو أي سطر غنائي..." autocomplete="off">
+        <button class="search-clear-btn" id="searchClearBtn" style="display: none;">✕</button>
       </div>
 
+      <!-- Category Chips Filter -->
+      <div class="filter-chips-container" id="filterChips">
+        <!-- Dynamic Category Chips Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Songs Counter Banner -->
+    <div class="active-count-banner" id="activeCount">
+      جاري تحميل الأرشيف...
+    </div>
+
+    <!-- Main Songs Grid -->
+    <section class="songs-grid-section" id="songsGrid">
+      <!-- Song Cards Populated by JS -->
+    </section>
+
+    <!-- Timeline Decade Explorer Section -->
+    <section class="timeline-explorer-section">
+      <h3 class="section-title">⏳ الحقب والخط الزمني للأغنية السودانية</h3>
+      <div class="timeline-controls" id="timelineButtons">
+        <!-- Timeline Buttons Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Artists & Poets Index Section -->
+    <section class="artists-index-section">
+      <h3 class="section-title">👥 دليل الشعراء والمطربين والرواد</h3>
+      <div class="artists-grid" id="artistsGrid">
+        <!-- Artists Chips Populated by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 2: LIVE PERFORMANCE MODE (🎙️ وضع الغناء)
+       ========================================================================== -->
+  <main class="main-content-view" id="performanceView" style="display: none;">
+    <!-- Performance Mode Top Toolbar -->
+    <div class="performance-toolbar">
+      <div class="toolbar-group">
+        <!-- Performer Role Switcher -->
+        <div class="role-toggle-group">
+          <button class="role-btn active" id="roleVocalistBtn" data-role="vocalist">
+            🎤 عوض حمدتو — الغناء
+          </button>
+          <button class="role-btn" id="roleKeyboardBtn" data-role="keyboard">
+            🎹 حسن غزالي — الأورغ
+          </button>
+        </div>
+
+        <!-- Key Transpose Controls -->
+        <div class="transpose-control-group">
+          <span class="toolbar-label">السلم:</span>
+          <button class="tool-btn" id="transposeMinusBtn" title="تنزيل السلم">− Key</button>
+          <span class="key-badge" id="currentKeyDisplay">G minor</span>
+          <button class="tool-btn" id="transposePlusBtn" title="رفع السلم">+ Key</button>
+          <button class="tool-btn-sm" id="transposeResetBtn" title="إعادة السلم الأصلي">الأصلي</button>
+        </div>
+      </div>
+
+      <div class="toolbar-group">
+        <!-- Font Size Adjuster -->
+        <div class="font-scaler-group">
+          <span class="toolbar-label">الخط:</span>
+          <button class="tool-btn" id="fontSizeMinusBtn">A−</button>
+          <button class="tool-btn" id="fontSizePlusBtn">A+</button>
+        </div>
+
+        <!-- Wake Lock Toggle -->
+        <button class="wake-lock-btn" id="wakeLockBtn">
+          ☀️ إبقاء الشاشة مضاءة
+        </button>
+
+        <!-- Print Performance Sheet Button -->
+        <button class="print-sheet-btn" id="printSheetBtn">
+          🖨️ طباعة ورقة الأغنية
+        </button>
+      </div>
+    </div>
+
+    <!-- Auto-Scroll Controls Bar -->
+    <div class="auto-scroll-bar">
+      <div class="scroll-controls">
+        <button class="scroll-btn" id="scrollStartBtn">▶ تشغيل التمرير</button>
+        <button class="scroll-btn" id="scrollPauseBtn" style="display: none;">⏸ إيقاف مؤقت</button>
+        <button class="scroll-btn" id="scrollResetBtn">⏮ بداية النص</button>
+      </div>
+      <div class="scroll-speed-group">
+        <span class="toolbar-label">سرعة التمرير:</span>
+        <button class="speed-btn" data-speed="0.5">0.5×</button>
+        <button class="speed-btn active" data-speed="0.75">0.75×</button>
+        <button class="speed-btn" data-speed="1.0">1.0×</button>
+        <button class="speed-btn" data-speed="1.25">1.25×</button>
+      </div>
+    </div>
+
+    <!-- Performance Sheet Container -->
+    <div class="performance-sheet-container" id="performanceSheet">
+      <!-- Dynamic Performance Sheet rendered by JS (Vocalist vs Keyboard mode) -->
+    </div>
+
+    <!-- Session Navigation Footer Bar -->
+    <div class="session-nav-footer">
+      <button class="session-nav-btn" id="prevSongBtn">
+        ⬅️ الأغنية السابقة
+      </button>
+      <div class="next-song-indicator" id="nextSongIndicator">
+        التالي: <span id="nextSongName">يجو عايدين</span>
+      </div>
+      <button class="session-nav-btn" id="nextSongBtn">
+        الأغنية التالية ➡️
+      </button>
     </div>
   </main>
 
-  <!-- Historical Timeline Section -->
-  <section id="timeline" class="timeline-section">
-    <div class="container">
-      <div class="section-header-group">
-        <h2 class="section-main-title">الخط الزمني للأغنية السودانية</h2>
-        <p class="section-sub-title">استعرض ظهور الأعمال الغنائية بحسب الحقب التاريخية التقريبية</p>
+  <!-- ==========================================================================
+       VIEW 3: SESSION SETLIST & REHEARSAL MODE (🎼 قائمة القعدة)
+       ========================================================================== -->
+  <main class="main-content-view" id="setlistView" style="display: none;">
+    <div class="setlist-header-box">
+      <div>
+        <h2 class="setlist-title">🎼 قائمة القعدة والبروفة الحية</h2>
+        <p class="setlist-subtitle">إدارة وتريب أغاني الجلسة، تحديد السلم النهائي لـ عوض حمدتو، وملاحظات الأورغ لـ حسن غزالي</p>
       </div>
-
-      <div class="timeline-nav" id="timelineButtons">
-        <!-- Timeline decade buttons rendered by JS -->
-      </div>
+      <button class="add-song-setlist-btn" id="openRehearsalModalBtn">
+        🎧 وضع البروفة وحفظ الملاحظات
+      </button>
     </div>
-  </section>
 
-  <!-- Artists & Poets Index Section -->
-  <section id="artists" class="artists-section">
-    <div class="container">
-      <div class="section-header-group">
-        <h2 class="section-main-title">دليل الشعراء والرواد</h2>
-        <p class="section-sub-title">انقر على اسم الشاعر أو الفنان لاستعراض أعماله الموثقة بالأرشيف</p>
-      </div>
-
-      <div class="artists-grid" id="artistsGrid">
-        <!-- Rendered dynamically by script.js -->
-      </div>
+    <!-- Active Setlist Songs Container -->
+    <div class="setlist-songs-list" id="setlistContainer">
+      <!-- Setlist Items populated by JS -->
     </div>
-  </section>
+  </main>
 
-  <!-- Research Methodology & Audit Section -->
-  <section id="research-audit" class="timeline-section">
-    <div class="container">
-      <div class="section-header-group">
-        <h2 class="section-main-title">منهجية البحث وسجل المطابقة</h2>
-        <p class="section-sub-title">الشفافية في التعامل مع المدخلات الـ 17 المبدئية وتوحيد الأعمال الفريدة</p>
-      </div>
-
-      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 2rem; max-width: 900px; margin: 0 auto; font-size: 0.95rem; line-height: 1.8;">
-        <h3 style="color: var(--gold-light); font-family: var(--font-heading); margin-bottom: 1rem;">⚖️ بيان المطابقة وإدارة الحقوق الفكرية</h3>
-        <p style="margin-bottom: 1rem; color: var(--text-main);">
-          تم فحص قائمة المدخلات الـ 17 التي تم تزويد الأرشيف بها، وأظهر البحث التوثيقي الموسيقي أن مدخلين من المدخلات يمثلان تكراراً إملائياً وتصحيفاً لأعمال غنائية قائمة:
-        </p>
-        <ul style="list-style: square; padding-right: 1.5rem; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-          <li><strong>المدخل #10 (يا رايع جفينت):</strong> تم إثبات أنه خطأ إملائي لـ (يا رائع جفيتني وأنا ضايع)، وتم دمج المدخلين في عمل توثيقي واحد (#11) للشاعر الجاغريو والفنان أحمد المصطفى.</li>
-          <li><strong>المدخل #13 (يا غلي):</strong> تم ترجيح أنه تصحيف واختصار لعنوان (يا غالية يا زينة حياتي) لزيدان إبراهيم، وتم ربطه وإدماجه مع إيضاح الارتباط بأغنية إبراهيم عوض (أنت غالي علي).</li>
-        </ul>
-
-        <h3 style="color: var(--gold-light); font-family: var(--font-heading); margin-bottom: 1rem;">🔒 سياسة الحقوق والنشر</h3>
-        <p style="color: var(--text-muted);">
-          التزاماً بحقوق الملكية الفكرية والأدبية، لا يتم تصنيف الأغاني كـ <strong>"ملك عام"</strong> إلا بناءً على أدلة تاريخية تثبت مرور الحقبة أو كون العمل تراثاً شفهياً شعبياً. أما الأعمال ذات الحقوق المحفوظة، فيتم الاكتفاء بتوثيق مقتطف محدد وشرح معانيها وإيراد رابط استماع شرعي رسمي عبر المنصات المتاحة.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Archival Song Detail Modal Overlay -->
+  <!-- ==========================================================================
+       4. SONG DETAIL MODAL DRAWER (ARCHIVE VIEW)
+       ========================================================================== -->
   <div class="modal-overlay" id="songModalOverlay">
-    <div class="modal-drawer" id="modalContainer">
-      <!-- Content populated dynamically by script.js -->
+    <div class="modal-container" id="modalContainer">
+      <!-- Modal Content Populated Dynamically by script.js -->
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       5. REHEARSAL NOTES MODAL ( وضع البروفة)
+       ========================================================================== -->
+  <div class="modal-overlay" id="rehearsalModalOverlay">
+    <div class="modal-container rehearsal-modal-box">
+      <div class="drawer-header">
+        <h2 class="drawer-title">🎧 وضع البروفة وحفظ الترتيب</h2>
+        <button class="close-drawer-btn" id="closeRehearsalModalBtn">✕</button>
+      </div>
+      <div class="drawer-body">
+        <form id="rehearsalForm">
+          <div class="form-group">
+            <label class="form-label">الأغنية المستهدفة:</label>
+            <select id="rehearsalSongSelect" class="form-select"></select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">السلم النهائي في البروفة (Performance Key):</label>
+              <input type="text" id="rehearsalKeyInput" class="form-input" placeholder="مثال: G minor">
+            </div>
+            <div class="form-group">
+              <label class="form-label">سرعة الإيقاع (BPM):</label>
+              <input type="number" id="rehearsalBpmInput" class="form-input" placeholder="92">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">حالة البروفة:</label>
+            <select id="rehearsalStatusSelect" class="form-select">
+              <option value="ready">✅ جاهزة للعزف والغناء</option>
+              <option value="needs-rehearsal">🟡 تحتاج بروفة</option>
+              <option value="needs-review">🔴 تحتاج مراجعة</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">🎹 ملاحظات حسن غزالي (الأورغ والفواصل):</label>
+            <textarea id="rehearsalKeyboardNotesInput" class="form-textarea" rows="3" placeholder="ملاحظات السلم والفاصل..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">🎤 ملاحظات عوض حمدتو (طبقة الصوت وترديد اللازمة):</label>
+            <textarea id="rehearsalVocalistNotesInput" class="form-textarea" rows="3" placeholder="ملاحظات الطبقة والوقوف..."></textarea>
+          </div>
+          <button type="submit" class="submit-rehearsal-btn">
+            💾 حفظ إعدادات البروفة في الجلسة
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-brand">أرشيف الأغنية السودانية</div>
-      <p class="footer-copy">
-        مشروع أرشيفي توثيقي غير تجاري مكرس لحفظ ذاكرة الفن السوداني الأصيل.
-      </p>
-      <div style="font-size: 0.8rem; color: var(--gold-primary);">
-        حقيبة الفن • التراث الشعبي • روائع الغناء السوداني
-      </div>
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>أرشيف الأغنية السودانية © 2026 — مكتبة توثيقية ومنصة عزف وغناء حية لروائع الفن السوداني الاصيل.</p>
     </div>
   </footer>
 
-  <!-- JS Scripts -->
+  <!-- Scripts -->
   <script src="data.js"></script>
   <script src="script.js"></script>
 </body>

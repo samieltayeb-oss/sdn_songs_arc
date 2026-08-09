@@ -30,11 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabPerformanceBtn = document.getElementById('tabPerformanceBtn');
   const tabSetlistBtn = document.getElementById('tabSetlistBtn');
   const tabAuditBtn = document.getElementById('tabAuditBtn');
+  const tabProofBtn = document.getElementById('tabProofBtn');
   
   const archiveViewEl = document.getElementById('archiveView');
   const performanceViewEl = document.getElementById('performanceView');
   const setlistViewEl = document.getElementById('setlistView');
   const auditViewEl = document.getElementById('auditView');
+  const proofViewEl = document.getElementById('proofView');
 
   // Archive DOM Elements
   const songsGridEl = document.getElementById('songsGrid');
@@ -154,85 +156,76 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     3. FULL MULTI-STAFF LEAD SHEET SCORE RENDERER (VexFlow & SVG)
+     3. FULL MULTI-STAFF LEAD SHEET SCORE RENDERER (GENUINE VEXFLOW)
      ========================================================================== */
   function renderFullMultiBarLeadSheet(containerEl, songObj) {
     if (!containerEl || !songObj || !songObj.notation) return;
     containerEl.innerHTML = '';
 
     const not = songObj.notation.referenceVersion;
-    const sections = not.melodySections || (not.multiBarLeadSheet ? not.multiBarLeadSheet.sections : null);
-    if (!sections) return;
+    const rawEvents = not.rawTranscriptionEvents;
+
+    if (!rawEvents || rawEvents.length === 0) {
+      containerEl.innerHTML = `
+        <div style="background: rgba(220, 38, 38, 0.08); border: 1px dashed #DC2626; padding: 2rem; border-radius: 8px; text-align: center; color: #DC2626; margin-top: 1.5rem;">
+          <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">🔴 النوتة لم يتم تفريغها من التسجيل بعد</div>
+          <div style="font-size: 0.9rem;">(Transcription Not Yet Verified From Audio)</div>
+        </div>
+      `;
+      return;
+    }
 
     let html = `
       <div class="full-lead-sheet-wrapper" style="background:#FFF; color:#1E293B; border-radius:12px; padding:1.5rem; box-shadow:0 8px 25px rgba(0,0,0,0.5); margin-top: 1rem;">
         <div style="border-bottom: 2px solid #0F4C81; padding-bottom: 0.75rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
           <div>
-            <h3 style="margin:0; font-size:1.3rem; color:#0F4C81;">🎼 التدوين الموسيقي الكامل المستقل — ${songObj.titleArabic}</h3>
+            <h3 style="margin:0; font-size:1.3rem; color:#0F4C81;">🎼 التدوين الموسيقي المستقل — ${songObj.titleArabic}</h3>
             <div style="font-size:0.875rem; color:#475569; margin-top: 0.25rem;">
-              المؤدي المرجعي: <strong>${songObj.originalPerformer}</strong> | السلم: <strong style="color: #0F4C81;">${not.key}</strong> | الإيقاع: <strong>${not.rhythm} (${not.bpm} BPM)</strong>
+              المؤدي المرجعي: <strong>${songObj.originalPerformer}</strong> | السلم: <strong style="color: #0F4C81;">${not.key}</strong>
             </div>
           </div>
           <span style="background:#10B981; color:#FFF; padding:0.4rem 0.8rem; border-radius:6px; font-size:0.85rem; font-weight:bold;">
             🟢 INDEPENDENT VERIFIED SCORE
           </span>
         </div>
+        <div id="vexflow-canvas-${songObj.id}" style="overflow-x: auto; padding-bottom: 1rem;"></div>
+      </div>
     `;
-
-    sections.forEach((sec) => {
-      html += `
-        <div style="margin-bottom: 1.5rem; background:#F8FAFC; border:1px solid #CBD5E1; padding:1rem; border-radius:8px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
-            <h4 style="margin:0; font-size:1.05rem; color:#0F4C81;">${sec.title}</h4>
-            <span style="font-size:0.8rem; background:#E2E8F0; color:#334155; padding:0.25rem 0.6rem; border-radius:4px; font-weight:bold;">
-              ${sec.repeatText || ''}
-            </span>
-          </div>
-
-          <div style="font-size:0.85rem; color:#475569; margin-bottom:0.5rem; font-family:monospace;">
-            تتابع كوردات الأورغ: <strong>${sec.chords ? sec.chords.join(' — ') : ''}</strong>
-          </div>
-
-          <svg width="100%" height="90" viewBox="0 0 600 90" xmlns="http://www.w3.org/2000/svg" style="background:#FFF; border:1px solid #94A3B8; border-radius:6px;">
-            <!-- Treble Staff Lines -->
-            <line x1="10" y1="18" x2="590" y2="18" stroke="#334155" stroke-width="1.5"/>
-            <line x1="10" y1="32" x2="590" y2="32" stroke="#334155" stroke-width="1.5"/>
-            <line x1="10" y1="46" x2="590" y2="46" stroke="#334155" stroke-width="1.5"/>
-            <line x1="10" y1="60" x2="590" y2="60" stroke="#334155" stroke-width="1.5"/>
-            <line x1="10" y1="74" x2="590" y2="74" stroke="#334155" stroke-width="1.5"/>
-
-            <!-- Treble Clef & Time Signature -->
-            <text x="16" y="60" font-family="serif" font-size="34" fill="#0F4C81">𝄞</text>
-            <text x="45" y="53" font-family="sans-serif" font-size="14" font-weight="bold" fill="#0F4C81">${not.timeSignature || '4/4'}</text>
-
-            <!-- Measure 1 Barline & Notes -->
-            <line x1="180" y1="18" x2="180" y2="74" stroke="#334155" stroke-width="2"/>
-            <circle cx="85" cy="67" r="5" fill="#0F4C81"/>
-            <line x1="90" y1="67" x2="90" y2="32" stroke="#0F4C81" stroke-width="2"/>
-            <circle cx="130" cy="53" r="5" fill="#0F4C81"/>
-            <line x1="135" y1="53" x2="135" y2="18" stroke="#0F4C81" stroke-width="2"/>
-
-            <!-- Measure 2 Barline & Notes -->
-            <line x1="360" y1="18" x2="360" y2="74" stroke="#334155" stroke-width="2"/>
-            <circle cx="230" cy="39" r="5" fill="#0F4C81"/>
-            <line x1="235" y1="39" x2="235" y2="8" stroke="#0F4C81" stroke-width="2"/>
-            <circle cx="295" cy="25" r="5" fill="#EAB308"/>
-            <line x1="300" y1="25" x2="300" y2="-5" stroke="#EAB308" stroke-width="2.5"/>
-
-            <!-- Measure 3 Barline & Final Double Bar -->
-            <line x1="585" y1="18" x2="585" y2="74" stroke="#334155" stroke-width="3"/>
-            <line x1="580" y1="18" x2="580" y2="74" stroke="#334155" stroke-width="1.5"/>
-            <circle cx="425" cy="39" r="5" fill="#0F4C81"/>
-            <line x1="430" y1="39" x2="430" y2="8" stroke="#0F4C81" stroke-width="2"/>
-            <circle cx="505" cy="53" r="5" fill="#0F4C81"/>
-            <line x1="510" y1="53" x2="510" y2="18" stroke="#0F4C81" stroke-width="2"/>
-          </svg>
-        </div>
-      `;
-    });
-
-    html += `</div>`;
     containerEl.innerHTML = html;
+
+    setTimeout(() => {
+      try {
+        const vfContainer = document.getElementById(`vexflow-canvas-${songObj.id}`);
+        if (!vfContainer || !window.Vex) return;
+        vfContainer.innerHTML = '';
+
+        const VF = Vex.Flow;
+        const renderer = new VF.Renderer(vfContainer, VF.Renderer.Backends.SVG);
+        
+        const width = Math.max(600, rawEvents.length * 70);
+        renderer.resize(width, 150);
+        const context = renderer.getContext();
+        
+        const stave = new VF.Stave(10, 20, width - 20);
+        stave.addClef("treble").addTimeSignature("4/4");
+        stave.setContext(context).draw();
+
+        const notes = rawEvents.map(evt => {
+          const note = new VF.StaveNote({
+            keys: [\`\${evt.pitch.toLowerCase()}/\${evt.octave}\`],
+            duration: evt.duration
+          });
+          if (evt.lyric) {
+            note.addModifier(new VF.Annotation(evt.lyric).setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0);
+          }
+          return note;
+        });
+
+        VF.Formatter.FormatAndDraw(context, stave, notes);
+      } catch (err) {
+        console.error('VexFlow Error:', err);
+      }
+    }, 50);
   }
 
   /* ==========================================================================
@@ -246,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div style="background: var(--bg-card); border: 1px solid var(--border-gold); padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 2rem;">
         <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">📊 نتائج تدقيق التماثل والمطابقة بين الأعمال (Forensic Pairwise Matrix)</h3>
         <p style="font-size: 0.9rem; color: var(--text-muted);">
-          إجمالي المقارنات الثنائية: <strong>105 مقارنة</strong> | التماثل النغمي المتطابق كلياً (100% Pitch Sequence Match): <strong style="color: #34D399;">0 (صفر — كل أغنية تملك نوتتها البنائية المستقلة)</strong>
+          تم محو المولد الوهمي للنوتات وإلغاء شارة "موثقة" عن الأغاني التي لا تملك جدول أحداث نغمية مفرغة (Raw Events) من التسجيل الصوتي.
         </p>
       </div>
 
@@ -255,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const fp = song.musicalFingerprint;
           const rec = song.referenceRecording;
           const not = song.notation ? song.notation.referenceVersion : null;
+          const hasTranscription = not && not.rawTranscriptionEvents && not.rawTranscriptionEvents.length > 0;
 
           return `
             <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
@@ -263,31 +257,11 @@ document.addEventListener('DOMContentLoaded', () => {
                   <h3 style="margin: 0; color: var(--gold-primary); font-size: 1.2rem;">#${i + 1} — ${song.titleArabic}</h3>
                   <div style="font-size: 0.85rem; color: var(--text-muted);">المؤدي المرجعي: ${song.originalPerformer} | السلم: <strong style="color: var(--gold-light);">${not ? not.key : 'G minor'}</strong></div>
                 </div>
-                <span class="badge badge-verified">${not ? not.verificationStatus : '🟢 موثقة من التسجيل'}</span>
+                ${hasTranscription ? 
+                  `<span class="badge badge-verified">🟢 INDEPENDENT VERIFIED SCORE</span>` : 
+                  `<span class="badge" style="background: rgba(220, 38, 38, 0.2); color: #DC2626; border: 1px solid #DC2626;">🔴 TRANSCRIPTION NOT YET VERIFIED</span>`
+                }
               </div>
-
-              ${rec ? `
-                <div style="background: rgba(15, 76, 129, 0.15); padding: 0.75rem; border-radius: var(--radius-sm); border-right: 3px solid var(--nile-azure); margin-bottom: 1rem; font-size: 0.85rem;">
-                  <strong>🎙️ التسجيل الصوتي المرجعي:</strong> ${rec.performer} — ${rec.version} (${rec.duration})
-                </div>
-              ` : ''}
-
-              ${fp ? `
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-bottom: 1rem;">
-                  <div style="background: rgba(0,0,0,0.3); padding: 0.6rem; border-radius: 6px; font-size: 0.85rem;">
-                    <div style="color: var(--text-muted); font-size: 0.75rem;">تتابع النوتات الافتتاحية:</div>
-                    <strong style="color: var(--gold-light); font-family: var(--font-mono);">${fp.openingPitchSequence ? fp.openingPitchSequence.join(' - ') : ''}</strong>
-                  </div>
-                  <div style="background: rgba(0,0,0,0.3); padding: 0.6rem; border-radius: 6px; font-size: 0.85rem;">
-                    <div style="color: var(--text-muted); font-size: 0.75rem;">درجات اللحن الخماسي:</div>
-                    <strong style="color: var(--nile-cyan); font-family: var(--font-mono);">${fp.openingScaleDegrees ? fp.openingScaleDegrees.join(' - ') : ''}</strong>
-                  </div>
-                  <div style="background: rgba(0,0,0,0.3); padding: 0.6rem; border-radius: 6px; font-size: 0.85rem;">
-                    <div style="color: var(--text-muted); font-size: 0.75rem;">شكل الحركة اللحنية:</div>
-                    <strong style="color: #34D399;">${fp.melodicContour}</strong>
-                  </div>
-                </div>
-              ` : ''}
 
               <!-- Render Native Song Score Notation -->
               <div id="auditLeadSheet_${song.id}"></div>
@@ -299,10 +273,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
     container.innerHTML = html;
 
-    // Render SVG lead sheets for each song
     setTimeout(() => {
       SONGS_DATABASE.forEach(song => {
         renderFullMultiBarLeadSheet(document.getElementById(`auditLeadSheet_${song.id}`), song);
+      });
+    }, 50);
+  }
+
+  /* ==========================================================================
+     4b. NOTATION PROOF VIEW RENDERER
+     ========================================================================== */
+  function renderNotationProofView() {
+    const container = document.getElementById('notationProofContainer');
+    if (!container) return;
+
+    const transcribedSongs = SONGS_DATABASE.filter(s => s.notation && s.notation.referenceVersion && s.notation.referenceVersion.rawTranscriptionEvents);
+
+    let html = `
+      <div style="background: var(--bg-card); border: 1px solid var(--border-gold); padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 2rem;">
+        <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">🧾 دليل الإثبات السمعي البصري (Audio-to-Score Proof Chain)</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+          إثبات الاستقلالية يقتضي وجود تسجيل مرجعي، استخراج التفريغ الزمني (Timestamps)، الأحداث النغمية (Pitches/Durations)، ثم رسم النوتة. 
+        </p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 2rem;">
+        ${transcribedSongs.map((song, i) => {
+          const rec = song.referenceRecording;
+          const rawEvents = song.notation.referenceVersion.rawTranscriptionEvents;
+          
+          return `
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
+              <h3 style="color: var(--gold-primary); margin-bottom: 1rem; border-bottom: 1px dashed var(--border-subtle); padding-bottom: 0.5rem;">
+                ${i+1}. ${song.titleArabic}
+              </h3>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="background: rgba(15, 76, 129, 0.15); padding: 1rem; border-radius: 8px; border-right: 3px solid var(--nile-azure);">
+                  <strong style="display: block; margin-bottom: 0.5rem;">🎙️ التسجيل المرجعي:</strong>
+                  <div style="font-size: 0.85rem; color: var(--text-muted);">
+                    المؤدي: ${rec.performer}<br>
+                    النسخة: ${rec.version}<br>
+                    زمن البدء: ${rawEvents[0].time}
+                  </div>
+                </div>
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 8px; border-right: 3px solid #10B981;">
+                  <strong style="display: block; margin-bottom: 0.5rem;">📊 جدول التفريغ الخام (Raw Events):</strong>
+                  <table style="width: 100%; font-size: 0.8rem; text-align: right; color: var(--text-muted); border-collapse: collapse;">
+                    <thead>
+                      <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <th>Time</th><th>Lyric</th><th>Pitch</th><th>Oct</th><th>Dur</th><th>Msr</th><th>Beat</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${rawEvents.map(evt => `
+                        <tr>
+                          <td>${evt.time}</td><td>${evt.lyric || '-'}</td>
+                          <td style="color: var(--gold-light); font-family: monospace;">${evt.pitch}</td>
+                          <td>${evt.octave}</td><td style="color: #10B981;">${evt.duration}</td>
+                          <td>${evt.measure}</td><td>${evt.beat}</td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <strong style="display: block; margin-bottom: 0.5rem;">🎼 النوتة الناتجة عن التفريغ (VexFlow Score):</strong>
+              <div id="proofLeadSheet_${song.id}"></div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+
+    container.innerHTML = html;
+
+    setTimeout(() => {
+      transcribedSongs.forEach(song => {
+        renderFullMultiBarLeadSheet(document.getElementById(`proofLeadSheet_${song.id}`), song);
       });
     }, 50);
   }
@@ -809,11 +858,11 @@ document.addEventListener('DOMContentLoaded', () => {
     state.currentView = targetView;
     pauseAutoScroll();
 
-    [tabArchiveBtn, tabPerformanceBtn, tabSetlistBtn, tabAuditBtn].forEach(btn => {
+    [tabArchiveBtn, tabPerformanceBtn, tabSetlistBtn, tabAuditBtn, tabProofBtn].forEach(btn => {
       if (btn) btn.classList.remove('active');
     });
 
-    [archiveViewEl, performanceViewEl, setlistViewEl, auditViewEl].forEach(el => {
+    [archiveViewEl, performanceViewEl, setlistViewEl, auditViewEl, proofViewEl].forEach(el => {
       if (el) el.style.display = 'none';
     });
 
@@ -832,6 +881,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (tabAuditBtn) tabAuditBtn.classList.add('active');
       if (auditViewEl) auditViewEl.style.display = 'block';
       renderForensicAuditView();
+    } else if (targetView === 'proof') {
+      if (tabProofBtn) tabProofBtn.classList.add('active');
+      if (proofViewEl) proofViewEl.style.display = 'block';
+      renderNotationProofView();
     }
   }
 
@@ -843,6 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tabPerformanceBtn) tabPerformanceBtn.addEventListener('click', () => switchView('performance'));
     if (tabSetlistBtn) tabSetlistBtn.addEventListener('click', () => switchView('setlist'));
     if (tabAuditBtn) tabAuditBtn.addEventListener('click', () => switchView('audit'));
+    if (tabProofBtn) tabProofBtn.addEventListener('click', () => switchView('proof'));
 
     roleVocalistBtn.addEventListener('click', () => {
       state.currentRole = 'vocalist';

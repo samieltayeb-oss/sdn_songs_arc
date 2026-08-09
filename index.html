@@ -44,6 +44,9 @@
         <button class="nav-tab-btn" id="tabAuditBtn" data-view="audit">
           🔍 التفتيش الموسيقي (Forensic Audit)
         </button>
+        <button class="nav-tab-btn" id="tabProofBtn" data-view="proof">
+          🧾 دليل الإثبات (Notation Proof)
+        </button>
       </nav>
     </div>
   </header>
@@ -238,9 +241,6 @@
         <h2 class="setlist-title">🔍 لوحة التفتيش الموسيقي المقارن (Forensic Musical Audit)</h2>
         <p class="setlist-subtitle">مقارنة البصمات الموسيقية لكافة الأغاني ومنع أي تكرار غير مبرر للأنماط والحلول النغمية</p>
       </div>
-      <span class="badge badge-verified" style="font-size: 0.95rem;">
-        ✅ تم التحقق والتدقيق الميداني (15/15)
-      </span>
     </div>
 
     <!-- Forensic Audit Container -->
@@ -250,7 +250,23 @@
   </main>
 
   <!-- ==========================================================================
-       4. SONG DETAIL MODAL DRAWER (ARCHIVE VIEW)
+       VIEW 5: NOTATION PROOF (🧾 دليل الإثبات)
+       ========================================================================== -->
+  <main class="main-content-view" id="proofView" style="display: none;">
+    <div class="setlist-header-box">
+      <div>
+        <h2 class="setlist-title">🧾 دليل إثبات التدوين المستقل (Notation Proof Chain)</h2>
+        <p class="setlist-subtitle">التسلسل السمعي والبصري لتفريغ النوتة من التسجيل المرجعي (Audio ➔ Timestamp ➔ Raw Event ➔ VexFlow Score)</p>
+      </div>
+    </div>
+
+    <div id="notationProofContainer" style="margin-top: 1.5rem;">
+      <!-- Populated dynamically by script.js -->
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       6. SONG DETAIL MODAL DRAWER (ARCHIVE VIEW)
        ========================================================================== -->
   <div class="modal-overlay" id="songModalOverlay">
     <div class="modal-container" id="modalContainer">

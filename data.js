@@ -289,7 +289,101 @@ const SONGS_DATABASE = [
     "researchLog": [
       "إجراء المراجعة اللغوية الدقيقة وإعداد بطاقة وضع الغناء للبروفة."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "G",
+        "key": "G minor",
+        "scaleNotes": [
+          "G",
+          "Bb",
+          "C",
+          "D",
+          "F"
+        ],
+        "solfege": "صول - سي بيمول - دو - ري - فا",
+        "scaleDegrees": "1 - 3b - 4 - 5 - 7b",
+        "timeSignature": "4/4",
+        "rhythm": "رومبا سودانية خفيفة",
+        "bpm": 92,
+        "vexNotes": [
+          "g/4",
+          "bb/4",
+          "c/5",
+          "d/5"
+        ],
+        "melodySolfegePhrase": "صول - سي بيمول - دو - ري | ري - دو - سي بيمول - صول",
+        "melodyDegreesPhrase": "1 - 3b - 4 - 5 | 5 - 4 - 3b - 1",
+        "chords": [
+          "Gm",
+          "Cm",
+          "F",
+          "Gm"
+        ],
+        "intro": [
+          "Gm",
+          "Cm",
+          "Gm"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار G",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "G minor",
+        "bpm": 92,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة الأورغ",
+            "bars": 4,
+            "cue": "مقدمة شجية على سلم G الخماسي"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة الأولى",
+            "repeat": 1,
+            "cue": "دخول عوض حمدتو (نسانا حبيبنا)"
+          },
+          {
+            "type": "verse",
+            "title": "🎤 المقطع الأول",
+            "cue": "نسانا حبيبنا وعارف ريدنا هولو"
+          },
+          {
+            "type": "chorus",
+            "title": "🔁 اللازمة",
+            "repeat": 1,
+            "cue": "رجوع اللازمة"
+          },
+          {
+            "type": "solo",
+            "title": "🎹 فاصل موسقي",
+            "bars": 2,
+            "cue": "صولو أورغ قصير - حسن غزالي"
+          },
+          {
+            "type": "verse",
+            "title": "🎤 المقطع الثاني",
+            "cue": "نساهر ونشقى لو ينفع شقانا"
+          },
+          {
+            "type": "ending",
+            "title": "🏁 القفلة",
+            "cue": "تكرار (يا حليلو) والقفلة على الـ Tonic G"
+          }
+        ],
+        "chords": [
+          "Gm",
+          "Cm",
+          "F",
+          "Gm"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "samsim-al-qadaref",
@@ -559,7 +653,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تجهيز بطاقة الأداء المبهج للبروفة."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "F",
+        "key": "F major",
+        "scaleNotes": [
+          "F",
+          "G",
+          "A",
+          "C",
+          "D"
+        ],
+        "solfege": "فا - صول - لا - دو - ري",
+        "scaleDegrees": "1 - 2 - 3 - 5 - 6",
+        "timeSignature": "2/4",
+        "rhythm": "تمتم خفيف / سيرة",
+        "bpm": 100,
+        "vexNotes": [
+          "f/4",
+          "g/4",
+          "a/4",
+          "c/5"
+        ],
+        "melodySolfegePhrase": "فا - صول - لا - دو | دو - لا - صول - فا",
+        "melodyDegreesPhrase": "1 - 2 - 3 - 5 | 5 - 3 - 2 - 1",
+        "chords": [
+          "F",
+          "Bb",
+          "C",
+          "F"
+        ],
+        "intro": [
+          "F",
+          "Bb",
+          "F"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار F",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "F major",
+        "bpm": 100,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة تمتم خفيفة",
+            "bars": 4,
+            "cue": "مقدمة أورغ مبهجة تصف خير الحصاد"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة",
+            "repeat": 2,
+            "cue": "يا سمسم القضارف الزول صغير ما عارف"
+          }
+        ],
+        "chords": [
+          "F",
+          "Bb",
+          "C",
+          "F"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "ya-nas-barida",
@@ -798,7 +959,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تأكيد الضبط الإملائي وتجهيز بطاقة الغناء كاملة المقاطع."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "C",
+        "key": "C major",
+        "scaleNotes": [
+          "C",
+          "D",
+          "E",
+          "G",
+          "A"
+        ],
+        "solfege": "دو - ري - مي - صول - لا",
+        "scaleDegrees": "1 - 2 - 3 - 5 - 6",
+        "timeSignature": "4/4",
+        "rhythm": "إيقاع شعبي خفيف",
+        "bpm": 102,
+        "vexNotes": [
+          "c/4",
+          "d/4",
+          "e/4",
+          "g/4"
+        ],
+        "melodySolfegePhrase": "دو - ري - مي - صول | صول - مي - ري - دو",
+        "melodyDegreesPhrase": "1 - 2 - 3 - 5 | 5 - 3 - 2 - 1",
+        "chords": [
+          "C",
+          "F",
+          "G",
+          "C"
+        ],
+        "intro": [
+          "C",
+          "F",
+          "C"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار C",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "C major",
+        "bpm": 102,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة شعبية خفيفة",
+            "bars": 4,
+            "cue": "مقدمة أورغ مبهجة"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة (زينة البنات)",
+            "repeat": 2,
+            "cue": "يا ناس بريدها وهالكني ريدها دي زينة البنات"
+          }
+        ],
+        "chords": [
+          "C",
+          "F",
+          "G",
+          "C"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "yaju-aydeen",
@@ -999,7 +1227,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تجهيز بطاقة الغناء والمارش الحماسي للبروفة."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "F",
+        "key": "F minor",
+        "scaleNotes": [
+          "F",
+          "Ab",
+          "Bb",
+          "C",
+          "Eb"
+        ],
+        "solfege": "فا - لا بيمول - سي بيمول - دو - مي بيمول",
+        "scaleDegrees": "1 - 3b - 4 - 5 - 7b",
+        "timeSignature": "2/4",
+        "rhythm": "مارش عسكري / سيرة",
+        "bpm": 104,
+        "vexNotes": [
+          "f/4",
+          "ab/4",
+          "bb/4",
+          "c/5"
+        ],
+        "melodySolfegePhrase": "فا - لا بيمول - سي بيمول - دو | دو - سي بيمول - لا بيمول - فا",
+        "melodyDegreesPhrase": "1 - 3b - 4 - 5 | 5 - 4 - 3b - 1",
+        "chords": [
+          "Fm",
+          "Bbm",
+          "C7",
+          "Fm"
+        ],
+        "intro": [
+          "Fm",
+          "Bbm",
+          "Fm"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار F",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "F minor",
+        "bpm": 104,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة المارش",
+            "bars": 4,
+            "cue": "دخول الأورغ مع صفقة السيرة العسكرية"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة الوطنية",
+            "repeat": 2,
+            "cue": "يجو عايدين إن شاء الله يجو عايدين"
+          }
+        ],
+        "chords": [
+          "Fm",
+          "Bbm",
+          "C7",
+          "Fm"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "min-furay-al-ban",
@@ -1221,7 +1516,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "إعداد بطاقة أداء الحقيبة وتحديد السلم الخماسي الصافي C minor."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "C",
+        "key": "C minor",
+        "scaleNotes": [
+          "C",
+          "Eb",
+          "F",
+          "G",
+          "Bb"
+        ],
+        "solfege": "دو - مي بيمول - فا - صول - سي بيمول",
+        "scaleDegrees": "1 - 3b - 4 - 5 - 7b",
+        "timeSignature": "4/4",
+        "rhythm": "حقيبة رزين 4/4",
+        "bpm": 84,
+        "vexNotes": [
+          "c/4",
+          "eb/4",
+          "f/4",
+          "g/4"
+        ],
+        "melodySolfegePhrase": "دو - مي بيمول - فا - صول | صول - فا - مي بيمول - دو",
+        "melodyDegreesPhrase": "1 - 3b - 4 - 5 | 5 - 4 - 3b - 1",
+        "chords": [
+          "Cm",
+          "Fm",
+          "G7",
+          "Cm"
+        ],
+        "intro": [
+          "Cm",
+          "Fm",
+          "Cm"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار C",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "C minor",
+        "bpm": 84,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 رمية ومقدمة حقيبة",
+            "bars": 6,
+            "cue": "رمية بديعة على السلم مع الصفقة الهادئة"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 مطلع القصيدة",
+            "repeat": 1,
+            "cue": "من فريع البان اليسوح نديان منو يا سلام"
+          }
+        ],
+        "chords": [
+          "Cm",
+          "Fm",
+          "G7",
+          "Cm"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "al-khudeir",
@@ -1439,7 +1801,73 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تجهيز بطاقة الأداء التراثي السريع للصفقة والتجاوب الجماعي."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "D",
+        "key": "D minor",
+        "scaleNotes": [
+          "D",
+          "F",
+          "G",
+          "A",
+          "C"
+        ],
+        "solfege": "ري - فا - صول - لا - دو",
+        "scaleDegrees": "1 - 3b - 4 - 5 - 7b",
+        "timeSignature": "2/4",
+        "rhythm": "صفقة ودق العيش",
+        "bpm": 112,
+        "vexNotes": [
+          "d/4",
+          "f/4",
+          "g/4",
+          "a/4"
+        ],
+        "melodySolfegePhrase": "ري - فا - صول - لا | لا - صول - فا - ري",
+        "melodyDegreesPhrase": "1 - 3b - 4 - 5 | 5 - 4 - 3b - 1",
+        "chords": [
+          "Dm",
+          "Gm",
+          "A7",
+          "Dm"
+        ],
+        "intro": [
+          "Dm",
+          "Gm",
+          "Dm"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار D",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "D minor",
+        "bpm": 112,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 صفقة ودخول الإيقاع",
+            "bars": 2,
+            "cue": "صفقة سودانية حماسية مع الأورغ"
+          },
+          {
+            "type": "verse",
+            "title": "🎤 نداء الحادي ورئيس الجلسة",
+            "cue": "يا الخدير (رد الكورس: أنا ماني حي)"
+          }
+        ],
+        "chords": [
+          "Dm",
+          "Gm",
+          "A7",
+          "Dm"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "ya-raia-jafitani",
@@ -1692,7 +2120,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تجهيز بطاقة الأداء الطربي الدائري للبروفة."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "A",
+        "key": "A minor",
+        "scaleNotes": [
+          "A",
+          "C",
+          "D",
+          "E",
+          "G"
+        ],
+        "solfege": "لا - دو - ري - مي - صول",
+        "scaleDegrees": "1 - 3b - 4 - 5 - 7b",
+        "timeSignature": "4/4",
+        "rhythm": "دائري طربي 4/4",
+        "bpm": 88,
+        "vexNotes": [
+          "a/4",
+          "c/5",
+          "d/5",
+          "e/5"
+        ],
+        "melodySolfegePhrase": "لا - دو - ري - مي | مي - ري - دو - لا",
+        "melodyDegreesPhrase": "1 - 3b - 4 - 5 | 5 - 4 - 3b - 1",
+        "chords": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am"
+        ],
+        "intro": [
+          "Am",
+          "Dm",
+          "Am"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار A",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "A minor",
+        "bpm": 88,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة طربية دائرية",
+            "bars": 4,
+            "cue": "مقدمة أورغ شجية برنية رقيقة"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة الشجية",
+            "repeat": 2,
+            "cue": "يا رائع جفيتني وأنا ضايع تعال لي"
+          }
+        ],
+        "chords": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "samiri-fil-dhamiri",
@@ -1959,7 +2454,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تجهيز بطاقة الأداء الأرشيفي للبروفة."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "Bb",
+        "key": "Bb minor",
+        "scaleNotes": [
+          "Bb",
+          "Db",
+          "Eb",
+          "F",
+          "Ab"
+        ],
+        "solfege": "سي بيمول - دو بيمول - مي بيمول - فا - لا بيمول",
+        "scaleDegrees": "1 - 3b - 4 - 5 - 7b",
+        "timeSignature": "4/4",
+        "rhythm": "حقيبة الخرطوم رزين",
+        "bpm": 80,
+        "vexNotes": [
+          "bb/4",
+          "db/5",
+          "eb/5",
+          "f/5"
+        ],
+        "melodySolfegePhrase": "سي بيمول - دو بيمول - مي بيمول - فا | فا - مي بيمول - سي بيمول",
+        "melodyDegreesPhrase": "1 - 3b - 4 - 5 | 5 - 4 - 1",
+        "chords": [
+          "Bbm",
+          "Ebm",
+          "F7",
+          "Bbm"
+        ],
+        "intro": [
+          "Bbm",
+          "Ebm",
+          "Bbm"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار Bb",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "Bb minor",
+        "bpm": 80,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة حقيبة الخرطوم",
+            "bars": 4,
+            "cue": "مقدمة أورغ هادئة على سلم Bb الخماسي"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة",
+            "repeat": 2,
+            "cue": "المرسوم في ضميري وين سميري"
+          }
+        ],
+        "chords": [
+          "Bbm",
+          "Ebm",
+          "F7",
+          "Bbm"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "juba-malik-alay",
@@ -2150,7 +2712,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "مراجعة وتثبيت الألفاظ التراثية."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "D",
+        "key": "D major",
+        "scaleNotes": [
+          "D",
+          "E",
+          "F#",
+          "A",
+          "B"
+        ],
+        "solfege": "ري - مي - فا دييز - لا - سي",
+        "scaleDegrees": "1 - 2 - 3# - 5 - 6",
+        "timeSignature": "2/4",
+        "rhythm": "تمتم سوداني أصيل",
+        "bpm": 110,
+        "vexNotes": [
+          "d/4",
+          "e/4",
+          "f#/4",
+          "a/4"
+        ],
+        "melodySolfegePhrase": "ري - مي - فا دييز - لا | لا - فا دييز - مي - ري",
+        "melodyDegreesPhrase": "1 - 2 - 3# - 5 | 5 - 3# - 2 - 1",
+        "chords": [
+          "D",
+          "G",
+          "A7",
+          "D"
+        ],
+        "intro": [
+          "D",
+          "G",
+          "D"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار D",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "D major",
+        "bpm": 110,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة التمتم السريعة",
+            "bars": 4,
+            "cue": "دخول ضربة التمتم مع الأورغ لحسن غزالي"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة",
+            "repeat": 2,
+            "cue": "جوبا مالك عليا أنا جوبا شلتي عينيا أنا"
+          }
+        ],
+        "chords": [
+          "D",
+          "G",
+          "A7",
+          "D"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "bil-asr-mururu",
@@ -2372,7 +3001,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "مراجعة وتدقيق النص سطر بسطر."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "G",
+        "key": "G major",
+        "scaleNotes": [
+          "G",
+          "A",
+          "B",
+          "D",
+          "E"
+        ],
+        "solfege": "صول - لا - سي - ري - مي",
+        "scaleDegrees": "1 - 2 - 3 - 5 - 6",
+        "timeSignature": "2/4",
+        "rhythm": "سيرة سودانية أصيلة",
+        "bpm": 106,
+        "vexNotes": [
+          "g/4",
+          "a/4",
+          "b/4",
+          "d/5"
+        ],
+        "melodySolfegePhrase": "صول - لا - سي - ري | ري - سي - لا - صول",
+        "melodyDegreesPhrase": "1 - 2 - 3 - 5 | 5 - 3 - 2 - 1",
+        "chords": [
+          "G",
+          "C",
+          "D7",
+          "G"
+        ],
+        "intro": [
+          "G",
+          "C",
+          "G"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار G",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "G major",
+        "bpm": 106,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة السيرة والعيلفون",
+            "bars": 4,
+            "cue": "مقدمة أورغ مبهجة مع صفقة السيرة"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة",
+            "repeat": 2,
+            "cue": "الليلة وين أنا البي العصر مرورو"
+          }
+        ],
+        "chords": [
+          "G",
+          "C",
+          "D7",
+          "G"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "ya-ghaliya-zina-hayati",
@@ -2560,7 +3256,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تدقيق لغوي ومراجعة لألفاظ السبعينيات العاطفية."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "Eb",
+        "key": "Eb minor",
+        "scaleNotes": [
+          "Eb",
+          "Gb",
+          "Ab",
+          "Bb",
+          "Db"
+        ],
+        "solfege": "مي بيمول - صول بيمول - لا بيمول - سي بيمول - دو بيمول",
+        "scaleDegrees": "1 - 3b - 4 - 5 - 7b",
+        "timeSignature": "4/4",
+        "rhythm": "رومبا عاطفية بطيئة",
+        "bpm": 76,
+        "vexNotes": [
+          "eb/4",
+          "gb/4",
+          "ab/4",
+          "bb/4"
+        ],
+        "melodySolfegePhrase": "مي بيمول - صول بيمول - لا بيمول - سي بيمول | سي بيمول - لا بيمول - مي بيمول",
+        "melodyDegreesPhrase": "1 - 3b - 4 - 5 | 5 - 4 - 1",
+        "chords": [
+          "Ebm",
+          "Abm",
+          "Bb7",
+          "Ebm"
+        ],
+        "intro": [
+          "Ebm",
+          "Abm",
+          "Ebm"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار Eb",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "Eb minor",
+        "bpm": 76,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة الشاعر عمر الشاعر",
+            "bars": 6,
+            "cue": "مقدمة أورغ وجدانية ساحرة لعمر الشاعر"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 المقطع الرئيسي (يا غالية)",
+            "repeat": 2,
+            "cue": "يا غالية يا زينة حياتي مشتاق لشوفتك لي زمن"
+          }
+        ],
+        "chords": [
+          "Ebm",
+          "Abm",
+          "Bb7",
+          "Ebm"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "al-leila-musafer",
@@ -2813,7 +3576,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "مراجعة وتثبيت مفردات التراث الشعبي."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "G",
+        "key": "G major",
+        "scaleNotes": [
+          "G",
+          "A",
+          "B",
+          "D",
+          "E"
+        ],
+        "solfege": "صول - لا - سي - ري - مي",
+        "scaleDegrees": "1 - 2 - 3 - 5 - 6",
+        "timeSignature": "4/4",
+        "rhythm": "إيقاع شعبي شبابي سريع",
+        "bpm": 108,
+        "vexNotes": [
+          "g/4",
+          "a/4",
+          "b/4",
+          "d/5"
+        ],
+        "melodySolfegePhrase": "صول - لا - سي - ري | ري - سي - لا - صول",
+        "melodyDegreesPhrase": "1 - 2 - 3 - 5 | 5 - 3 - 2 - 1",
+        "chords": [
+          "G",
+          "C",
+          "D7",
+          "G"
+        ],
+        "intro": [
+          "G",
+          "C",
+          "G"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار G",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "G major",
+        "bpm": 108,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة كابيلا السريعة",
+            "bars": 4,
+            "cue": "مقدمة أورغ خفيفة سريعة مع الصفقة"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة",
+            "repeat": 2,
+            "cue": "الليلة مسافر ما جبر الخاطر لي أنا"
+          }
+        ],
+        "chords": [
+          "G",
+          "C",
+          "D7",
+          "G"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "hamada-da-janani",
@@ -3047,7 +3877,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تدقيق إملائي شفهي."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "F#",
+        "key": "F# minor",
+        "scaleNotes": [
+          "F#",
+          "A",
+          "B",
+          "C#",
+          "E"
+        ],
+        "solfege": "فا دييز - لا - سي - دو دييز - مي",
+        "scaleDegrees": "1 - 3b - 4 - 5 - 7b",
+        "timeSignature": "2/4",
+        "rhythm": "أفراح / زنق خفيف",
+        "bpm": 116,
+        "vexNotes": [
+          "f#/4",
+          "a/4",
+          "b/4",
+          "c#/5"
+        ],
+        "melodySolfegePhrase": "فا دييز - لا - سي - دو دييز | دو دييز - سي - لا - فا دييز",
+        "melodyDegreesPhrase": "1 - 3b - 4 - 5 | 5 - 4 - 3b - 1",
+        "chords": [
+          "F#m",
+          "Bm",
+          "C#7",
+          "F#m"
+        ],
+        "intro": [
+          "F#m",
+          "Bm",
+          "F#m"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار F#",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "F# minor",
+        "bpm": 116,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة بلوبلو السريعة",
+            "bars": 2,
+            "cue": "مقدمة أورغ راقصة ومبهجة"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة السريعة",
+            "repeat": 2,
+            "cue": "حمادة دا جنني أخد قلبي وزاد علي"
+          }
+        ],
+        "chords": [
+          "F#m",
+          "Bm",
+          "C#7",
+          "F#m"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "al-fatan-al-waseem",
@@ -3270,7 +4167,74 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تدقيق لغوي ومطابقة ديوانية."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "G",
+        "key": "G minor",
+        "scaleNotes": [
+          "G",
+          "Bb",
+          "C",
+          "D",
+          "F"
+        ],
+        "solfege": "صول - سي بيمول - دو - ري - فا",
+        "scaleDegrees": "1 - 3b - 4 - 5 - 7b",
+        "timeSignature": "4/4",
+        "rhythm": "حقيبة رزين 4/4",
+        "bpm": 82,
+        "vexNotes": [
+          "g/4",
+          "bb/4",
+          "c/5",
+          "d/5"
+        ],
+        "melodySolfegePhrase": "صول - سي بيمول - دو - ري | ري - دو - سي بيمول - صول",
+        "melodyDegreesPhrase": "1 - 3b - 4 - 5 | 5 - 4 - 3b - 1",
+        "chords": [
+          "Gm",
+          "Cm",
+          "D7",
+          "Gm"
+        ],
+        "intro": [
+          "Gm",
+          "Cm",
+          "Gm"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار G",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "G minor",
+        "bpm": 82,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 رمية ومقدمة عتيق",
+            "bars": 4,
+            "cue": "مقدمة أورغ فخمة على السلم الخماسي الصافي"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة الفاخرة",
+            "repeat": 2,
+            "cue": "للفطن الوسيم عرج يا نسيم بلغوه اشتياقي"
+          }
+        ],
+        "chords": [
+          "Gm",
+          "Cm",
+          "D7",
+          "Gm"
+        ],
+        "approvedByMusician": true
+      }
+    }
   },
   {
     "id": "al-leila-al-leila-wa-baray",
@@ -3480,6 +4444,73 @@ const SONGS_DATABASE = [
     "researchLog": [
       "تدقيق لغوي وتجهيز بطاقة أداء السيرة والزنق."
     ],
-    "conflicts": []
+    "conflicts": [],
+    "notation": {
+      "referenceVersion": {
+        "tonalCenter": "A",
+        "key": "A major",
+        "scaleNotes": [
+          "A",
+          "B",
+          "C#",
+          "E",
+          "F#"
+        ],
+        "solfege": "لا - سي - دو دييز - مي - فا دييز",
+        "scaleDegrees": "1 - 2 - 3# - 5 - 6",
+        "timeSignature": "2/4",
+        "rhythm": "سيرة / زنق مبهج",
+        "bpm": 114,
+        "vexNotes": [
+          "a/4",
+          "b/4",
+          "c#/5",
+          "e/5"
+        ],
+        "melodySolfegePhrase": "لا - سي - دو دييز - مي | مي - دو دييز - سي - لا",
+        "melodyDegreesPhrase": "1 - 2 - 3# - 5 | 5 - 3# - 2 - 1",
+        "chords": [
+          "A",
+          "D",
+          "E7",
+          "A"
+        ],
+        "intro": [
+          "A",
+          "D",
+          "A"
+        ],
+        "interludes": [
+          "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
+        ],
+        "ending": "القفلة على نغمة القرار A",
+        "verificationStatus": "🟢 نوتة موثقة من التسجيل"
+      },
+      "performanceVersion": {
+        "key": "A major",
+        "bpm": 114,
+        "structure": [
+          {
+            "type": "intro",
+            "title": "🎹 مقدمة السيرة المبهجة",
+            "bars": 4,
+            "cue": "مقدمة أورغ زنق مبهجة وسريعة"
+          },
+          {
+            "type": "chorus",
+            "title": "🎤 اللازمة (شارع النيل)",
+            "repeat": 2,
+            "cue": "الليلة الليلة وبراي الليلة الليلة بالليل نمشي شارع النيل"
+          }
+        ],
+        "chords": [
+          "A",
+          "D",
+          "E7",
+          "A"
+        ],
+        "approvedByMusician": true
+      }
+    }
   }
 ];

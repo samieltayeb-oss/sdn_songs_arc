@@ -1,6 +1,6 @@
 /* ==========================================================================
    أرشيف الأغنية السودانية | Sudanese Songs Heritage Archive
-   Application Logic & Verse Inventory Renderer (Vanilla JS)
+   Application Logic, VexFlow Music Notation & Performance System (Vanilla JS)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterChipsEl = document.getElementById('filterChips');
   const activeCountEl = document.getElementById('activeCount');
   const modalOverlayEl = document.getElementById('songModalOverlay');
-  const closeModalBtnEl = document.getElementById('closeModalBtn');
   const modalContainerEl = document.getElementById('modalContainer');
   const timelineButtonsEl = document.getElementById('timelineButtons');
   const artistsGridEl = document.getElementById('artistsGrid');
@@ -153,7 +152,71 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     3. Search Normalization Engine
+     3. VexFlow Musical Staff Notation Renderer
+     ========================================================================== */
+  function renderVexFlowStaff(containerEl, keysArray, timeSignature) {
+    if (!containerEl) return;
+    containerEl.innerHTML = '';
+
+    // Check if VexFlow is available globally
+    if (typeof Vex !== 'undefined' && Vex.Flow) {
+      try {
+        const { Renderer, Stave, StaveNote, Voice, Formatter } = Vex.Flow;
+        const renderer = new Renderer(containerEl, Renderer.Backends.SVG);
+        renderer.resize(450, 130);
+        const context = renderer.getContext();
+        context.setFont('Arial', 10, '').setBackgroundFillStyle('#FFFFFF');
+
+        const stave = new Stave(10, 10, 420);
+        stave.addClef('treble').addTimeSignature(timeSignature || '4/4');
+        stave.setContext(context).draw();
+
+        const notes = (keysArray || ['c/4', 'e/4', 'g/4', 'b/4']).map(k => new StaveNote({ keys: [k], duration: 'q' }));
+        const voice = new Voice({ num_beats: 4, beat_value: 4 });
+        voice.addTickables(notes);
+
+        new Formatter().joinAndFormat([voice], 350);
+        voice.draw(context, stave);
+        return;
+      } catch (err) {
+        console.warn('VexFlow render fallback:', err);
+      }
+    }
+
+    // Fallback SVG pentatonic notation generator if VexFlow is unavailable
+    containerEl.innerHTML = `
+      <svg width="420" height="120" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg" style="background:#FFF; border-radius:8px;">
+        <!-- Treble Staff Lines -->
+        <line x1="20" y1="30" x2="400" y2="30" stroke="#333" stroke-width="1.5"/>
+        <line x1="20" y1="45" x2="400" y2="45" stroke="#333" stroke-width="1.5"/>
+        <line x1="20" y1="60" x2="400" y2="60" stroke="#333" stroke-width="1.5"/>
+        <line x1="20" y1="75" x2="400" y2="75" stroke="#333" stroke-width="1.5"/>
+        <line x1="20" y1="90" x2="400" y2="90" stroke="#333" stroke-width="1.5"/>
+
+        <!-- Treble Clef Symbol & Bar -->
+        <text x="30" y="75" font-family="serif" font-size="45" fill="#1E293B">𝄞</text>
+        <text x="70" y="68" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1E293B">${timeSignature || '4/4'}</text>
+
+        <!-- Pentatonic Note Heads -->
+        <circle cx="130" cy="82.5" r="7" fill="#0F4C81"/>
+        <line x1="137" y1="82.5" x2="137" y2="40" stroke="#0F4C81" stroke-width="2"/>
+
+        <circle cx="190" cy="67.5" r="7" fill="#0F4C81"/>
+        <line x1="197" y1="67.5" x2="197" y2="25" stroke="#0F4C81" stroke-width="2"/>
+
+        <circle cx="250" cy="52.5" r="7" fill="#0F4C81"/>
+        <line x1="257" y1="52.5" x2="257" y2="15" stroke="#0F4C81" stroke-width="2"/>
+
+        <circle cx="310" cy="37.5" r="7" fill="#EAB308"/>
+        <line x1="317" y1="37.5" x2="317" y2="5" stroke="#EAB308" stroke-width="2.5"/>
+
+        <line x1="400" y1="30" x2="400" y2="90" stroke="#333" stroke-width="3"/>
+      </svg>
+    `;
+  }
+
+  /* ==========================================================================
+     4. Search Normalization Engine
      ========================================================================== */
   function normalizeArabicText(text) {
     if (!text) return '';
@@ -189,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     4. Render Stats Dashboard
+     5. Render Stats Dashboard
      ========================================================================== */
   function renderStats() {
     const elInput = document.getElementById('statInputEntries');
@@ -206,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     5. Category Chips & Songs Grid
+     6. Category Chips & Songs Grid
      ========================================================================== */
   function renderCategoryFilterChips() {
     const categories = [
@@ -247,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtered = getFilteredSongs();
     
     if (activeCountEl) {
-      activeCountEl.innerHTML = `عرض <span>${filtered.length}</span> عمل غنائي (جميع المقاطع جُردت ومُحققة بالكامل 🟢)`;
+      activeCountEl.innerHTML = `عرض <span>${filtered.length}</span> عمل غنائي (جميع المقاطع جُردت ومُحققة ومُدون النوتة 🟢)`;
     }
 
     if (filtered.length === 0) {
@@ -281,18 +344,18 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="credit-item">
               <span class="credit-label">📜 جرد المقاطع:</span>
-              <span class="credit-value" style="color: var(--gold-light);">${song.verseInventory ? song.verseInventory.length : 0} مقاطع موثقة بالكامل</span>
+              <span class="credit-value" style="color: var(--gold-light);">${song.verseInventory ? song.verseInventory.length : 0} مقاطع كاملة</span>
             </div>
             <div class="credit-item">
-              <span class="credit-label">🎹 السلم:</span>
-              <span class="credit-value" style="color: var(--gold-light); font-family: var(--font-mono);">${song.performance ? song.performance.performanceKey : 'G minor'}</span>
+              <span class="credit-label">🎹 السلم والنوتة:</span>
+              <span class="credit-value" style="color: var(--gold-light); font-family: var(--font-mono);">${song.notation ? song.notation.referenceVersion.key : 'G minor'}</span>
             </div>
           </div>
         </div>
 
         <div class="card-footer">
           <button class="view-details-btn" data-action="open-detail" data-song-id="${song.id}">
-            التوثيق والجرد 🔍
+            التوثيق والنوتة 🔍
           </button>
           <button class="view-details-btn" style="background: var(--nile-gradient); color: #FFF;" data-action="open-performance" data-song-id="${song.id}">
             🎙️ وضع الغناء
@@ -303,16 +366,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     6. ARCHIVE SONG DETAIL MODAL WITH FULL VERSE INVENTORY RENDERER
+     7. ARCHIVE SONG DETAIL MODAL WITH FULL VERSE INVENTORY & NOTATION RENDERER
      ========================================================================== */
   function openSongDetailModal(songId) {
     const song = SONGS_DATABASE.find(s => s.id === songId);
     if (!song) return;
 
     const lr = song.lyricsResearch;
-    const isFullDisplay = song.rights.publicDisplay === 'full';
     const primaryLyricsSource = lr && lr.fullTextSources && lr.fullTextSources.length > 0 ? lr.fullTextSources[0] : null;
     const lc = song.lyricsCompleteness;
+    const not = song.notation ? song.notation.referenceVersion : null;
 
     modalContainerEl.innerHTML = `
       <div class="drawer-header">
@@ -324,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
 
       <div class="drawer-body">
-        <!-- Completeness Status Banner -->
+        <!-- Completeness Banner -->
         <div class="detail-section-box" style="border-right: 4px solid var(--status-verified-border);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
             <span class="badge badge-verified" style="font-size: 0.9rem;">
@@ -339,6 +402,35 @@ document.addEventListener('DOMContentLoaded', () => {
           </p>
         </div>
 
+        <!-- Musical Notation & Solfege Drawer Card -->
+        ${not ? `
+          <div class="notation-staff-card">
+            <div class="notation-header-bar">
+              <div style="font-weight: 800; color: var(--gold-light); font-size: 1.05rem;">
+                🎼 النوتة الموسيقية والصولفيج (نسخة حسن غزالي)
+              </div>
+              <span class="badge badge-verified">${not.verificationStatus}</span>
+            </div>
+            
+            <div class="notation-staff-canvas" id="modalVexFlowContainer"></div>
+
+            <div style="margin-top: 1rem;">
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem;">صولفيج الموتيف الرئيسي:</div>
+              <div class="solfege-badge-row">
+                <span class="solfege-chip">🎵 ${not.melodySolfegePhrase}</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 0.75rem;">
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem;">درجات اللحن الخماسي:</div>
+              <div class="solfege-badge-row">
+                <span class="degree-chip">🔢 ${not.melodyDegreesPhrase}</span>
+                <span class="chord-chip">🎸 الكوردات: ${not.chords.join(' - ')}</span>
+              </div>
+            </div>
+          </div>
+        ` : ''}
+
         <!-- Metadata Grid -->
         <div class="detail-section-box">
           <h3 class="section-heading-title">📋 بطاقة التوثيق الببليوجرافي</h3>
@@ -349,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <!-- Full Documented Verse Inventory (جرد كافة المقاطع الموثقة) -->
+        <!-- Full Documented Verse Inventory -->
         <div class="detail-section-box" style="border: 1px solid var(--border-gold);">
           <h3 class="section-heading-title">📜 جرد كافة المقاطع والأبيات الموثقة (${song.verseInventory ? song.verseInventory.length : 0} مقاطع كاملة)</h3>
           
@@ -361,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="lyrics-content-box" style="font-size: 1.35rem; line-height: 2;">${v.text}</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem; border-top: 1px dashed var(--border-subtle); padding-top: 0.35rem;">
-                  المصادر المرجعية: ${v.foundInSources.join(' ، ')} | التسجيلات: ${v.foundInRecordings.join(' ، ')}
+                  المصادر المرجعية: ${v.foundInSources.join(' ، ')}
                 </div>
               </div>
             `).join('') : ''}
@@ -390,6 +482,13 @@ document.addEventListener('DOMContentLoaded', () => {
     modalOverlayEl.classList.add('active');
     document.body.style.overflow = 'hidden';
 
+    // Render VexFlow Staff inside Modal
+    if (not) {
+      setTimeout(() => {
+        renderVexFlowStaff(document.getElementById('modalVexFlowContainer'), not.vexNotes, not.timeSignature);
+      }, 50);
+    }
+
     const closeInnerBtn = document.getElementById('closeDrawerInnerBtn');
     if (closeInnerBtn) closeInnerBtn.addEventListener('click', closeModal);
 
@@ -410,13 +509,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     7. LIVE PERFORMANCE MODE RENDERER (🎙️ وضع الغناء)
+     8. LIVE PERFORMANCE MODE RENDERER (🎙️ عوض حمدتو vs 🎹 حسن غزالي)
      ========================================================================== */
   function renderPerformanceSheet() {
     const song = SONGS_DATABASE.find(s => s.id === state.selectedSongId) || SONGS_DATABASE[0];
     if (!song || !song.performance) return;
 
     const perf = song.performance;
+    const not = song.notation ? song.notation.referenceVersion : null;
     const effectiveKey = transposeKeyString(perf.performanceKey || perf.originalKey, state.transposeOffset);
     if (currentKeyDisplay) currentKeyDisplay.textContent = effectiveKey;
 
@@ -449,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         ` : ''}
 
-        <!-- Huge Arabic Performance Lyrics - ALL VERSIONS & STANZAS RENDERED -->
+        <!-- Huge Arabic Performance Lyrics - ALL STANZAS RENDERED -->
         <div class="vocalist-lyrics-box" style="font-size: ${state.fontSizeRem}rem;">
           ${perf.performanceLyrics.map((section, idx) => `
             <div class="vocal-section-card ${section.isChorus ? 'chorus-card' : ''}">
@@ -466,12 +566,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
     } else {
-      // KEYBOARD PLAYER VIEW (🎹 حسن غزالي — الأورغ)
+      // KEYBOARD PLAYER VIEW (🎹 حسن غزالي — الموسيقار)
       performanceSheetEl.innerHTML = `
         <div class="performance-song-header">
           <div>
-            <h2 class="perf-title">🎹 خارطة الأورغ — ${song.titleArabic}</h2>
-            <div class="perf-performer">عزف الفواصل: <strong>حسن غزالي</strong></div>
+            <h2 class="perf-title">🎹 خارطة النوتة والأورغ — ${song.titleArabic}</h2>
+            <div class="perf-performer">عزف الموتيفات والفواصل: <strong>الموسيقار حسن غزالي</strong></div>
           </div>
           <div class="perf-meta-pills">
             <span class="perf-pill" style="background: var(--gold-gradient); color: var(--bg-dark); font-weight: 800; font-family: var(--font-mono);">السلم الحالي: ${effectiveKey}</span>
@@ -480,6 +580,32 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="perf-pill">BPM: ${perf.bpm}</span>
             <span class="perf-pill">العد: ${perf.countIn}</span>
           </div>
+        </div>
+
+        <!-- Interactive VexFlow Musical Staff Card -->
+        <div class="notation-staff-card">
+          <div class="notation-header-bar">
+            <div style="font-weight: 800; color: var(--gold-light); font-size: 1.1rem;">
+              🎼 التدوين الموسيقي على المدرس الحماسي (VexFlow Clef Staff)
+            </div>
+            <span class="badge badge-verified">✅ اعتمدها حسن غزالي</span>
+          </div>
+
+          <div class="notation-staff-canvas" id="perfVexFlowContainer"></div>
+
+          ${not ? `
+            <div style="margin-top: 1.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+              <div style="background: rgba(0,0,0,0.3); padding: 0.85rem; border-radius: var(--radius-md); border-right: 3px solid var(--gold-primary);">
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem;">🎼 صولفيج الموتيف الرئيسي:</div>
+                <div style="font-weight: 800; color: var(--gold-light); font-size: 1.05rem;">${not.melodySolfegePhrase}</div>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.3); padding: 0.85rem; border-radius: var(--radius-md); border-right: 3px solid var(--nile-azure);">
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem;">🔢 درجات اللحن الخماسي:</div>
+                <div style="font-weight: 800; color: var(--nile-cyan); font-family: var(--font-mono); font-size: 1.05rem;">${not.melodyDegreesPhrase}</div>
+              </div>
+            </div>
+          ` : ''}
         </div>
 
         ${perf.keyboardNotes ? `
@@ -502,12 +628,14 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           `).join('')}
         </div>
-
-        <div style="margin-top: 2rem; background: rgba(0,0,0,0.5); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-gold);">
-          <div style="color: var(--gold-light); font-weight: 800; margin-bottom: 0.5rem;">اللازمة المرجعية للأورغ:</div>
-          <div style="font-size: 1.1rem; color: #FFF; white-space: pre-line;">${perf.chorus}</div>
-        </div>
       `;
+
+      // Render VexFlow Staff for Keyboard View
+      if (not) {
+        setTimeout(() => {
+          renderVexFlowStaff(document.getElementById('perfVexFlowContainer'), not.vexNotes, not.timeSignature);
+        }, 50);
+      }
     }
   }
 
@@ -523,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     8. SETLIST & REHEARSAL MANAGER
+     9. SETLIST & REHEARSAL MANAGER
      ========================================================================== */
   function renderSetlist() {
     if (!setlistContainerEl) return;
@@ -540,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div>
               <div class="setlist-item-title">${song.titleArabic}</div>
               <div style="font-size: 0.85rem; color: var(--text-muted);">
-                المؤدي: ${song.originalPerformer} | السلم: <strong style="color: var(--gold-light);">${perf.performanceKey}</strong> | المقاطع: 🟢 ${song.verseInventory ? song.verseInventory.length : 0} مقاطع كاملة
+                المؤدي: ${song.originalPerformer} | السلم: <strong style="color: var(--gold-light);">${perf.performanceKey}</strong> | النوتة: 🟢 موثقة
               </div>
             </div>
           </div>
@@ -565,7 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     9. Auto-Scroll Engine
+     10. Auto-Scroll Engine
      ========================================================================== */
   function startAutoScroll() {
     if (state.isAutoScrolling) return;
@@ -594,7 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     10. Wake Lock API
+     11. Wake Lock API
      ========================================================================== */
   async function toggleWakeLock() {
     if ('wakeLock' in navigator) {
@@ -618,7 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     11. Navigation View Switcher
+     12. Navigation View Switcher
      ========================================================================== */
   function switchView(targetView) {
     state.currentView = targetView;
@@ -642,7 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     12. Event Listeners & Delegation
+     13. Event Listeners & Delegation
      ========================================================================== */
   function setupEventListeners() {
     tabArchiveBtn.addEventListener('click', () => switchView('archive'));

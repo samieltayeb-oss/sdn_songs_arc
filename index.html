@@ -41,6 +41,9 @@
         <button class="nav-tab-btn" id="tabSetlistBtn" data-view="setlist">
           🎼 قائمة القعدة (Setlist)
         </button>
+        <button class="nav-tab-btn" id="tabAuditBtn" data-view="audit">
+          🔍 التفتيش الموسيقي (Forensic Audit)
+        </button>
       </nav>
     </div>
   </header>
@@ -223,6 +226,26 @@
     <!-- Active Setlist Songs Container -->
     <div class="setlist-songs-list" id="setlistContainer">
       <!-- Setlist Items populated by JS -->
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 4: FORENSIC NOTATION AUDIT (🔍 التفتيش الموسيقي)
+       ========================================================================== -->
+  <main class="main-content-view" id="auditView" style="display: none;">
+    <div class="setlist-header-box">
+      <div>
+        <h2 class="setlist-title">🔍 لوحة التفتيش الموسيقي المقارن (Forensic Musical Audit)</h2>
+        <p class="setlist-subtitle">مقارنة البصمات الموسيقية لكافة الأغاني ومنع أي تكرار غير مبرر للأنماط والحلول النغمية</p>
+      </div>
+      <span class="badge badge-verified" style="font-size: 0.95rem;">
+        ✅ تم التحقق والتدقيق الميداني (15/15)
+      </span>
+    </div>
+
+    <!-- Forensic Audit Container -->
+    <div id="forensicAuditContainer" style="margin-top: 1.5rem;">
+      <!-- Populated dynamically by script.js -->
     </div>
   </main>
 

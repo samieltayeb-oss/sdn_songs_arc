@@ -403,7 +403,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "ري - دو - سي بيمول - صول"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "G minor",
+          "clef": "treble",
+          "timeSignature": "4/4",
+          "rhythm": "رومبا سودانية خفيفة",
+          "bpm": 92,
+          "chords": [
+            "Gm",
+            "Cm",
+            "F",
+            "Gm"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "Gm",
+                "Cm",
+                "F",
+                "Gm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "Gm",
+                "Cm",
+                "F",
+                "Gm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "Gm",
+                "F",
+                "Gm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "F",
+                "Gm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "G minor",
@@ -851,7 +1128,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "دو - لا - صول - فا"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "F major",
+          "clef": "treble",
+          "timeSignature": "2/4",
+          "rhythm": "تمتم خفيف / سيرة",
+          "bpm": 100,
+          "chords": [
+            "F",
+            "Bb",
+            "C",
+            "F"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "F",
+                "Bb",
+                "C",
+                "F"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "F",
+                "Bb",
+                "C",
+                "F"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "F",
+                "C",
+                "F"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "C",
+                "F"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "F major",
@@ -1227,7 +1781,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "صول - مي - ري - دو"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "C major",
+          "clef": "treble",
+          "timeSignature": "4/4",
+          "rhythm": "إيقاع شعبي خفيف",
+          "bpm": 102,
+          "chords": [
+            "C",
+            "F",
+            "G",
+            "C"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "C",
+                "F",
+                "G",
+                "C"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "C",
+                "F",
+                "G",
+                "C"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "C",
+                "G",
+                "C"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "G",
+                "C"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "C major",
@@ -1565,7 +2396,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "دو - سي بيمول - لا بيمول - فا"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "F minor",
+          "clef": "treble",
+          "timeSignature": "2/4",
+          "rhythm": "مارش عسكري / سيرة",
+          "bpm": 104,
+          "chords": [
+            "Fm",
+            "Bbm",
+            "C7",
+            "Fm"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "Fm",
+                "Bbm",
+                "C7",
+                "Fm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "Fm",
+                "Bbm",
+                "C7",
+                "Fm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "Fm",
+                "C7",
+                "Fm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "C7",
+                "Fm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "F minor",
@@ -1937,7 +3045,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "صول - فا - مي بيمول - دو"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "C minor",
+          "clef": "treble",
+          "timeSignature": "4/4",
+          "rhythm": "حقيبة رزين 4/4",
+          "bpm": 84,
+          "chords": [
+            "Cm",
+            "Fm",
+            "G7",
+            "Cm"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "Cm",
+                "Fm",
+                "G7",
+                "Cm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "Cm",
+                "Fm",
+                "G7",
+                "Cm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "Cm",
+                "G7",
+                "Cm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "G7",
+                "Cm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "c/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "C minor",
@@ -2292,7 +3677,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "لا - صول - فا - ري"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "D minor",
+          "clef": "treble",
+          "timeSignature": "2/4",
+          "rhythm": "صفقة ودق العيش",
+          "bpm": 112,
+          "chords": [
+            "Dm",
+            "Gm",
+            "A7",
+            "Dm"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "Dm",
+                "Gm",
+                "A7",
+                "Dm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "Dm",
+                "Gm",
+                "A7",
+                "Dm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "Dm",
+                "A7",
+                "Dm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "A7",
+                "Dm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "D minor",
@@ -2694,7 +4356,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "مي - ري - دو - لا"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "A minor",
+          "clef": "treble",
+          "timeSignature": "4/4",
+          "rhythm": "دائري طربي 4/4",
+          "bpm": 88,
+          "chords": [
+            "Am",
+            "Dm",
+            "E7",
+            "Am"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "Am",
+                "Dm",
+                "E7",
+                "Am"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "Am",
+                "Dm",
+                "E7",
+                "Am"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "Am",
+                "E7",
+                "Am"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "E7",
+                "Am"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "A minor",
@@ -3111,7 +5050,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "فا - مي بيمول - دو بيمول - سي بيمول"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "Bb minor",
+          "clef": "treble",
+          "timeSignature": "4/4",
+          "rhythm": "حقيبة الخرطوم رزين",
+          "bpm": 80,
+          "chords": [
+            "Bbm",
+            "Ebm",
+            "F7",
+            "Bbm"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "Bbm",
+                "Ebm",
+                "F7",
+                "Bbm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "db/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "db/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "ab/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "Bbm",
+                "Ebm",
+                "F7",
+                "Bbm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "db/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "db/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "ab/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "Bbm",
+                "F7",
+                "Bbm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "ab/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "db/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "F7",
+                "Bbm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "eb/5"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "Bb minor",
@@ -3439,7 +5655,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "لا - فا دييز - مي - ري"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "D major",
+          "clef": "treble",
+          "timeSignature": "2/4",
+          "rhythm": "تمتم سوداني أصيل",
+          "bpm": 110,
+          "chords": [
+            "D",
+            "G",
+            "A7",
+            "D"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "D",
+                "G",
+                "A7",
+                "D"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "D",
+                "G",
+                "A7",
+                "D"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "D",
+                "A7",
+                "D"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "e/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "A7",
+                "D"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "d/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "D major",
@@ -3811,7 +6304,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "ري - سي - لا - صول"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "G major",
+          "clef": "treble",
+          "timeSignature": "2/4",
+          "rhythm": "سيرة سودانية أصيلة",
+          "bpm": 106,
+          "chords": [
+            "G",
+            "C",
+            "D7",
+            "G"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "G",
+                "C",
+                "D7",
+                "G"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "G",
+                "C",
+                "D7",
+                "G"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "G",
+                "D7",
+                "G"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "D7",
+                "G"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "G major",
@@ -4136,7 +6906,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "سي بيمول - لا بيمول - صول بيمول - مي بيمول"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "Eb minor",
+          "clef": "treble",
+          "timeSignature": "4/4",
+          "rhythm": "رومبا عاطفية بطيئة",
+          "bpm": 76,
+          "chords": [
+            "Ebm",
+            "Abm",
+            "Bb7",
+            "Ebm"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "Ebm",
+                "Abm",
+                "Bb7",
+                "Ebm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "gb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "gb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "db/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "Ebm",
+                "Abm",
+                "Bb7",
+                "Ebm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "gb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "gb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "db/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "Ebm",
+                "Bb7",
+                "Ebm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "db/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "gb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "Bb7",
+                "Ebm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "ab/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "eb/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "Eb minor",
@@ -4526,7 +7573,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "ري - سي - لا - صول"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "G major",
+          "clef": "treble",
+          "timeSignature": "4/4",
+          "rhythm": "إيقاع شعبي شبابي سريع",
+          "bpm": 108,
+          "chords": [
+            "G",
+            "C",
+            "D7",
+            "G"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "G",
+                "C",
+                "D7",
+                "G"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "G",
+                "C",
+                "D7",
+                "G"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "G",
+                "D7",
+                "G"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "D7",
+                "G"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "G major",
@@ -4897,7 +8221,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "دو دييز - سي - لا - فا دييز"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "F# minor",
+          "clef": "treble",
+          "timeSignature": "2/4",
+          "rhythm": "أفراح / زنق خفيف",
+          "bpm": 116,
+          "chords": [
+            "F#m",
+            "Bm",
+            "C#7",
+            "F#m"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "F#m",
+                "Bm",
+                "C#7",
+                "F#m"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "F#m",
+                "Bm",
+                "C#7",
+                "F#m"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "F#m",
+                "C#7",
+                "F#m"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "C#7",
+                "F#m"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "f#/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "F# minor",
@@ -5270,7 +8871,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "ري - دو - سي بيمول - صول"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "G minor",
+          "clef": "treble",
+          "timeSignature": "4/4",
+          "rhythm": "حقيبة رزين 4/4",
+          "bpm": 82,
+          "chords": [
+            "Gm",
+            "Cm",
+            "D7",
+            "Gm"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "Gm",
+                "Cm",
+                "D7",
+                "Gm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "Gm",
+                "Cm",
+                "D7",
+                "Gm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "Gm",
+                "D7",
+                "Gm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "d/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "bb/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "D7",
+                "Gm"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c/5"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "g/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "G minor",
@@ -5617,7 +9495,284 @@ const SONGS_DATABASE = [
             ],
             "solfege": "مي - دو دييز - سي - لا"
           }
-        ]
+        ],
+        "multiBarLeadSheet": {
+          "key": "A major",
+          "clef": "treble",
+          "timeSignature": "2/4",
+          "rhythm": "سيرة / زنق مبهج",
+          "bpm": 114,
+          "chords": [
+            "A",
+            "D",
+            "E7",
+            "A"
+          ],
+          "totalMeasuresNotated": 24,
+          "sections": [
+            {
+              "title": "🎹 1. تدوين المقدمة الموسيقية (Full Intro Lead Sheet — 6 Bar Measures)",
+              "repeatText": "||: صولو أورغ وتنفيذ حسن غزالي :||",
+              "chords": [
+                "A",
+                "D",
+                "E7",
+                "A"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f#/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🎤 2. لحن الغناء والمقطع الرئيسي (Full Vocal Verse Lead Sheet — 8 Bar Measures)",
+              "repeatText": "كافة المقاطع الشعرية تؤدى على نفس اللحن",
+              "chords": [
+                "A",
+                "D",
+                "E7",
+                "A"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "h"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f#/5"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🔁 3. لحن اللازمة والترديد الجماعي (Refrain & Chorus Lead Sheet — 4 Bar Measures)",
+              "repeatText": "ترديد عوض حمدتو والكورس",
+              "chords": [
+                "A",
+                "E7",
+                "A"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "f#/5"
+                    ],
+                    "duration": "q"
+                  }
+                ],
+                [
+                  {
+                    "keys": [
+                      "e/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "8"
+                  },
+                  {
+                    "keys": [
+                      "b/4"
+                    ],
+                    "duration": "q"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            },
+            {
+              "title": "🏁 4. قفلة النهاية والتسليم الميداني (Full Cadence & Ending Lead Sheet)",
+              "repeatText": "القفلة والتهدئة على القرار",
+              "chords": [
+                "E7",
+                "A"
+              ],
+              "measures": [
+                [
+                  {
+                    "keys": [
+                      "c#/5"
+                    ],
+                    "duration": "h"
+                  },
+                  {
+                    "keys": [
+                      "a/4"
+                    ],
+                    "duration": "h"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
       },
       "performanceVersion": {
         "key": "A major",

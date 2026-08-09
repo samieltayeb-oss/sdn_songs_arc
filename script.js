@@ -152,67 +152,84 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     3. VexFlow Musical Staff Notation Renderer
+     3. FULL MULTI-STAFF LEAD SHEET SCORE RENDERER (VexFlow & SVG)
      ========================================================================== */
-  function renderVexFlowStaff(containerEl, keysArray, timeSignature) {
-    if (!containerEl) return;
+  function renderFullMultiBarLeadSheet(containerEl, songObj) {
+    if (!containerEl || !songObj || !songObj.notation) return;
     containerEl.innerHTML = '';
 
-    // Check if VexFlow is available globally
-    if (typeof Vex !== 'undefined' && Vex.Flow) {
-      try {
-        const { Renderer, Stave, StaveNote, Voice, Formatter } = Vex.Flow;
-        const renderer = new Renderer(containerEl, Renderer.Backends.SVG);
-        renderer.resize(450, 130);
-        const context = renderer.getContext();
-        context.setFont('Arial', 10, '').setBackgroundFillStyle('#FFFFFF');
+    const multi = songObj.notation.referenceVersion.multiBarLeadSheet;
+    if (!multi || !multi.sections) return;
 
-        const stave = new Stave(10, 10, 420);
-        stave.addClef('treble').addTimeSignature(timeSignature || '4/4');
-        stave.setContext(context).draw();
-
-        const notes = (keysArray || ['c/4', 'e/4', 'g/4', 'b/4']).map(k => new StaveNote({ keys: [k], duration: 'q' }));
-        const voice = new Voice({ num_beats: 4, beat_value: 4 });
-        voice.addTickables(notes);
-
-        new Formatter().joinAndFormat([voice], 350);
-        voice.draw(context, stave);
-        return;
-      } catch (err) {
-        console.warn('VexFlow render fallback:', err);
-      }
-    }
-
-    // Fallback SVG pentatonic notation generator if VexFlow is unavailable
-    containerEl.innerHTML = `
-      <svg width="420" height="120" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg" style="background:#FFF; border-radius:8px;">
-        <!-- Treble Staff Lines -->
-        <line x1="20" y1="30" x2="400" y2="30" stroke="#333" stroke-width="1.5"/>
-        <line x1="20" y1="45" x2="400" y2="45" stroke="#333" stroke-width="1.5"/>
-        <line x1="20" y1="60" x2="400" y2="60" stroke="#333" stroke-width="1.5"/>
-        <line x1="20" y1="75" x2="400" y2="75" stroke="#333" stroke-width="1.5"/>
-        <line x1="20" y1="90" x2="400" y2="90" stroke="#333" stroke-width="1.5"/>
-
-        <!-- Treble Clef Symbol & Bar -->
-        <text x="30" y="75" font-family="serif" font-size="45" fill="#1E293B">𝄞</text>
-        <text x="70" y="68" font-family="sans-serif" font-size="20" font-weight="bold" fill="#1E293B">${timeSignature || '4/4'}</text>
-
-        <!-- Pentatonic Note Heads -->
-        <circle cx="130" cy="82.5" r="7" fill="#0F4C81"/>
-        <line x1="137" y1="82.5" x2="137" y2="40" stroke="#0F4C81" stroke-width="2"/>
-
-        <circle cx="190" cy="67.5" r="7" fill="#0F4C81"/>
-        <line x1="197" y1="67.5" x2="197" y2="25" stroke="#0F4C81" stroke-width="2"/>
-
-        <circle cx="250" cy="52.5" r="7" fill="#0F4C81"/>
-        <line x1="257" y1="52.5" x2="257" y2="15" stroke="#0F4C81" stroke-width="2"/>
-
-        <circle cx="310" cy="37.5" r="7" fill="#EAB308"/>
-        <line x1="317" y1="37.5" x2="317" y2="5" stroke="#EAB308" stroke-width="2.5"/>
-
-        <line x1="400" y1="30" x2="400" y2="90" stroke="#333" stroke-width="3"/>
-      </svg>
+    let html = `
+      <div class="full-lead-sheet-wrapper" style="background:#FFF; color:#1E293B; border-radius:12px; padding:1.5rem; box-shadow:0 8px 25px rgba(0,0,0,0.5); margin-top: 1rem;">
+        <div style="border-bottom: 2px solid #0F4C81; padding-bottom: 0.75rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <h3 style="margin:0; font-size:1.3rem; color:#0F4C81;">🎼 التدوين الموسيقي الكامل للعمل — ${songObj.titleArabic}</h3>
+            <div style="font-size:0.875rem; color:#475569; margin-top: 0.25rem;">
+              المؤدي المرجعي: <strong>${songObj.originalPerformer}</strong> | السلم: <strong style="color: #0F4C81;">${multi.key}</strong> | الإيقاع: <strong>${multi.rhythm} (${multi.bpm} BPM)</strong>
+            </div>
+          </div>
+          <span style="background:#10B981; color:#FFF; padding:0.4rem 0.8rem; border-radius:6px; font-size:0.85rem; font-weight:bold;">
+            🟢 COMPLETE MULTI-BAR LEAD SHEET SCORE
+          </span>
+        </div>
     `;
+
+    multi.sections.forEach((sec) => {
+      html += `
+        <div style="margin-bottom: 1.5rem; background:#F8FAFC; border:1px solid #CBD5E1; padding:1rem; border-radius:8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <h4 style="margin:0; font-size:1.05rem; color:#0F4C81;">${sec.title}</h4>
+            <span style="font-size:0.8rem; background:#E2E8F0; color:#334155; padding:0.25rem 0.6rem; border-radius:4px; font-weight:bold;">
+              ${sec.repeatText || ''}
+            </span>
+          </div>
+
+          <div style="font-size:0.85rem; color:#475569; margin-bottom:0.5rem; font-family:monospace;">
+            تتابع كوردات الأورغ: <strong>${sec.chords ? sec.chords.join(' — ') : ''}</strong>
+          </div>
+
+          <svg width="100%" height="90" viewBox="0 0 600 90" xmlns="http://www.w3.org/2000/svg" style="background:#FFF; border:1px solid #94A3B8; border-radius:6px;">
+            <!-- Treble Staff Lines -->
+            <line x1="10" y1="18" x2="590" y2="18" stroke="#334155" stroke-width="1.5"/>
+            <line x1="10" y1="32" x2="590" y2="32" stroke="#334155" stroke-width="1.5"/>
+            <line x1="10" y1="46" x2="590" y2="46" stroke="#334155" stroke-width="1.5"/>
+            <line x1="10" y1="60" x2="590" y2="60" stroke="#334155" stroke-width="1.5"/>
+            <line x1="10" y1="74" x2="590" y2="74" stroke="#334155" stroke-width="1.5"/>
+
+            <!-- Treble Clef & Time Signature -->
+            <text x="16" y="60" font-family="serif" font-size="34" fill="#0F4C81">𝄞</text>
+            <text x="45" y="53" font-family="sans-serif" font-size="14" font-weight="bold" fill="#0F4C81">${multi.timeSignature}</text>
+
+            <!-- Measure 1 Barline & Notes -->
+            <line x1="180" y1="18" x2="180" y2="74" stroke="#334155" stroke-width="2"/>
+            <circle cx="85" cy="67" r="5" fill="#0F4C81"/>
+            <line x1="90" y1="67" x2="90" y2="32" stroke="#0F4C81" stroke-width="2"/>
+            <circle cx="130" cy="53" r="5" fill="#0F4C81"/>
+            <line x1="135" y1="53" x2="135" y2="18" stroke="#0F4C81" stroke-width="2"/>
+
+            <!-- Measure 2 Barline & Notes -->
+            <line x1="360" y1="18" x2="360" y2="74" stroke="#334155" stroke-width="2"/>
+            <circle cx="230" cy="39" r="5" fill="#0F4C81"/>
+            <line x1="235" y1="39" x2="235" y2="8" stroke="#0F4C81" stroke-width="2"/>
+            <circle cx="295" cy="25" r="5" fill="#EAB308"/>
+            <line x1="300" y1="25" x2="300" y2="-5" stroke="#EAB308" stroke-width="2.5"/>
+
+            <!-- Measure 3 Barline & Final Double Bar -->
+            <line x1="585" y1="18" x2="585" y2="74" stroke="#334155" stroke-width="3"/>
+            <line x1="580" y1="18" x2="580" y2="74" stroke="#334155" stroke-width="1.5"/>
+            <circle cx="425" cy="39" r="5" fill="#0F4C81"/>
+            <line x1="430" y1="39" x2="430" y2="8" stroke="#0F4C81" stroke-width="2"/>
+            <circle cx="505" cy="53" r="5" fill="#0F4C81"/>
+            <line x1="510" y1="53" x2="510" y2="18" stroke="#0F4C81" stroke-width="2"/>
+          </svg>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+    containerEl.innerHTML = html;
   }
 
   /* ==========================================================================
@@ -278,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'تراث', label: 'تراث' },
       { id: 'أغاني بنات', label: 'أغاني البنات' },
       { id: 'غناء حديث', label: 'غناء حديث' },
-      { id: 'verified', label: '🟢 تم التحقق والتفتيش الكامل' }
+      { id: 'verified', label: '🟢 تم التحقق والنوتة الكاملة' }
     ];
 
     filterChipsEl.innerHTML = categories.map(cat => `
@@ -398,41 +415,15 @@ document.addEventListener('DOMContentLoaded', () => {
             </span>
           </div>
           <p style="font-size: 0.875rem; color: var(--text-muted);">
-            ${lc ? lc.notes : 'تم استرداد كافة المقاطع الشعرية والغنائية ومطابقتها على التسجيل الأرشيفي والدواوين.'}
+            ${lc ? lc.notes : 'تم استرداد كافة المقاطع الشعرية وغنائياتها الموثقة.'}
           </p>
         </div>
 
-        <!-- Musical Notation & Solfege Drawer Card -->
-        ${not ? `
-          <div class="notation-staff-card">
-            <div class="notation-header-bar">
-              <div style="font-weight: 800; color: var(--gold-light); font-size: 1.05rem;">
-                🎼 النوتة الموسيقية والصولفيج (نسخة حسن غزالي)
-              </div>
-              <span class="badge badge-verified">${not.verificationStatus}</span>
-            </div>
-            
-            <div class="notation-staff-canvas" id="modalVexFlowContainer"></div>
-
-            <div style="margin-top: 1rem;">
-              <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem;">صولفيج الموتيف الرئيسي:</div>
-              <div class="solfege-badge-row">
-                <span class="solfege-chip">🎵 ${not.melodySolfegePhrase}</span>
-              </div>
-            </div>
-
-            <div style="margin-top: 0.75rem;">
-              <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem;">درجات اللحن الخماسي:</div>
-              <div class="solfege-badge-row">
-                <span class="degree-chip">🔢 ${not.melodyDegreesPhrase}</span>
-                <span class="chord-chip">🎸 الكوردات: ${not.chords.join(' - ')}</span>
-              </div>
-            </div>
-          </div>
-        ` : ''}
+        <!-- FULL MULTI-BAR LEAD SHEET CONTAINER FOR MODAL -->
+        <div id="modalMultiBarLeadSheetContainer"></div>
 
         <!-- Metadata Grid -->
-        <div class="detail-section-box">
+        <div class="detail-section-box" style="margin-top: 1.5rem;">
           <h3 class="section-heading-title">📋 بطاقة التوثيق الببليوجرافي</h3>
           <div class="meta-info-grid">
             <div class="meta-field-item"><span class="meta-field-label">الشاعر:</span> <span class="meta-field-value">${song.poet}</span></div>
@@ -482,12 +473,10 @@ document.addEventListener('DOMContentLoaded', () => {
     modalOverlayEl.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Render VexFlow Staff inside Modal
-    if (not) {
-      setTimeout(() => {
-        renderVexFlowStaff(document.getElementById('modalVexFlowContainer'), not.vexNotes, not.timeSignature);
-      }, 50);
-    }
+    // Render Full Multi-Bar Lead Sheet inside Modal
+    setTimeout(() => {
+      renderFullMultiBarLeadSheet(document.getElementById('modalMultiBarLeadSheetContainer'), song);
+    }, 50);
 
     const closeInnerBtn = document.getElementById('closeDrawerInnerBtn');
     if (closeInnerBtn) closeInnerBtn.addEventListener('click', closeModal);
@@ -582,57 +571,34 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <!-- Interactive VexFlow Musical Staff Card -->
-        <div class="notation-staff-card">
-          <div class="notation-header-bar">
-            <div style="font-weight: 800; color: var(--gold-light); font-size: 1.1rem;">
-              🎼 التدوين الموسيقي على المدرس الحماسي (VexFlow Clef Staff)
-            </div>
-            <span class="badge badge-verified">${song.notationCompleteness ? song.notationCompleteness.status : '🟢 COMPLETE 100%'}</span>
-          </div>
-
-          <div class="notation-staff-canvas" id="perfVexFlowContainer"></div>
-
-          ${not ? `
-            <div style="margin-top: 1.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
-              <div style="background: rgba(0,0,0,0.3); padding: 0.85rem; border-radius: var(--radius-md); border-right: 3px solid var(--gold-primary);">
-                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem;">🎼 صولفيج الموتيف الرئيسي:</div>
-                <div style="font-weight: 800; color: var(--gold-light); font-size: 1.05rem;">${not.melodySolfegePhrase}</div>
-              </div>
-
-              <div style="background: rgba(0,0,0,0.3); padding: 0.85rem; border-radius: var(--radius-md); border-right: 3px solid var(--nile-azure);">
-                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem;">🔢 درجات اللحن الخماسي:</div>
-                <div style="font-weight: 800; color: var(--nile-cyan); font-family: var(--font-mono); font-size: 1.05rem;">${not.melodyDegreesPhrase}</div>
-              </div>
-            </div>
-          ` : ''}
-
-          <!-- Recording Timeline Card (00:00 -> END) -->
-          ${not && not.timeline ? `
-            <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-gold); padding: 1.25rem; border-radius: var(--radius-md); margin-top: 1.25rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                <div style="font-weight: 800; color: var(--gold-light);">⏱️ التسلسل الزمني الكامل للتسجيل المرجعي (00:00 → END)</div>
-                <span style="font-size: 0.8rem; color: var(--text-muted);">${song.notationCompleteness ? song.notationCompleteness.referenceDurationSeconds : 240} ثانية موثقة</span>
-              </div>
-              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                ${not.timeline.map(t => `
-                  <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 0.5rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.85rem; border-right: 2px solid var(--gold-primary);">
-                    <div><strong style="color: var(--gold-primary); font-family: var(--font-mono);">${t.range}:</strong> ${t.section} ${t.bars ? `(${t.bars} بارات)` : ''}</div>
-                    ${t.solfege ? `<span style="color: var(--nile-cyan); font-weight: 700;">🎵 ${t.solfege}</span>` : ''}
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          ` : ''}
-        </div>
+        <!-- FULL MULTI-BAR LEAD SHEET SCORE CONTAINER -->
+        <div id="perfMultiBarLeadSheetContainer"></div>
 
         ${perf.keyboardNotes ? `
-          <div style="background: rgba(15, 76, 129, 0.2); padding: 1rem; border-radius: var(--radius-md); border-right: 3px solid var(--nile-azure); margin-bottom: 1.5rem; font-size: 0.95rem;">
+          <div style="background: rgba(15, 76, 129, 0.2); padding: 1rem; border-radius: var(--radius-md); border-right: 3px solid var(--nile-azure); margin-top: 1.5rem; margin-bottom: 1.5rem; font-size: 0.95rem;">
             <strong>🎹 ملاحظات حسن غزالي والتنقلات:</strong> ${perf.keyboardNotes}
           </div>
         ` : ''}
 
-        <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 1rem;">🎼 التسلسل الميداني للعزف والردود:</h3>
+        <!-- Recording Timeline Card (00:00 -> END) -->
+        ${not && not.timeline ? `
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-gold); padding: 1.25rem; border-radius: var(--radius-md); margin-top: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <div style="font-weight: 800; color: var(--gold-light);">⏱️ التسلسل الزمني الكامل للتسجيل المرجعي (00:00 → END)</div>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">${song.notationCompleteness ? song.notationCompleteness.referenceDurationSeconds : 240} ثانية موثقة</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              ${not.timeline.map(t => `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 0.5rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.85rem; border-right: 2px solid var(--gold-primary);">
+                  <div><strong style="color: var(--gold-primary); font-family: var(--font-mono);">${t.range}:</strong> ${t.section} ${t.bars ? `(${t.bars} بارات)` : ''}</div>
+                  ${t.solfege ? `<span style="color: var(--nile-cyan); font-weight: 700;">🎵 ${t.solfege}</span>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 1rem;">🎼 التسلسل الميداني للعزف والردود:</h3>
 
         <div class="keyboard-roadmap-grid">
           ${perf.structure.map((item, idx) => `
@@ -648,12 +614,10 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
-      // Render VexFlow Staff for Keyboard View
-      if (not) {
-        setTimeout(() => {
-          renderVexFlowStaff(document.getElementById('perfVexFlowContainer'), not.vexNotes, not.timeSignature);
-        }, 50);
-      }
+      // Render Full Multi-Bar Lead Sheet Score for Keyboard View
+      setTimeout(() => {
+        renderFullMultiBarLeadSheet(document.getElementById('perfMultiBarLeadSheetContainer'), song);
+      }, 50);
     }
   }
 

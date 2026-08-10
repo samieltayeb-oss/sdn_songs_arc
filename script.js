@@ -156,6 +156,96 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
+     NOTATION TRUTH ENGINE — 4-Level Status System
+     A: hasTranscription | B: provenanceVerified | C: fullNotationComplete | D: musicianApproved
+     ========================================================================== */
+
+  /**
+   * Returns true ONLY when a genuine 00:00→END full structural transcription exists.
+   * A handful of raw events is NOT sufficient.
+   */
+  function validateFullNotation(song) {
+    const rec = song.referenceRecording;
+    const not = song.notation && song.notation.referenceVersion;
+    if (!rec || !rec.url || rec.url.includes('search_query')) return false;
+    if (!not) return false;
+    if (!not.rawTranscriptionEvents || not.rawTranscriptionEvents.length === 0) return false;
+    const completeness = song.notationCompleteness;
+    if (!completeness) return false;
+    if (!completeness.recordingDurationSeconds || completeness.recordingDurationSeconds === 0) return false;
+    if (completeness.uniqueSectionsTotal === 0 || completeness.uniqueSectionsNotated === 0) return false;
+    if (completeness.unexplainedGaps > 0) return false;
+    if (completeness.uniqueSectionsNotated < completeness.uniqueSectionsTotal) return false;
+    return true;
+  }
+
+  /**
+   * Green badge ONLY when full notation AND musician personal approval.
+   * No alternate path.
+   */
+  function canShowGreenNotationBadge(song) {
+    if (!validateFullNotation(song)) return false;
+    const perf = song.performance;
+    if (!perf || perf.approvedByMusician !== true) return false;
+    return true;
+  }
+
+  /**
+   * Returns the official 4-level notation status for a song.
+   * NEVER reads verificationStatus string — derives from actual data fields.
+   */
+  function getNotationStatusLevel(song) {
+    const hasEvents = song.notation &&
+                      song.notation.referenceVersion &&
+                      song.notation.referenceVersion.rawTranscriptionEvents &&
+                      song.notation.referenceVersion.rawTranscriptionEvents.length > 0;
+
+    if (canShowGreenNotationBadge(song)) {
+      return { level: 'approved', label: '🟢 النوتة الكاملة معتمدة من حسن غزالي', color: '#10B981', bg: 'rgba(16,185,129,0.15)' };
+    }
+    if (validateFullNotation(song)) {
+      return { level: 'full-pending', label: '🔵 النوتة كاملة مبدئياً — تحتاج مراجعة الموسيقار', color: '#3B82F6', bg: 'rgba(59,130,246,0.15)' };
+    }
+    if (hasEvents) {
+      return { level: 'partial', label: '🟡 تفريغ جزئي — الجملة الافتتاحية فقط', color: '#EAB308', bg: 'rgba(234,179,8,0.15)' };
+    }
+    return { level: 'none', label: '🔴 النوتة لم يتم تفريغها', color: '#DC2626', bg: 'rgba(220,38,38,0.15)' };
+  }
+
+  /**
+   * Returns a coverage summary HTML string.
+   */
+  function buildCoveragePanel(song) {
+    const events = song.notation && song.notation.referenceVersion && song.notation.referenceVersion.rawTranscriptionEvents;
+    const nc = song.notationCompleteness || {};
+    const firstTime = events && events.length > 0 ? events[0].time : '--';
+    const lastTime  = events && events.length > 0 ? events[events.length - 1].time : '--';
+    const totalSec  = nc.recordingDurationSeconds ? nc.recordingDurationSeconds + 'ث' : 'غير معروف';
+    const covSec    = nc.coveredTimelineSeconds ? nc.coveredTimelineSeconds + 'ث' : '0ث';
+    const sections  = (nc.uniqueSectionsNotated || 0) + ' من ' + (nc.uniqueSectionsTotal || '?');
+    const pct       = nc.completenessPercent !== undefined ? nc.completenessPercent + '%' : '0%';
+    const recUrl    = song.referenceRecording && song.referenceRecording.url;
+    const status    = getNotationStatusLevel(song);
+
+    return `
+      <div style="background:${status.bg}; border:1px solid ${status.color}; border-radius:8px; padding:1rem; margin-bottom:1rem; font-size:0.85rem;">
+        <div style="font-weight:bold; color:${status.color}; margin-bottom:0.5rem; font-size:1rem;">${status.label}</div>
+        <table style="width:100%; border-collapse:collapse; color:#94A3B8;">
+          <tr><td><strong>التغطية الزمنية:</strong></td><td>${firstTime} → ${lastTime}</td></tr>
+          <tr><td><strong>مدة التسجيل الكاملة:</strong></td><td>${totalSec}</td></tr>
+          <tr><td><strong>المدة المغطاة:</strong></td><td>${covSec}</td></tr>
+          <tr><td><strong>الأقسام الموسيقية:</strong></td><td>${sections}</td></tr>
+          <tr><td><strong>نسبة الاكتمال:</strong></td><td>${pct}</td></tr>
+          <tr><td><strong>مراجعة الموسيقار:</strong></td><td style="color:#DC2626;">لم يراجعها حسن غزالي بعد</td></tr>
+          ${recUrl ? `<tr><td><strong>التسجيل المرجعي:</strong></td><td><a href="${recUrl}" target="_blank" style="color:#3B82F6;">فتح التسجيل 🔗</a></td></tr>` : '<tr><td><strong>التسجيل المرجعي:</strong></td><td style="color:#DC2626;">غير محدد</td></tr>'}
+        </table>
+        ${status.level === 'partial' ? '<div style="margin-top:0.5rem;color:#92400E;">⚠️ المعروض جزء من اللحن فقط — النوتة الكاملة: غير متوفرة بعد</div>' : ''}
+        ${status.level === 'none' ? '<div style="margin-top:0.5rem;">يمكن إدخال النوتة عبر 🎧 وضع البروفة</div>' : ''}
+      </div>
+    `;
+  }
+
+  /* ==========================================================================
      3. FULL MULTI-STAFF LEAD SHEET SCORE RENDERER (GENUINE VEXFLOW)
      ========================================================================== */
   function renderFullMultiBarLeadSheet(containerEl, songObj) {
@@ -163,30 +253,28 @@ document.addEventListener('DOMContentLoaded', () => {
     containerEl.innerHTML = '';
 
     const not = songObj.notation.referenceVersion;
-    const rawEvents = not.rawTranscriptionEvents;
+    const rawEvents = not && not.rawTranscriptionEvents;
+    const statusInfo = getNotationStatusLevel(songObj);
+
+    // Always render the coverage panel
+    const coverageHtml = buildCoveragePanel(songObj);
 
     if (!rawEvents || rawEvents.length === 0) {
-      containerEl.innerHTML = `
-        <div style="background: rgba(220, 38, 38, 0.08); border: 1px dashed #DC2626; padding: 2rem; border-radius: 8px; text-align: center; color: #DC2626; margin-top: 1.5rem;">
-          <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">🔴 النوتة لم يتم تفريغها من التسجيل بعد</div>
-          <div style="font-size: 0.9rem;">(Transcription Not Yet Verified From Audio)</div>
-        </div>
-      `;
+      containerEl.innerHTML = coverageHtml;
       return;
     }
 
     let html = `
+      ${coverageHtml}
       <div class="full-lead-sheet-wrapper" style="background:#FFF; color:#1E293B; border-radius:12px; padding:1.5rem; box-shadow:0 8px 25px rgba(0,0,0,0.5); margin-top: 1rem;">
-        <div style="border-bottom: 2px solid #0F4C81; padding-bottom: 0.75rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+        <div style="border-bottom: 2px solid #0F4C81; padding-bottom: 0.75rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
           <div>
-            <h3 style="margin:0; font-size:1.3rem; color:#0F4C81;">🎼 التدوين الموسيقي المستقل — ${songObj.titleArabic}</h3>
-            <div style="font-size:0.875rem; color:#475569; margin-top: 0.25rem;">
-              المؤدي المرجعي: <strong>${songObj.originalPerformer}</strong> | السلم: <strong style="color: #0F4C81;">${not.key}</strong>
-            </div>
+            <h3 style="margin:0; font-size:1.1rem; color:#0F4C81;">🎼 ${songObj.titleArabic} — المقطع المفرغ</h3>
+            <div style="font-size:0.8rem; color:#475569;">المؤدي المرجعي: <strong>${songObj.originalPerformer}</strong> | السلم: <strong>${not.key || 'غير محدد'}</strong></div>
           </div>
-          <span style="background:#10B981; color:#FFF; padding:0.4rem 0.8rem; border-radius:6px; font-size:0.85rem; font-weight:bold;">
-            🟢 INDEPENDENT VERIFIED SCORE
-          </span>
+        </div>
+        <div style="background:#FEF9C3; border-right:3px solid #EAB308; padding:0.5rem 0.75rem; font-size:0.8rem; color:#713F12; margin-bottom:1rem;">
+          🟡 مزامنة الكلمات مع النوتة تحتاج مراجعة — الكلمات مخفية تحت النوتة حتى يتم التحقق منها يدوياً.
         </div>
         <div id="vexflow-canvas-${songObj.id}" style="overflow-x: auto; padding-bottom: 1rem;"></div>
       </div>
@@ -215,7 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
             keys: [`${evt.pitch.toLowerCase()}/${evt.octave}`],
             duration: evt.duration
           });
-          if (evt.lyric) {
+          // ARABIC LYRIC ALIGNMENT: ONLY show if lyricAlignmentVerified === true
+          // Never auto-annotate — suppresses fragmented character-by-character display
+          if (evt.lyric && evt.lyricAlignmentVerified === true) {
             note.addModifier(new VF.Annotation(evt.lyric).setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0);
           }
           return note;
@@ -235,35 +325,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('forensicAuditContainer');
     if (!container) return;
 
+    // Calculate truthful counts from ACTUAL data — never hardcoded
+    const total = SONGS_DATABASE.length;
+    const approvedCount   = SONGS_DATABASE.filter(s => canShowGreenNotationBadge(s)).length;
+    const fullPendingCount = SONGS_DATABASE.filter(s => !canShowGreenNotationBadge(s) && validateFullNotation(s)).length;
+    const partialCount    = SONGS_DATABASE.filter(s => {
+      const hasEvents = s.notation && s.notation.referenceVersion && s.notation.referenceVersion.rawTranscriptionEvents && s.notation.referenceVersion.rawTranscriptionEvents.length > 0;
+      return hasEvents && !validateFullNotation(s);
+    }).length;
+    const noneCount = total - approvedCount - fullPendingCount - partialCount;
+
     let html = `
       <div style="background: var(--bg-card); border: 1px solid var(--border-gold); padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 2rem;">
-        <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">📊 نتائج تدقيق التماثل والمطابقة بين الأعمال (Forensic Pairwise Matrix)</h3>
-        <p style="font-size: 0.9rem; color: var(--text-muted);">
-          تم محو المولد الوهمي للنوتات وإلغاء شارة "موثقة" عن الأغاني التي لا تملك جدول أحداث نغمية مفرغة (Raw Events) من التسجيل الصوتي.
-        </p>
+        <h3 style="color: var(--gold-light); margin-bottom: 1rem;">📊 ملخص حالة النوتة الموسيقية — الحالة الفعلية الحقيقية</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem;">
+          <div style="background:rgba(16,185,129,0.1); border:1px solid #10B981; border-radius:8px; padding:1rem; text-align:center;">
+            <div style="font-size:2rem; font-weight:bold; color:#10B981;">${approvedCount} / ${total}</div>
+            <div style="font-size:0.8rem; color:#94A3B8;">🟢 معتمدة من الموسيقار</div>
+          </div>
+          <div style="background:rgba(59,130,246,0.1); border:1px solid #3B82F6; border-radius:8px; padding:1rem; text-align:center;">
+            <div style="font-size:2rem; font-weight:bold; color:#3B82F6;">${fullPendingCount} / ${total}</div>
+            <div style="font-size:0.8rem; color:#94A3B8;">🔵 نوتة كاملة — بانتظار المراجعة</div>
+          </div>
+          <div style="background:rgba(234,179,8,0.1); border:1px solid #EAB308; border-radius:8px; padding:1rem; text-align:center;">
+            <div style="font-size:2rem; font-weight:bold; color:#EAB308;">${partialCount} / ${total}</div>
+            <div style="font-size:0.8rem; color:#94A3B8;">🟡 تفريغ جزئي</div>
+          </div>
+          <div style="background:rgba(220,38,38,0.1); border:1px solid #DC2626; border-radius:8px; padding:1rem; text-align:center;">
+            <div style="font-size:2rem; font-weight:bold; color:#DC2626;">${noneCount} / ${total}</div>
+            <div style="font-size:0.8rem; color:#94A3B8;">🔴 لم يتم التفريغ</div>
+          </div>
+        </div>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 1.5rem;">
         ${SONGS_DATABASE.map((song, i) => {
-          const fp = song.musicalFingerprint;
-          const rec = song.referenceRecording;
+          const status = getNotationStatusLevel(song);
           const not = song.notation ? song.notation.referenceVersion : null;
-          const hasTranscription = not && not.rawTranscriptionEvents && not.rawTranscriptionEvents.length > 0;
-
           return `
             <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
               <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
                 <div>
                   <h3 style="margin: 0; color: var(--gold-primary); font-size: 1.2rem;">#${i + 1} — ${song.titleArabic}</h3>
-                  <div style="font-size: 0.85rem; color: var(--text-muted);">المؤدي المرجعي: ${song.originalPerformer} | السلم: <strong style="color: var(--gold-light);">${not ? not.key : 'G minor'}</strong></div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted);">المؤدي المرجعي: ${song.originalPerformer} | السلم: <strong style="color: var(--gold-light);">${not && not.key ? not.key : 'غير محدد'}</strong></div>
                 </div>
-                ${hasTranscription ? 
-                  `<span class="badge badge-verified">🟢 INDEPENDENT VERIFIED SCORE</span>` : 
-                  `<span class="badge" style="background: rgba(220, 38, 38, 0.2); color: #DC2626; border: 1px solid #DC2626;">🔴 TRANSCRIPTION NOT YET VERIFIED</span>`
-                }
+                <span style="background:${status.bg}; color:${status.color}; border:1px solid ${status.color}; padding:0.4rem 0.8rem; border-radius:6px; font-size:0.85rem; font-weight:bold;">${status.label}</span>
               </div>
-
-              <!-- Render Native Song Score Notation -->
               <div id="auditLeadSheet_${song.id}"></div>
             </div>
           `;
@@ -287,48 +394,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('notationProofContainer');
     if (!container) return;
 
-    const transcribedSongs = SONGS_DATABASE.filter(s => s.notation && s.notation.referenceVersion && s.notation.referenceVersion.rawTranscriptionEvents);
+    const transcribedSongs = SONGS_DATABASE.filter(s =>
+      s.notation && s.notation.referenceVersion && s.notation.referenceVersion.rawTranscriptionEvents
+    );
 
     let html = `
       <div style="background: var(--bg-card); border: 1px solid var(--border-gold); padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 2rem;">
         <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">🧾 دليل الإثبات السمعي البصري (Audio-to-Score Proof Chain)</h3>
         <p style="font-size: 0.9rem; color: var(--text-muted);">
-          إثبات الاستقلالية يقتضي وجود تسجيل مرجعي، استخراج التفريغ الزمني (Timestamps)، الأحداث النغمية (Pitches/Durations)، ثم رسم النوتة. 
+          إثبات وجود التفريغ. كل دليل هنا يثبت المقطع المعروض فقط ولا يعني اكتمال نوتة الأغنية الكاملة.
         </p>
+        <div style="margin-top:0.75rem; padding:0.75rem; background:rgba(234,179,8,0.1); border:1px solid #EAB308; border-radius:6px; font-size:0.85rem; color:#EAB308;">
+          ⚠️ هذا الدليل يثبت المقطع المعروض فقط ولا يعني اكتمال نوتة الأغنية.
+        </div>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 2rem;">
         ${transcribedSongs.map((song, i) => {
           const rec = song.referenceRecording;
           const rawEvents = song.notation.referenceVersion.rawTranscriptionEvents;
-          
+          const status = getNotationStatusLevel(song);
           return `
-            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
-              <h3 style="color: var(--gold-primary); margin-bottom: 1rem; border-bottom: 1px dashed var(--border-subtle); padding-bottom: 0.5rem;">
-                ${i+1}. ${song.titleArabic}
-              </h3>
+            <div style="background: var(--bg-card); border: 1px solid ${status.color}; border-radius: var(--radius-md); padding: 1.5rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="color: var(--gold-primary); margin:0;">${i+1}. ${song.titleArabic}</h3>
+                <span style="background:${status.bg}; color:${status.color}; border:1px solid ${status.color}; padding:0.35rem 0.75rem; border-radius:6px; font-weight:bold; font-size:0.85rem;">${status.label}</span>
+              </div>
               
+              <div style="background:rgba(234,179,8,0.08); border:1px solid #EAB308; border-radius:6px; padding:0.6rem 0.75rem; margin-bottom:1rem; font-size:0.82rem; color:#92400E;">
+                🟡 PARTIAL EVIDENCE ONLY — هذا الدليل يثبت المقطع المعروض فقط ولا يعني اكتمال نوتة الأغنية.
+              </div>
+
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
                 <div style="background: rgba(15, 76, 129, 0.15); padding: 1rem; border-radius: 8px; border-right: 3px solid var(--nile-azure);">
                   <strong style="display: block; margin-bottom: 0.5rem;">🎙️ التسجيل المرجعي:</strong>
                   <div style="font-size: 0.85rem; color: var(--text-muted);">
-                    المؤدي: ${rec.performer}<br>
-                    النسخة: ${rec.version}<br>
-                    زمن البدء: ${rawEvents[0].time}
+                    المؤدي: ${rec && rec.performer ? rec.performer : 'غير محدد'}<br>
+                    النسخة: ${rec && rec.version ? rec.version : 'غير محدد'}<br>
+                    زمن البدء: ${rawEvents[0].time || '--'}
                   </div>
                 </div>
-                <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 8px; border-right: 3px solid #10B981;">
-                  <strong style="display: block; margin-bottom: 0.5rem;">📊 جدول التفريغ الخام (Raw Events):</strong>
+                <div style="background: rgba(234, 179, 8, 0.1); padding: 1rem; border-radius: 8px; border-right: 3px solid #EAB308;">
+                  <strong style="display: block; margin-bottom: 0.5rem;">📊 جدول التفريغ الخام (Raw Events) — ${rawEvents.length} نغمة:</strong>
                   <table style="width: 100%; font-size: 0.8rem; text-align: right; color: var(--text-muted); border-collapse: collapse;">
                     <thead>
                       <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <th>Time</th><th>Lyric</th><th>Pitch</th><th>Oct</th><th>Dur</th><th>Msr</th><th>Beat</th>
+                        <th>Time</th><th>Pitch</th><th>Oct</th><th>Dur</th><th>Msr</th><th>Beat</th>
                       </tr>
                     </thead>
                     <tbody>
                       ${rawEvents.map(evt => `
                         <tr>
-                          <td>${evt.time}</td><td>${evt.lyric || '-'}</td>
+                          <td>${evt.time || '--'}</td>
                           <td style="color: var(--gold-light); font-family: monospace;">${evt.pitch}</td>
                           <td>${evt.octave}</td><td style="color: #10B981;">${evt.duration}</td>
                           <td>${evt.measure}</td><td>${evt.beat}</td>
@@ -339,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </div>
 
-              <strong style="display: block; margin-bottom: 0.5rem;">🎼 النوتة الناتجة عن التفريغ (VexFlow Score):</strong>
+              <strong style="display: block; margin-bottom: 0.5rem;">🎼 النوتة الناتجة عن التفريغ الجزئي:</strong>
               <div id="proofLeadSheet_${song.id}"></div>
             </div>
           `;

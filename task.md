@@ -1,0 +1,24 @@
+- `[ ]` 1. UI Structure: Add Rehearsal Workspace view to `index.html`
+  - `[ ]` Add navigation button "🎧 وضع البروفة"
+  - `[ ]` Create `<main id="workspaceView">` with layout for Musician Entry
+- `[ ]` 2. Styling: Update `style.css` for workspace tools
+  - `[ ]` Chord input grids, measure editors, checklists
+- `[ ]` 3. Logic Core: Create `workspace.js`
+  - `[ ]` Load song data and merge with `localStorage` rehearsal state
+  - `[ ]` UI binders for Inputs (Key, BPM, Intro bars, etc.)
+  - `[ ]` Fast Chord Entry parsing (e.g. `Eb | Abm | Bb7`)
+  - `[ ]` Measure/Note Editor logic
+  - `[ ]` Section Builder (Intro, Verse, Refrain)
+- `[ ]` 4. Advanced Logic:
+  - `[ ]` Transpose Tool logic (shifting pitches and chords)
+  - `[ ]` Awad Vocal Key Test UI
+  - `[ ]` Performance Lyrics selector (checkboxes and drag-drop structure)
+- `[ ]` 5. Rendering & Export:
+  - `[ ]` VexFlow auto-rendering from entered notes
+  - `[ ]` One-click Save to localStorage with Version History
+  - `[ ]` Approval Workflow (Hassan and Awad checklists)
+  - `[ ]` Printable Lead Sheet (Hassan) & Vocalist Sheet (Awad)
+- `[ ]` 6. Integration:
+  - `[ ]` Link Performance Mode to use Rehearsal data
+  - `[ ]` Setlist / Dashboard readiness metrics
+- `[ ]` 7. Deployment & Testing

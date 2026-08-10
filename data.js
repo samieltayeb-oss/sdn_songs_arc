@@ -330,7 +330,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار G",
-        "verificationStatus": "🟢 VERIFIED FROM RECORDING",
+        "verificationStatus": "🟡 PARTIAL (Opening Motif Only) - Needs Full 00:00-END",
         "timeline": [
           {
             "range": "00:00–00:22",
@@ -547,14 +547,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 255,
-      "timelineCoveredSeconds": 255,
-      "uniqueSectionsFound": 5,
-      "uniqueSectionsNotated": 5,
-      "repeatedSectionsMapped": 4,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🟡 PARTIAL (Opening Motif Only)"
     },
     "referenceRecording": {
       "songTitle": "نسانا حبيبنا",
@@ -563,7 +563,9 @@ const SONGS_DATABASE = [
       "url": "https://www.youtube.com/watch?v=kYvM-iR0hXQ",
       "duration": "04:15",
       "version": "التسجيل الأوركستري الرسمي للإذاعة",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": "https://www.youtube.com/watch?v=kYvM-iR0hXQ",
+      "recordingId": "kYvM-iR0hXQ"
     },
     "musicalFingerprint": {
       "tonalCenter": "G",
@@ -630,6 +632,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية 1965م",
       "correctionNotes": "النواة اللحنية تعتمد على الهبوط السلس من النغمة 5 إلى القرار 1"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -941,7 +959,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار F",
-        "verificationStatus": "🟢 VERIFIED FROM RECORDING",
+        "verificationStatus": "🟡 PARTIAL (Opening Motif Only) - Needs Full 00:00-END",
         "timeline": [
           {
             "range": "00:00–00:18",
@@ -1143,14 +1161,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 210,
-      "timelineCoveredSeconds": 210,
-      "uniqueSectionsFound": 5,
-      "uniqueSectionsNotated": 5,
-      "repeatedSectionsMapped": 6,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🟡 PARTIAL (Opening Motif Only)"
     },
     "referenceRecording": {
       "songTitle": "سمسم القضارف",
@@ -1159,7 +1177,9 @@ const SONGS_DATABASE = [
       "url": "https://www.youtube.com/watch?v=zT9aB_qxy12",
       "duration": "03:30",
       "version": "تسجيل التمتم الأرشيفي 1945م",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": "https://www.youtube.com/watch?v=zT9aB_qxy12",
+      "recordingId": "zT9aB_qxy12"
     },
     "musicalFingerprint": {
       "tonalCenter": "F",
@@ -1221,6 +1241,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الفلاتية الأرشيفي 1945م",
       "correctionNotes": "اللحن يتميز بقفزات خماسية راقصة بين الدرجات 5 و 3 و 1"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -1501,7 +1537,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار C",
-        "verificationStatus": "🟢 VERIFIED FROM RECORDING",
+        "verificationStatus": "🟡 PARTIAL (Opening Motif Only) - Needs Full 00:00-END",
         "timeline": [
           {
             "range": "00:00–00:20",
@@ -1665,14 +1701,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 220,
-      "timelineCoveredSeconds": 220,
-      "uniqueSectionsFound": 4,
-      "uniqueSectionsNotated": 4,
-      "repeatedSectionsMapped": 5,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🟡 PARTIAL (Opening Motif Only)"
     },
     "referenceRecording": {
       "songTitle": "يا ناس بريدها",
@@ -1681,7 +1717,9 @@ const SONGS_DATABASE = [
       "url": "https://www.youtube.com/watch?v=pQ8rT_def56",
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": "https://www.youtube.com/watch?v=pQ8rT_def56",
+      "recordingId": "pQ8rT_def56"
     },
     "musicalFingerprint": {
       "tonalCenter": "C",
@@ -1756,6 +1794,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -1998,7 +2052,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار F",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:25",
@@ -2088,14 +2142,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 195,
-      "timelineCoveredSeconds": 195,
-      "uniqueSectionsFound": 4,
-      "uniqueSectionsNotated": 4,
-      "repeatedSectionsMapped": 3,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "يجو عايدين",
@@ -2104,7 +2158,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "F",
@@ -2170,6 +2226,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -2433,7 +2505,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار C",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:35",
@@ -2536,14 +2608,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 260,
-      "timelineCoveredSeconds": 260,
-      "uniqueSectionsFound": 5,
-      "uniqueSectionsNotated": 5,
-      "repeatedSectionsMapped": 4,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "من فريع البان",
@@ -2552,7 +2624,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "C",
@@ -2618,6 +2692,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -2877,7 +2967,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار D",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:15",
@@ -2966,14 +3056,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 180,
-      "timelineCoveredSeconds": 180,
-      "uniqueSectionsFound": 4,
-      "uniqueSectionsNotated": 4,
-      "repeatedSectionsMapped": 4,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "الخدير",
@@ -2982,7 +3072,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "D",
@@ -3051,6 +3143,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -3345,7 +3453,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار A",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:25",
@@ -3448,14 +3556,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 240,
-      "timelineCoveredSeconds": 240,
-      "uniqueSectionsFound": 5,
-      "uniqueSectionsNotated": 5,
-      "repeatedSectionsMapped": 6,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "يا رائع جفيتني وأنا ضايع",
@@ -3464,7 +3572,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "A",
@@ -3530,6 +3640,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -3838,7 +3964,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار Bb",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:30",
@@ -3941,14 +4067,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 270,
-      "timelineCoveredSeconds": 270,
-      "uniqueSectionsFound": 5,
-      "uniqueSectionsNotated": 5,
-      "repeatedSectionsMapped": 7,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "سميري الفي ضميري",
@@ -3957,7 +4083,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "Bb",
@@ -4023,6 +4151,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -4255,7 +4399,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار D",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:15",
@@ -4345,14 +4489,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 185,
-      "timelineCoveredSeconds": 185,
-      "uniqueSectionsFound": 4,
-      "uniqueSectionsNotated": 4,
-      "repeatedSectionsMapped": 2,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "جوبا مالك علي",
@@ -4361,7 +4505,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "D",
@@ -4427,6 +4573,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -4690,7 +4852,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار G",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:20",
@@ -4793,14 +4955,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 230,
-      "timelineCoveredSeconds": 230,
-      "uniqueSectionsFound": 5,
-      "uniqueSectionsNotated": 5,
-      "repeatedSectionsMapped": 4,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "البي العصر مرورو",
@@ -4809,7 +4971,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "G",
@@ -4875,6 +5039,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -5104,7 +5284,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار Eb",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:35",
@@ -5194,14 +5374,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 245,
-      "timelineCoveredSeconds": 245,
-      "uniqueSectionsFound": 4,
-      "uniqueSectionsNotated": 4,
-      "repeatedSectionsMapped": 2,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "يا غالية يا زينة حياتي",
@@ -5210,7 +5390,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "Eb",
@@ -5276,6 +5458,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -5570,7 +5768,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار G",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:18",
@@ -5660,14 +5858,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 215,
-      "timelineCoveredSeconds": 215,
-      "uniqueSectionsFound": 4,
-      "uniqueSectionsNotated": 4,
-      "repeatedSectionsMapped": 6,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "الليلة مسافر",
@@ -5676,7 +5874,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "G",
@@ -5742,6 +5942,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -6017,7 +6233,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار F#",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:15",
@@ -6107,14 +6323,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 190,
-      "timelineCoveredSeconds": 190,
-      "uniqueSectionsFound": 4,
-      "uniqueSectionsNotated": 4,
-      "repeatedSectionsMapped": 5,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "حمادة دا جنني",
@@ -6123,7 +6339,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "F#",
@@ -6189,6 +6407,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -6453,7 +6687,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار G",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:30",
@@ -6556,14 +6790,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 250,
-      "timelineCoveredSeconds": 250,
-      "uniqueSectionsFound": 5,
-      "uniqueSectionsNotated": 5,
-      "repeatedSectionsMapped": 4,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "الفطن الوسيم",
@@ -6572,7 +6806,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "G",
@@ -6642,6 +6878,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   },
   {
@@ -6893,7 +7145,7 @@ const SONGS_DATABASE = [
           "صولو أورغ على السلم الخماسي - لحن حسن غزالي"
         ],
         "ending": "القفلة على نغمة القرار A",
-        "verificationStatus": "🔴 NOT TRANSCRIBED",
+        "verificationStatus": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي",
         "timeline": [
           {
             "range": "00:00–00:20",
@@ -6983,14 +7235,14 @@ const SONGS_DATABASE = [
       }
     },
     "notationCompleteness": {
-      "referenceDurationSeconds": 200,
-      "timelineCoveredSeconds": 200,
-      "uniqueSectionsFound": 4,
-      "uniqueSectionsNotated": 4,
-      "repeatedSectionsMapped": 3,
-      "unexplainedGaps": 0,
-      "completenessPercent": 100,
-      "status": "🟢 COMPLETE 100%"
+      "recordingDurationSeconds": 0,
+      "timelineCoveredSeconds": 0,
+      "uniqueSectionsTotal": 0,
+      "uniqueSectionsNotated": 0,
+      "totalMeasures": 0,
+      "unexplainedGaps": 1,
+      "completenessPercent": 0,
+      "status": "🔴 يحتاج تفريغ موسيقي / مراجعة حسن غزالي"
     },
     "referenceRecording": {
       "songTitle": "الليلة الليلة وبراي الليلة",
@@ -6999,7 +7251,9 @@ const SONGS_DATABASE = [
       "url": null,
       "duration": "03:45",
       "version": "التسجيل المرجعي الإذاعي الأصيل",
-      "verifiedAccessible": true
+      "verifiedAccessible": true,
+      "exactUrl": null,
+      "recordingId": null
     },
     "musicalFingerprint": {
       "tonalCenter": "A",
@@ -7065,6 +7319,22 @@ const SONGS_DATABASE = [
       "corrected": true,
       "referenceUsed": "تسجيل الإذاعة السودانية المرجعي",
       "correctionNotes": "تم فصل السلم عن اللحن وتوثيق نبرات الشاعر والمؤدي الأصلي"
+    },
+    "recordingTimeline": [],
+    "notationSections": [],
+    "lyricAlignment": [],
+    "performanceArrangement": {
+      "performanceKey": "يحدد في البروفة",
+      "performanceBpm": null,
+      "countIn": "يحدد في البروفة",
+      "introBars": 0,
+      "structure": [],
+      "verseOrder": [],
+      "refrainRepeats": 0,
+      "instrumentalBreaks": [],
+      "ending": "يحدد في البروفة",
+      "keyboardNotes": "",
+      "vocalistNotes": ""
     }
   }
 ];
